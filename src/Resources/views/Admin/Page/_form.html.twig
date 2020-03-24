@@ -1,0 +1,23 @@
+{% from '@SyliusAdmin/Macro/translationForm.html.twig' import translationFormWithSlug %}
+
+{% set translationForm = form.translations %}
+{{ form.offsetUnset('translations') }}
+
+<h4 class="ui horizontal divider header">
+    <i class="info icon"></i>
+    {{ 'monsieurbiz_cms_page.ui.form.page_info' | trans }}
+</h4>
+<div class="ui segment">
+    {{ form_errors(form) }}
+    {{ form_rest(form) }}
+</div>
+<h4 class="ui horizontal divider header">
+    <i class="flag icon"></i>
+    {{ 'monsieurbiz_cms_page.ui.form.page_content' | trans }}
+</h4>
+
+{{ translationFormWithSlug(translationForm, '@MonsieurBizSyliusCmsPagePlugin/Admin/Page/_slugField.html.twig', page) }}
+
+{% block javascripts %}
+    {% include '@SyliusUi/_javascripts.html.twig' with {'path': 'bundles/monsieurbizsyliuscmspageplugin/js/monsieurbiz-page-slug.js'} %}
+{% endblock %}

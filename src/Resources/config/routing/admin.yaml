@@ -10,6 +10,8 @@ monsieurbiz_sylius_cms_page_admin:
     vars:
         all:
             subheader: monsieurbiz_cms_page.ui.pages_subheader
+            templates:
+                form: "@MonsieurBizSyliusCmsPagePlugin/Admin/Page/_form.html.twig"
         index:
             icon: 'file alternate'
   type: sylius.resource
