@@ -7,3 +7,9 @@ services:
   MonsieurBiz\SyliusCmsPagePlugin\:
     resource: '../../*'
     exclude: '../../{DependencyInjection,Form/Type}'
+
+  # Menu item in admin panel
+  MonsieurBiz\SyliusCmsPagePlugin\Listener\AdminMenuListener:
+    tags:
+      - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addAdminMenuItem }
+
