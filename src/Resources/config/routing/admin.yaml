@@ -1,3 +1,4 @@
+# Page admin routing
 monsieurbiz_sylius_cms_page_admin:
   resource: |
     alias: monsieurbiz_cms_page.page
@@ -12,4 +13,11 @@ monsieurbiz_sylius_cms_page_admin:
         index:
             icon: 'file alternate'
   type: sylius.resource
+
+# Ajax call to auto generate a slug for a recipe
+monsieurbiz_sylius_cms_page_ajax_generate_page_slug:
+  path: /page/generate-slug
+  methods: [GET]
+  defaults:
+    _controller: MonsieurBiz\SyliusCmsPagePlugin\Controller\Admin\Page\PageSlugController::generateAction
 
