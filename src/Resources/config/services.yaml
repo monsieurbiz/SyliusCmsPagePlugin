@@ -8,6 +8,10 @@ services:
     resource: '../../*'
     exclude: '../../{DependencyInjection,Form/Type}'
 
+  MonsieurBiz\SyliusCmsPagePlugin\Controller\:
+    resource: '../../Controller'
+    tags: ['controller.service_arguments']
+
   # Menu item in admin panel
   MonsieurBiz\SyliusCmsPagePlugin\Listener\AdminMenuListener:
     tags:
