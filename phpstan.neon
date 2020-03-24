@@ -1,0 +1,19 @@
+includes:
+    - vendor/phpstan/phpstan-doctrine/extension.neon
+    - vendor/phpstan/phpstan-webmozart-assert/extension.neon
+
+parameters:
+    level: max
+    paths:
+        - %rootDir%/src/
+
+    excludes_analyse:
+        # Makes PHPStan crash
+        - 'src/DependencyInjection/Configuration.php'
+
+        # Test dependencies
+        - 'tests/Application/app/**.php'
+        - 'tests/Application/src/**.php'
+
+    ignoreErrors:
+#        - '/Method MonsieurBiz\SyliusCmsPagePlugin\MonsieurBizSyliusCmsPagePlugin::getContainerExtension() should return Symfony\Component\DependencyInjection\Extension\ExtensionInterface|null but returns Symfony\Component\DependencyInjection\Extension\ExtensionInterface|true|null./'

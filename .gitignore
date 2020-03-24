@@ -1,0 +1,9 @@
+/vendor/
+/node_modules/
+/composer.lock
+
+/tests/Application/yarn.lock
+
+/phpspec.yml
+
+/.phpunit.result.cache
