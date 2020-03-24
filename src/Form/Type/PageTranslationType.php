@@ -8,6 +8,7 @@ use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class PageTranslationType extends AbstractResourceType
 {
@@ -18,22 +19,40 @@ class PageTranslationType extends AbstractResourceType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'monsieurbiz_cms_page.ui.title',
+                'label' => 'monsieurbiz_cms_page.ui.form.title',
+                'constraints' => [
+                    new Assert\NotBlank([])
+                ],
             ])
             ->add('slug', TextType::class, [
-                'label' => 'monsieurbiz_cms_page.ui.slug',
+                'label' => 'monsieurbiz_cms_page.ui.form.slug',
+                'constraints' => [
+                    new Assert\NotBlank([])
+                ],
             ])
             ->add('content', TextareaType::class, [
-                'label' => 'monsieurbiz_cms_page.ui.content',
+                'label' => 'monsieurbiz_cms_page.ui.form.content',
+                'constraints' => [
+                    new Assert\NotBlank([])
+                ],
             ])
             ->add('metaTitle', TextType::class, [
-                'label' => 'monsieurbiz_cms_page.ui.meta_title',
+                'label' => 'monsieurbiz_cms_page.ui.form.meta_title',
+                'constraints' => [
+                    new Assert\NotBlank([])
+                ],
             ])
             ->add('metaDescription', TextType::class, [
-                'label' => 'monsieurbiz_cms_page.ui.meta_description',
+                'label' => 'monsieurbiz_cms_page.ui.form.meta_description',
+                'constraints' => [
+                    new Assert\NotBlank([])
+                ],
             ])
             ->add('metaKeywords', TextType::class, [
-                'label' => 'monsieurbiz_cms_page.ui.meta_keywords',
+                'label' => 'monsieurbiz_cms_page.ui.form.meta_keywords',
+                'constraints' => [
+                    new Assert\NotBlank([])
+                ],
             ])
         ;
     }
