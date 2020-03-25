@@ -26,18 +26,22 @@ class PageRepository extends EntityRepository implements PageRepositoryInterface
     /**
      * @param string $slug
      * @param string $localeCode
+     * @param string $channelCode
      * @return PageInterface|null
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findOneEnabledBySlugAndLocale(string $slug, string $localeCode): ?PageInterface
+    public function findOneEnabledBySlugAndChannelCode(string $slug, string $localeCode, string $channelCode): ?PageInterface
     {
         return $this->createQueryBuilder('p')
             ->leftJoin('p.translations', 'translation')
+            ->innerJoin('p.channels', 'channels')
             ->where('translation.locale = :localeCode')
             ->andWhere('translation.slug = :slug')
+            ->andWhere('channels.code = :channelCode')
             ->andWhere('p.enabled = true')
             ->setParameter('localeCode', $localeCode)
             ->setParameter('slug', $slug)
+            ->setParameter('channelCode', $channelCode)
             ->getQuery()
             ->getOneOrNullResult()
             ;

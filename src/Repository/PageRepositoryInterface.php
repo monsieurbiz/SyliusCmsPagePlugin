@@ -12,5 +12,5 @@ interface PageRepositoryInterface extends RepositoryInterface
 {
     public function createListQueryBuilder(string $localeCode): QueryBuilder;
 
-    public function findOneEnabledBySlugAndLocale(string $slug, string $localeCode): ?PageInterface;
+    public function findOneEnabledBySlugAndChannelCode(string $slug, string $localeCode, string $channelCode): ?PageInterface;
 }
