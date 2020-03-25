@@ -31,3 +31,12 @@ services:
       - { name: form.type }
     arguments:
       - '%monsieurbiz_cms_page.model.page_translation.class%'
+
+  # Fixtures
+  MonsieurBiz\SyliusCmsPagePlugin\Fixture\PageFixture:
+    arguments:
+      $exampleFactory: '@MonsieurBiz\SyliusCmsPagePlugin\Fixture\Factory\PageFixtureFactory'
+
+  MonsieurBiz\SyliusCmsPagePlugin\Fixture\Factory\PageFixtureFactory:
+    arguments:
+      $defaultLocale: '%locale%'
