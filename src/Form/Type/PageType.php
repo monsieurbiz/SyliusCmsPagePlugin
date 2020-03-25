@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusCmsPagePlugin\Form\Type;
 
+use Sylius\Bundle\ChannelBundle\Form\Type\ChannelChoiceType;
 use Sylius\Bundle\ResourceBundle\Form\EventSubscriber\AddCodeFormSubscriber;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType;
@@ -26,6 +27,12 @@ class PageType extends AbstractResourceType
             ->add('enabled', CheckboxType::class, [
                 'required' => false,
                 'label' => 'monsieurbiz_cms_page.ui.form.enabled'
+            ])
+            ->add('channels', ChannelChoiceType::class, [
+                'label' => 'monsieurbiz_cms_page.ui.form.channels',
+                'required' => false,
+                'multiple' => true,
+                'expanded' => true,
             ])
             ->add('translations', ResourceTranslationsType::class, [
                 'entry_type' => PageTranslationType::class,
