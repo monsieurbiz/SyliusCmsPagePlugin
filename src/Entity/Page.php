@@ -6,7 +6,7 @@ namespace MonsieurBiz\SyliusCmsPagePlugin\Entity;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Sylius\Component\Channel\Model\Channel;
+use Sylius\Component\Channel\Model\ChannelInterface;
 use Sylius\Component\Resource\Model\TimestampableTrait;
 use Sylius\Component\Resource\Model\ToggleableTrait;
 use Sylius\Component\Resource\Model\TranslatableTrait;
@@ -78,7 +78,7 @@ class Page implements PageInterface
     public function __construct()
     {
         $this->initializeTranslationsCollection();
-        $this->channels = new ArrayCollection();
+        $this->initializeChannelsCollection();
     }
 
     /**
@@ -114,21 +114,30 @@ class Page implements PageInterface
     }
 
     /**
-     * @param Channel $channel
+     * @param ChannelInterface $channel
      */
-    public function addChannel(Channel $channel): void
+    public function addChannel(ChannelInterface $channel): void
     {
         $this->channels->add($channel);
     }
 
     /**
-     * @param Channel $channel
+     * @param ChannelInterface $channel
      */
-    public function removeChannel(Channel $channel): void
+    public function removeChannel(ChannelInterface $channel): void
     {
         $this->channels->removeElement($channel);
     }
 
+    public function initializeChannelsCollection(): void
+    {
+        $this->channels = new ArrayCollection();
+    }
+
+    public function hasChannel(ChannelInterface $channel): bool
+    {
+        return $this->channels->contains($channel);
+    }
 
     /**
      * @return string|null

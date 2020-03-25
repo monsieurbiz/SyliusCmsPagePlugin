@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusCmsPagePlugin\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Gedmo\Timestampable\Timestampable;
+use Sylius\Component\Channel\Model\ChannelInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\SlugAwareInterface;
 use Sylius\Component\Resource\Model\TimestampableInterface;
@@ -88,4 +90,27 @@ interface PageInterface extends ResourceInterface, TranslatableInterface, Toggle
      * @return void
      */
     public function setMetaKeywords(?string $metaKeywords): void;
+
+    /**
+     * @return Collection
+     */
+    public function getChannels(): Collection;
+
+    /**
+     * @param ChannelInterface $channel
+     * @return void
+     */
+    public function addChannel(ChannelInterface $channel): void;
+
+    /**
+     * @param ChannelInterface $channel
+     * @return void
+     */
+    public function removeChannel(ChannelInterface $channel): void;
+
+    /**
+     * @param ChannelInterface $channel
+     * @return bool
+     */
+    public function hasChannel(ChannelInterface $channel): bool;
 }
