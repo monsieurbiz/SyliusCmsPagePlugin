@@ -16,7 +16,7 @@ monsieurbiz_sylius_cms_page_admin:
             icon: 'file alternate'
   type: sylius.resource
 
-# Ajax call to auto generate a slug for a recipe
+# Ajax call to auto generate a slug for a page
 monsieurbiz_sylius_cms_page_ajax_generate_page_slug:
   path: /page/generate-slug
   methods: [GET]

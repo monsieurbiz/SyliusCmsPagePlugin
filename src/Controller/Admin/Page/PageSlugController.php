@@ -14,7 +14,7 @@ class PageSlugController
     private $slugGenerator;
 
     /**
-     * RecipeSlugController constructor.
+     * PageSlugController constructor.
      * @param SlugGeneratorInterface $slugGenerator
      */
     public function __construct(SlugGeneratorInterface $slugGenerator)
