@@ -10,8 +10,10 @@ use Sylius\Bundle\CoreBundle\Fixture\Factory\AbstractExampleFactory;
 use Sylius\Bundle\CoreBundle\Fixture\Factory\ExampleFactoryInterface;
 use Sylius\Bundle\CoreBundle\Fixture\OptionsResolver\LazyOption;
 use Sylius\Component\Channel\Repository\ChannelRepositoryInterface;
+use Sylius\Component\Locale\Model\LocaleInterface;
 use Sylius\Component\Product\Generator\SlugGeneratorInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
+use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -38,8 +40,8 @@ class PageFixtureFactory extends AbstractExampleFactory implements ExampleFactor
     /** @var \Faker\Generator */
     private $faker;
 
-    /** @var string */
-    private $defaultLocale;
+    /** @var RepositoryInterface */
+    private $localeRepository;
 
     /** @var ChannelRepositoryInterface */
     private $channelRepository;
@@ -49,19 +51,19 @@ class PageFixtureFactory extends AbstractExampleFactory implements ExampleFactor
      * @param FactoryInterface $pageTranslationFactory
      * @param SlugGeneratorInterface $slugGenerator
      * @param ChannelRepositoryInterface $channelRepository
-     * @param string $defaultLocale
+     * @param RepositoryInterface $localeRepository
      */
     public function __construct(
         FactoryInterface $pageFactory,
         FactoryInterface $pageTranslationFactory,
         SlugGeneratorInterface $slugGenerator,
         ChannelRepositoryInterface $channelRepository,
-        string $defaultLocale
+        RepositoryInterface $localeRepository
     ) {
         $this->pageFactory = $pageFactory;
         $this->pageTranslationFactory = $pageTranslationFactory;
         $this->channelRepository = $channelRepository;
-        $this->defaultLocale = $defaultLocale;
+        $this->localeRepository = $localeRepository;
 
         $this->slugGenerator = $slugGenerator;
         $this->faker = \Faker\Factory::create();
@@ -125,21 +127,33 @@ class PageFixtureFactory extends AbstractExampleFactory implements ExampleFactor
                 return $this->slugGenerator->generate($this->faker->words(2, true));
             })
             ->setDefault('translations', function(OptionsResolver $translationResolver) {
-                $title = $this->faker->words(3, true);
-                $translationResolver->setDefaults([
-                    $this->defaultLocale => [
-                        'title' => $title,
-                        'content' => $this->faker->paragraphs(3, true),
-                        'slug' => $this->slugGenerator->generate($title),
-                        'metaTitle' => $title,
-                        'metaDescription' => $this->faker->paragraph,
-                        'metaKeywords' => $this->faker->words(10, true),
-                    ]
-                ]);
+                $translationResolver->setDefaults($this->configureDefaultTranslations());
             })
             ->setDefault('channels', LazyOption::all($this->channelRepository))
             ->setAllowedTypes('channels', 'array')
             ->setNormalizer('channels', LazyOption::findBy($this->channelRepository, 'code'))
         ;
+    }
+
+    /**
+     * @return array
+     */
+    private function configureDefaultTranslations(): array
+    {
+        $translations = [];
+        $locales = $this->localeRepository->findAll();
+        /** @var LocaleInterface $locale */
+        foreach ($locales as $locale) {
+            $title = ucfirst($this->faker->words(3, true));
+            $translations[$locale->getCode()] = [
+                'title' => $title,
+                'content' => $this->faker->paragraphs(3, true),
+                'slug' => $this->slugGenerator->generate($title),
+                'metaTitle' => $title,
+                'metaDescription' => $this->faker->paragraph,
+                'metaKeywords' => $this->faker->words(10, true),
+            ];
+        }
+        return $translations;
     }
 }

@@ -37,6 +37,3 @@ services:
     arguments:
       $exampleFactory: '@MonsieurBiz\SyliusCmsPagePlugin\Fixture\Factory\PageFixtureFactory'
 
-  MonsieurBiz\SyliusCmsPagePlugin\Fixture\Factory\PageFixtureFactory:
-    arguments:
-      $defaultLocale: '%locale%'
