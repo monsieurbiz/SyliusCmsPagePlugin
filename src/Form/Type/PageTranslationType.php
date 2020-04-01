@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusCmsPagePlugin\Form\Type;
 
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\RichEditorType;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -30,7 +30,7 @@ class PageTranslationType extends AbstractResourceType
                     new Assert\NotBlank([])
                 ],
             ])
-            ->add('content', TextareaType::class, [
+            ->add('content', RichEditorType::class, [
                 'label' => 'monsieurbiz_cms_page.ui.form.content',
                 'constraints' => [
                     new Assert\NotBlank([])

@@ -13,10 +13,10 @@ sylius_shop:
     product_grid:
         include_all_descendants: true
 
-sylius_fixtures:
-    suites:
-        default:
-            fixtures:
-                locale:
-                    options:
-                        locales: ['fr_FR']
+#sylius_fixtures:
+#    suites:
+#        default:
+#            fixtures:
+#                locale:
+#                    options:
+#                        locales: ['fr_FR']
