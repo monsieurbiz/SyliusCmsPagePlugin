@@ -2,12 +2,13 @@
     "name": "monsieurbiz/sylius-cms-page-plugin",
     "type": "sylius-plugin",
     "keywords": ["sylius", "sylius-plugin"],
-    "description": "Adds a simple message on top of your shop.",
+    "description": "This plugins allows you to add manage CMS pages using the Rich Editor",
     "license": "MIT",
     "require": {
         "php": "~7.2",
         "sylius/sylius": "~1.3",
-        "gedmo/doctrine-extensions": "^2.4.12"
+        "gedmo/doctrine-extensions": "^2.4.12",
+        "monsieurbiz/sylius-rich-editor-plugin": "^1.1"
     },
     "require-dev": {
         "behat/behat": "^3.4",
