@@ -1,7 +1,7 @@
 sylius_fixtures:
-  suites:
-    default:
-      fixtures:
-        monsieurbiz_cms_page:
-          options:
-            random: 10
+    suites:
+        default:
+            fixtures:
+                monsieurbiz_cms_page:
+                    options:
+                        random: 10

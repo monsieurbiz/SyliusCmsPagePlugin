@@ -1,14 +1,14 @@
 # Show page
 monsieurbiz_cms_page_show:
-  path: /page/{slug}
-  methods: [GET]
-  defaults:
-    _controller: monsieurbiz_cms_page.controller.page:showAction
-    _sylius:
-      template: "@MonsieurBizSyliusCmsPagePlugin/Shop/Page/show.html.twig"
-      repository:
-        method: findOneEnabledBySlugAndChannelCode
-        arguments:
-          - $slug
-          - "expr:service('sylius.context.locale').getLocaleCode()"
-          - "expr:service('sylius.context.channel').getChannel().getCode()"
+    path: /page/{slug}
+    methods: [GET]
+    defaults:
+        _controller: monsieurbiz_cms_page.controller.page:showAction
+        _sylius:
+            template: "@MonsieurBizSyliusCmsPagePlugin/Shop/Page/show.html.twig"
+            repository:
+                method: findOneEnabledBySlugAndChannelCode
+                arguments:
+                    - $slug
+                    - "expr:service('sylius.context.locale').getLocaleCode()"
+                    - "expr:service('sylius.context.channel').getChannel().getCode()"

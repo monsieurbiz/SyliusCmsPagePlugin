@@ -1,25 +1,25 @@
 # Page admin routing
 monsieurbiz_sylius_cms_page_admin:
-  resource: |
-    alias: monsieurbiz_cms_page.page
-    section: admin
-    templates: SyliusAdminBundle:Crud
-    except: ['show']
-    redirect: update
-    grid: monsieurbiz_cms_page
-    vars:
-        all:
-            subheader: monsieurbiz_cms_page.ui.pages_subheader
-            templates:
-                form: "@MonsieurBizSyliusCmsPagePlugin/Admin/Page/_form.html.twig"
-        index:
-            icon: 'file alternate'
-  type: sylius.resource
+    resource: |
+        alias: monsieurbiz_cms_page.page
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        except: ['show']
+        redirect: update
+        grid: monsieurbiz_cms_page
+        vars:
+            all:
+                subheader: monsieurbiz_cms_page.ui.pages_subheader
+                templates:
+                    form: "@MonsieurBizSyliusCmsPagePlugin/Admin/Page/_form.html.twig"
+            index:
+                icon: 'file alternate'
+    type: sylius.resource
 
 # Ajax call to auto generate a slug for a page
 monsieurbiz_sylius_cms_page_ajax_generate_page_slug:
-  path: /page/generate-slug
-  methods: [GET]
-  defaults:
-    _controller: MonsieurBiz\SyliusCmsPagePlugin\Controller\Admin\Page\PageSlugController::generateAction
+    path: /page/generate-slug
+    methods: [GET]
+    defaults:
+        _controller: MonsieurBiz\SyliusCmsPagePlugin\Controller\Admin\Page\PageSlugController::generateAction
 

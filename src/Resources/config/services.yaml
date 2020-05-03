@@ -1,39 +1,38 @@
 services:
-  _defaults:
-    autowire: true
-    autoconfigure: true
-    public: false
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
 
-  MonsieurBiz\SyliusCmsPagePlugin\:
-    resource: '../../*'
-    exclude: '../../{DependencyInjection,Form/Type}'
+    MonsieurBiz\SyliusCmsPagePlugin\:
+        resource: '../../*'
+        exclude: '../../{DependencyInjection,Form/Type}'
 
-  MonsieurBiz\SyliusCmsPagePlugin\Controller\:
-    resource: '../../Controller'
-    tags: ['controller.service_arguments']
+    MonsieurBiz\SyliusCmsPagePlugin\Controller\:
+        resource: '../../Controller'
+        tags: ['controller.service_arguments']
 
-  # Menu item in admin panel
-  MonsieurBiz\SyliusCmsPagePlugin\Listener\AdminMenuListener:
-    tags:
-      - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addAdminMenuItem }
+    # Menu item in admin panel
+    MonsieurBiz\SyliusCmsPagePlugin\Listener\AdminMenuListener:
+        tags:
+            - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addAdminMenuItem }
 
-  # Page Forms
-  monsieurbiz_cms_page.form.type.page:
-    class: MonsieurBiz\SyliusCmsPagePlugin\Form\Type\PageType
-    tags:
-      - { name: form.type }
-    arguments:
-      - '%monsieurbiz_cms_page.model.page.class%'
+    # Page Forms
+    monsieurbiz_cms_page.form.type.page:
+        class: MonsieurBiz\SyliusCmsPagePlugin\Form\Type\PageType
+        tags:
+            - { name: form.type }
+        arguments:
+            - '%monsieurbiz_cms_page.model.page.class%'
 
-  monsieurbiz_cms_page.form.type.page_translation:
-    class: MonsieurBiz\SyliusCmsPagePlugin\Form\Type\PageTranslationType
-    tags:
-      - { name: form.type }
-    arguments:
-      - '%monsieurbiz_cms_page.model.page_translation.class%'
+    monsieurbiz_cms_page.form.type.page_translation:
+        class: MonsieurBiz\SyliusCmsPagePlugin\Form\Type\PageTranslationType
+        tags:
+            - { name: form.type }
+        arguments:
+            - '%monsieurbiz_cms_page.model.page_translation.class%'
 
-  # Fixtures
-  MonsieurBiz\SyliusCmsPagePlugin\Fixture\PageFixture:
-    arguments:
-      $exampleFactory: '@MonsieurBiz\SyliusCmsPagePlugin\Fixture\Factory\PageFixtureFactory'
-
+    # Fixtures
+    MonsieurBiz\SyliusCmsPagePlugin\Fixture\PageFixture:
+        arguments:
+            $exampleFactory: '@MonsieurBiz\SyliusCmsPagePlugin\Fixture\Factory\PageFixtureFactory'

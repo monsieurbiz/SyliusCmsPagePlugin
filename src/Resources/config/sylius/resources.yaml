@@ -1,10 +1,10 @@
 sylius_resource:
-  resources:
-    monsieurbiz_cms_page.page:
-      classes:
-        model: MonsieurBiz\SyliusCmsPagePlugin\Entity\Page
-        form: MonsieurBiz\SyliusCmsPagePlugin\Form\Type\PageType
-        repository: MonsieurBiz\SyliusCmsPagePlugin\Repository\PageRepository
-      translation:
-        classes:
-          model: MonsieurBiz\SyliusCmsPagePlugin\Entity\PageTranslation
+    resources:
+        monsieurbiz_cms_page.page:
+            classes:
+                model: MonsieurBiz\SyliusCmsPagePlugin\Entity\Page
+                form: MonsieurBiz\SyliusCmsPagePlugin\Form\Type\PageType
+                repository: MonsieurBiz\SyliusCmsPagePlugin\Repository\PageRepository
+            translation:
+                classes:
+                    model: MonsieurBiz\SyliusCmsPagePlugin\Entity\PageTranslation
