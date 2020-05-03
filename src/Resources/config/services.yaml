@@ -36,3 +36,8 @@ services:
     MonsieurBiz\SyliusCmsPagePlugin\Fixture\PageFixture:
         arguments:
             $exampleFactory: '@MonsieurBiz\SyliusCmsPagePlugin\Fixture\Factory\PageFixtureFactory'
+
+    # Routing Context
+    MonsieurBiz\SyliusCmsPagePlugin\Routing\RequestContext:
+        decorates: router.request_context
+        arguments: ['@MonsieurBiz\SyliusCmsPagePlugin\Routing\RequestContext.inner']
