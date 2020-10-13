@@ -12,10 +12,12 @@ final class AdminMenuListener
     {
         $menu = $event->getMenu();
 
-        $content = $menu
-            ->addChild('mbiz-cms')
-            ->setLabel('monsieurbiz_cms_page.ui.cms_content')
-        ;
+        if (!$content = $menu->getChild('mbiz-cms')) {
+            $content = $menu
+                ->addChild('mbiz-cms')
+                ->setLabel('monsieurbiz_cms_page.ui.cms_content')
+            ;
+        }
 
         $content->addChild('mbiz-cms-page', ['route' => 'monsieurbiz_cms_page_admin_page_index'])
             ->setLabel('monsieurbiz_cms_page.ui.pages')
