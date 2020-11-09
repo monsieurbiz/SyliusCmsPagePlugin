@@ -8,7 +8,7 @@ use Sylius\Component\Resource\Model\AbstractTranslation;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="mbiz_cms_page_translation")
+ * @ORM\Table(name="monsieurbiz_cms_page_translation")
  */
 class PageTranslation extends AbstractTranslation implements PageTranslationInterface
 {

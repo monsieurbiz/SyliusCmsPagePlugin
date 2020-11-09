@@ -16,7 +16,7 @@ use Sylius\Component\Resource\Model\TranslationInterface;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="mbiz_cms_page")
+ * @ORM\Table(name="monsieurbiz_cms_page")
  */
 class Page implements PageInterface
 {
@@ -51,7 +51,7 @@ class Page implements PageInterface
      * @var Collection<int, ChannelInterface>
      * @ORM\ManyToMany(targetEntity="\Sylius\Component\Channel\Model\Channel")
      * @ORM\JoinTable(
-     *     name="mbiz_cms_page_channels",
+     *     name="monsieurbiz_cms_page_channels",
      *     joinColumns={@ORM\JoinColumn(name="page_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="channel_id", referencedColumnName="id")}
      * )
