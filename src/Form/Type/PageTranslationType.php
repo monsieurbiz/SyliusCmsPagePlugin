@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Monsieur Biz' Cms Page plugin for Sylius.
+ *
+ * (c) Monsieur Biz <sylius@monsieurbiz.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusCmsPagePlugin\Form\Type;
@@ -21,41 +30,42 @@ class PageTranslationType extends AbstractResourceType
             ->add('title', TextType::class, [
                 'label' => 'monsieurbiz_cms_page.ui.form.title',
                 'constraints' => [
-                    new Assert\NotBlank([])
+                    new Assert\NotBlank([]),
                 ],
             ])
             ->add('slug', TextType::class, [
                 'label' => 'monsieurbiz_cms_page.ui.form.slug',
                 'constraints' => [
-                    new Assert\NotBlank([])
+                    new Assert\NotBlank([]),
                 ],
             ])
             ->add('content', RichEditorType::class, [
                 'label' => 'monsieurbiz_cms_page.ui.form.content',
                 'constraints' => [
-                    new Assert\NotBlank([])
+                    new Assert\NotBlank([]),
                 ],
             ])
             ->add('metaTitle', TextType::class, [
                 'label' => 'monsieurbiz_cms_page.ui.form.meta_title',
                 'constraints' => [
-                    new Assert\NotBlank([])
+                    new Assert\NotBlank([]),
                 ],
             ])
             ->add('metaDescription', TextType::class, [
                 'label' => 'monsieurbiz_cms_page.ui.form.meta_description',
                 'constraints' => [
-                    new Assert\NotBlank([])
+                    new Assert\NotBlank([]),
                 ],
             ])
             ->add('metaKeywords', TextType::class, [
                 'label' => 'monsieurbiz_cms_page.ui.form.meta_keywords',
                 'constraints' => [
-                    new Assert\NotBlank([])
+                    new Assert\NotBlank([]),
                 ],
             ])
         ;
     }
+
     /**
      * {@inheritdoc}
      */

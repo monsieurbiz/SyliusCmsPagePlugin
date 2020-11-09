@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of Monsieur Biz' Rich Editor plugin for Sylius.
+ * This file is part of Monsieur Biz' Cms Page plugin for Sylius.
  *
  * (c) Monsieur Biz <sylius@monsieurbiz.com>
  *

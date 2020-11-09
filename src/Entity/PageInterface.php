@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Monsieur Biz' Cms Page plugin for Sylius.
+ *
+ * (c) Monsieur Biz <sylius@monsieurbiz.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusCmsPagePlugin\Entity;
@@ -7,16 +16,15 @@ namespace MonsieurBiz\SyliusCmsPagePlugin\Entity;
 use Doctrine\Common\Collections\Collection;
 use Gedmo\Timestampable\Timestampable;
 use Sylius\Component\Channel\Model\ChannelInterface;
+use Sylius\Component\Resource\Model\CodeAwareInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\SlugAwareInterface;
 use Sylius\Component\Resource\Model\TimestampableInterface;
 use Sylius\Component\Resource\Model\ToggleableInterface;
 use Sylius\Component\Resource\Model\TranslatableInterface;
-use Sylius\Component\Resource\Model\CodeAwareInterface;
 
 /**
- * Interface PageInterface
- * @package App\Entity
+ * Interface PageInterface.
  */
 interface PageInterface extends ResourceInterface, TranslatableInterface, ToggleableInterface, SlugAwareInterface, CodeAwareInterface, TimestampableInterface, Timestampable
 {
@@ -32,6 +40,7 @@ interface PageInterface extends ResourceInterface, TranslatableInterface, Toggle
 
     /**
      * @param string|null $title
+     *
      * @return void
      */
     public function setCode(?string $title): void;
@@ -43,6 +52,7 @@ interface PageInterface extends ResourceInterface, TranslatableInterface, Toggle
 
     /**
      * @param string|null $title
+     *
      * @return void
      */
     public function setTitle(?string $title): void;
@@ -54,6 +64,7 @@ interface PageInterface extends ResourceInterface, TranslatableInterface, Toggle
 
     /**
      * @param string|null $content
+     *
      * @return void
      */
     public function setContent(?string $content): void;
@@ -65,6 +76,7 @@ interface PageInterface extends ResourceInterface, TranslatableInterface, Toggle
 
     /**
      * @param string|null $metaTitle
+     *
      * @return void
      */
     public function setMetaTitle(?string $metaTitle): void;
@@ -76,6 +88,7 @@ interface PageInterface extends ResourceInterface, TranslatableInterface, Toggle
 
     /**
      * @param string|null $metaDescription
+     *
      * @return void
      */
     public function setMetaDescription(?string $metaDescription): void;
@@ -87,6 +100,7 @@ interface PageInterface extends ResourceInterface, TranslatableInterface, Toggle
 
     /**
      * @param string|null $metaKeywords
+     *
      * @return void
      */
     public function setMetaKeywords(?string $metaKeywords): void;
@@ -98,18 +112,21 @@ interface PageInterface extends ResourceInterface, TranslatableInterface, Toggle
 
     /**
      * @param ChannelInterface $channel
+     *
      * @return void
      */
     public function addChannel(ChannelInterface $channel): void;
 
     /**
      * @param ChannelInterface $channel
+     *
      * @return void
      */
     public function removeChannel(ChannelInterface $channel): void;
 
     /**
      * @param ChannelInterface $channel
+     *
      * @return bool
      */
     public function hasChannel(ChannelInterface $channel): bool;

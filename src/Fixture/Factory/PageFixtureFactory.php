@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Monsieur Biz' Cms Page plugin for Sylius.
+ *
+ * (c) Monsieur Biz <sylius@monsieurbiz.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusCmsPagePlugin\Fixture\Factory;
@@ -120,13 +129,13 @@ class PageFixtureFactory extends AbstractExampleFactory implements ExampleFactor
     protected function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
-            ->setDefault('enabled', function (Options $options): bool {
+            ->setDefault('enabled', function(Options $options): bool {
                 return $this->faker->boolean(80);
             })
-            ->setDefault('code', function (Options $options): string {
+            ->setDefault('code', function(Options $options): string {
                 return $this->slugGenerator->generate($this->faker->sentence(2, true));
             })
-            ->setDefault('translations', function(OptionsResolver $translationResolver) {
+            ->setDefault('translations', function(OptionsResolver $translationResolver): void {
                 $translationResolver->setDefaults($this->configureDefaultTranslations());
             })
             ->setDefault('channels', LazyOption::all($this->channelRepository))
@@ -154,6 +163,7 @@ class PageFixtureFactory extends AbstractExampleFactory implements ExampleFactor
                 'metaKeywords' => $this->faker->sentence(10, true),
             ];
         }
+
         return $translations;
     }
 }

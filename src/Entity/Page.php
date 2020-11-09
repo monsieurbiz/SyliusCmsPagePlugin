@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of Monsieur Biz' Cms Page plugin for Sylius.
+ *
+ * (c) Monsieur Biz <sylius@monsieurbiz.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusCmsPagePlugin\Entity;
@@ -6,21 +16,22 @@ namespace MonsieurBiz\SyliusCmsPagePlugin\Entity;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Sylius\Component\Channel\Model\ChannelInterface;
 use Sylius\Component\Resource\Model\TimestampableTrait;
 use Sylius\Component\Resource\Model\ToggleableTrait;
 use Sylius\Component\Resource\Model\TranslatableTrait;
-use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Sylius\Component\Resource\Model\TranslationInterface;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity
  * @ORM\Table(name="monsieurbiz_cms_page")
  */
 class Page implements PageInterface
 {
-    use TimestampableTrait, ToggleableTrait;
+    use TimestampableTrait;
+    use ToggleableTrait;
     use TranslatableTrait {
         __construct as private initializeTranslationsCollection;
         getTranslation as private doGetTranslation;
@@ -29,15 +40,15 @@ class Page implements PageInterface
     /**
      * @var int|null
      *
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
+     * @ORM\Id
+     * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @var bool
-     * @ORM\Column(type="boolean", options={"default": true})
+     * @ORM\Column(type="boolean", options={"default"=true})
      */
     protected $enabled = true;
 
@@ -149,6 +160,7 @@ class Page implements PageInterface
 
     /**
      * @param string|null $title
+     *
      * @return void
      */
     public function setTitle(?string $title): void
@@ -166,6 +178,7 @@ class Page implements PageInterface
 
     /**
      * @param string|null $content
+     *
      * @return void
      */
     public function setContent(?string $content): void
@@ -183,6 +196,7 @@ class Page implements PageInterface
 
     /**
      * @param string|null $metaTitle
+     *
      * @return void
      */
     public function setMetaTitle(?string $metaTitle): void
@@ -200,6 +214,7 @@ class Page implements PageInterface
 
     /**
      * @param string|null $metaDescription
+     *
      * @return void
      */
     public function setMetaDescription(?string $metaDescription): void
@@ -217,6 +232,7 @@ class Page implements PageInterface
 
     /**
      * @param string|null $metaKeywords
+     *
      * @return void
      */
     public function setMetaKeywords(?string $metaKeywords): void
@@ -241,7 +257,7 @@ class Page implements PageInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     protected function createTranslation(): PageTranslation
     {
@@ -256,8 +272,6 @@ class Page implements PageInterface
     public function getTranslation(?string $locale = null): TranslationInterface
     {
         /** @var PageTranslationInterface $translation */
-        $translation = $this->doGetTranslation($locale);
-
-        return $translation;
+        return $this->doGetTranslation($locale);
     }
 }

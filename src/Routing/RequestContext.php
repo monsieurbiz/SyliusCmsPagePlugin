@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of Monsieur Biz' Cms Page plugin for Sylius.
+ *
+ * (c) Monsieur Biz <sylius@monsieurbiz.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusCmsPagePlugin\Routing;
@@ -81,17 +91,17 @@ final class RequestContext extends BaseRequestContext
      * @param string $name
      * @param array $arguments
      *
-     * @return mixed
      * @throws \Exception
+     *
+     * @return mixed
      */
     public function __call(string $name, array $arguments)
     {
         $callback = [$this->decorated, $name];
-        if(is_callable($callback)) {
-            return call_user_func($callback, $arguments);
+        if (\is_callable($callback)) {
+            return \call_user_func($callback, $arguments);
         }
 
-        throw new \Exception(sprintf('Method %s not found for class "%s"', $name, get_class($this->decorated)));
+        throw new \Exception(sprintf('Method %s not found for class "%s"', $name, \get_class($this->decorated)));
     }
-
 }
