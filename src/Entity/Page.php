@@ -23,6 +23,7 @@ use Sylius\Component\Resource\Model\TimestampableTrait;
 use Sylius\Component\Resource\Model\ToggleableTrait;
 use Sylius\Component\Resource\Model\TranslatableTrait;
 use Sylius\Component\Resource\Model\TranslationInterface;
+use Webmozart\Assert\Assert;
 
 /**
  * @ORM\Entity
@@ -271,7 +272,9 @@ class Page implements PageInterface
      */
     public function getTranslation(?string $locale = null): TranslationInterface
     {
-        /** @var PageTranslationInterface $translation */
-        return $this->doGetTranslation($locale);
+        $translation = $this->doGetTranslation($locale);
+        Assert::isInstanceOf($translation, PageTranslationInterface::class);
+
+        return $translation;
     }
 }
