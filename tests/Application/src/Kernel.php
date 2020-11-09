@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Acme\SyliusExamplePlugin\Application;
+namespace App;
 
 use PSS\SymfonyMockerContainer\DependencyInjection\MockerContainer;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
@@ -82,11 +82,10 @@ final class Kernel extends BaseKernel
 
     protected function getContainerLoader(ContainerInterface $container): LoaderInterface
     {
-        /** @var ContainerBuilder $container */
         Assert::isInstanceOf($container, ContainerBuilder::class);
 
         $locator = new FileLocator($this, $this->getRootDir() . '/Resources');
-        $resolver = new LoaderResolver(array(
+        $resolver = new LoaderResolver([
             new XmlFileLoader($container, $locator),
             new YamlFileLoader($container, $locator),
             new IniFileLoader($container, $locator),
@@ -94,7 +93,7 @@ final class Kernel extends BaseKernel
             new GlobFileLoader($container, $locator),
             new DirectoryLoader($container, $locator),
             new ClosureLoader($container),
-        ));
+        ]);
 
         return new DelegatingLoader($resolver);
     }
