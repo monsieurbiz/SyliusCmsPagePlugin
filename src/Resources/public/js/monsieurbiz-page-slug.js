@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'use strict';
 
         $.fn.extend({
-            mbizPageSlugGenerator: function () {
+            monsieurbizPageSlugGenerator: function () {
                 let timeout;
 
                 $('[name*="monsieurbiz_cms_page[translations]"][name*="[title]"]').on('input', function () {
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     (function ($) {
         $(document).ready(function () {
-            $(this).mbizPageSlugGenerator();
+            $(this).monsieurbizPageSlugGenerator();
         });
     })(jQuery);
 });
