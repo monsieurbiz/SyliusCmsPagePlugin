@@ -67,7 +67,8 @@ ${APP_DIR}/node_modules: yarn.install
 test.all: test.composer test.phpstan test.phpunit test.phpspec test.phpcs test.yaml test.schema test.twig ## Run all tests in once
 
 test.composer: ## Validate composer.json
-	${COMPOSER} validate --strict
+	${COMPOSER} validate
+#	${COMPOSER} validate --strict
 
 test.phpstan: ## Run PHPStan
 	${PHPSTAN} analyse -c phpstan.neon src/
