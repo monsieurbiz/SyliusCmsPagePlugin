@@ -124,7 +124,7 @@ class PageFixtureFactory extends AbstractExampleFactory implements ExampleFactor
                 return $this->faker->boolean(80);
             })
             ->setDefault('code', function (Options $options): string {
-                return $this->slugGenerator->generate($this->faker->words(2, true));
+                return $this->slugGenerator->generate($this->faker->sentence(2, true));
             })
             ->setDefault('translations', function(OptionsResolver $translationResolver) {
                 $translationResolver->setDefaults($this->configureDefaultTranslations());
@@ -144,14 +144,14 @@ class PageFixtureFactory extends AbstractExampleFactory implements ExampleFactor
         $locales = $this->localeRepository->findAll();
         /** @var LocaleInterface $locale */
         foreach ($locales as $locale) {
-            $title = ucfirst($this->faker->words(3, true));
+            $title = ucfirst($this->faker->sentence(3, true));
             $translations[$locale->getCode()] = [
                 'title' => $title,
                 'content' => $this->faker->paragraphs(3, true),
                 'slug' => $this->slugGenerator->generate($title),
                 'metaTitle' => $title,
                 'metaDescription' => $this->faker->paragraph,
-                'metaKeywords' => $this->faker->words(10, true),
+                'metaKeywords' => $this->faker->sentence(10, true),
             ];
         }
         return $translations;

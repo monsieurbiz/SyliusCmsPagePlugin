@@ -22,9 +22,9 @@ class PageTranslation extends AbstractTranslation implements PageTranslationInte
     protected $id;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $title;
 
@@ -36,9 +36,9 @@ class PageTranslation extends AbstractTranslation implements PageTranslationInte
     protected $content;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $slug;
 

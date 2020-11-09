@@ -48,7 +48,7 @@ class Page implements PageInterface
     protected $code;
 
     /**
-     * @var Collection
+     * @var Collection<int, ChannelInterface>
      * @ORM\ManyToMany(targetEntity="\Sylius\Component\Channel\Model\Channel")
      * @ORM\JoinTable(
      *     name="mbiz_cms_page_channels",
@@ -106,7 +106,7 @@ class Page implements PageInterface
     }
 
     /**
-     * @return Collection
+     * @return Collection<int, ChannelInterface>
      */
     public function getChannels(): Collection
     {

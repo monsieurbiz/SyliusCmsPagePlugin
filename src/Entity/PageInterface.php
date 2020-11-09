@@ -92,7 +92,7 @@ interface PageInterface extends ResourceInterface, TranslatableInterface, Toggle
     public function setMetaKeywords(?string $metaKeywords): void;
 
     /**
-     * @return Collection
+     * @return Collection<int, ChannelInterface>
      */
     public function getChannels(): Collection;
 

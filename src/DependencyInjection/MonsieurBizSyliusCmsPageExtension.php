@@ -16,11 +16,14 @@ final class MonsieurBizSyliusCmsPageExtension extends Extension
      */
     public function load(array $config, ContainerBuilder $container): void
     {
-        $config = $this->processConfiguration($this->getConfiguration([], $container), $config);
+        $config = $this->processConfiguration(/** @scrutinizer ignore-type */ $this->getConfiguration([], $container), $config);
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yaml');
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getAlias()
     {
         return str_replace('monsieur_biz', 'monsieurbiz', parent::getAlias());
