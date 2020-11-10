@@ -9,4 +9,4 @@ RENAME TABLE `mbiz_cms_page_translation` TO `monsieurbiz_cms_page_translation`;
 RENAME TABLE `mbiz_cms_page_channels` TO `monsieurbiz_cms_page_channels`;
 ```
      
-We upgraded also the [Rich Editor to the 2.0 version]((https://github.com/monsieurbiz/SyliusRichEditorPlugin/blob/master/UPGRADE-2.0.md)).  
+We upgraded also the [Rich Editor to the 2.0 version](https://github.com/monsieurbiz/SyliusRichEditorPlugin/blob/master/UPGRADE-2.0.md).  
