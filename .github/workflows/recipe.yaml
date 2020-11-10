@@ -66,6 +66,7 @@ jobs:
           composer config repositories.plugin '{"type": "path", "url": "../plugin/"}'
           composer config extra.symfony.allow-contrib true
           composer config secure-http false
+          composer config platform.php ${{ matrix.php }}
           composer require monsieurbiz/sylius-cms-page-plugin="*@dev"
 
       - name: Show flex server logs
