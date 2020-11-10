@@ -53,8 +53,6 @@ yarn.install: ${APP_DIR}/yarn.lock
 ${APP_DIR}/yarn.lock:
 	ln -sf ${APP_DIR}/node_modules node_modules
 	cd ${APP_DIR} && ${YARN} install && ${YARN} build
-	${YARN} install
-	${YARN} encore prod
 
 node_modules: ${APP_DIR}/node_modules ## Install the Node dependencies using yarn
 
