@@ -46,7 +46,7 @@ imports:
     - { resource: "@MonsieurBizSyliusCmsPagePlugin/Resources/config/config.yaml" }
 ```
 
-Finally import the routes in `config/routes/monsieurbiz_sylius_rich_editor.yaml` : 
+Finally import the routes in `config/routes/monsieurbiz_sylius_cms_page_plugin.yaml` : 
 
 ```yaml
 monsieurbiz_cms_page_admin:
