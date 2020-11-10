@@ -46,22 +46,16 @@ class PageTranslationType extends AbstractResourceType
                 ],
             ])
             ->add('metaTitle', TextType::class, [
+                'required' => false,
                 'label' => 'monsieurbiz_cms_page.ui.form.meta_title',
-                'constraints' => [
-                    new Assert\NotBlank([]),
-                ],
             ])
             ->add('metaDescription', TextType::class, [
+                'required' => false,
                 'label' => 'monsieurbiz_cms_page.ui.form.meta_description',
-                'constraints' => [
-                    new Assert\NotBlank([]),
-                ],
             ])
             ->add('metaKeywords', TextType::class, [
+                'required' => false,
                 'label' => 'monsieurbiz_cms_page.ui.form.meta_keywords',
-                'constraints' => [
-                    new Assert\NotBlank([]),
-                ],
             ])
         ;
     }
