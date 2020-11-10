@@ -25,10 +25,10 @@ final class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder('monsieurbiz_sylius_cms_page');
         if (method_exists($treeBuilder, 'getRootNode')) {
-            $rootNode = $treeBuilder->getRootNode();
+            $treeBuilder->getRootNode();
         } else {
             // BC layer for symfony/config 4.1 and older
-            $rootNode = $treeBuilder->root('monsieurbiz_sylius_cms_page');
+            /** @scrutinizer ignore-deprecated */ $treeBuilder->root('monsieurbiz_sylius_richeditor');
         }
 
         return $treeBuilder;

@@ -34,7 +34,7 @@ class PageFixture extends AbstractResourceFixture
         $resourceNode
             ->children()
                 ->booleanNode('enabled')->end()
-                ->scalarNode('code')->cannotBeEmpty()->end()
+                ->/** @scrutinizer ignore-call */scalarNode('code')->cannotBeEmpty()->end()
                 ->arrayNode('channels')->scalarPrototype()->end()->end()
                 ->arrayNode('translations')
                     ->prototype('array')
