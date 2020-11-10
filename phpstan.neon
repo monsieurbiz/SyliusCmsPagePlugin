@@ -7,6 +7,8 @@ parameters:
     paths:
         - %rootDir%/src/
 
+    checkMissingIterableValueType: false
+
     excludes_analyse:
         # Makes PHPStan crash
         - 'src/DependencyInjection/Configuration.php'
@@ -16,4 +18,5 @@ parameters:
         - 'tests/Application/src/**.php'
 
     ignoreErrors:
-#        - '/Method MonsieurBiz\SyliusCmsPagePlugin\MonsieurBizSyliusCmsPagePlugin::getContainerExtension() should return Symfony\Component\DependencyInjection\Extension\ExtensionInterface|null but returns Symfony\Component\DependencyInjection\Extension\ExtensionInterface|true|null./'
+        - '/Parameter #1 $configuration of method Symfony\Component\DependencyInjection\Extension\Extension::processConfiguration() expects Symfony\Component\Config\Definition\ConfigurationInterface, Symfony\Component\Config\Definition\ConfigurationInterface|null given./'
+        - '/Cannot call method scalarNode() on Symfony\Component\Config\Definition\Builder\NodeParentInterface|null./'

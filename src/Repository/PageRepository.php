@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Monsieur Biz' Cms Page plugin for Sylius.
+ *
+ * (c) Monsieur Biz <sylius@monsieurbiz.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusCmsPagePlugin\Repository;
@@ -32,9 +41,10 @@ class PageRepository extends EntityRepository implements PageRepositoryInterface
      * @param string|null $locale
      * @param string $slug
      *
-     * @return bool
      * @throws NoResultException
      * @throws NonUniqueResultException
+     *
+     * @return bool
      */
     public function existsOneByChannelAndSlug(ChannelInterface $channel, ?string $locale, string $slug): bool
     {
@@ -60,8 +70,9 @@ class PageRepository extends EntityRepository implements PageRepositoryInterface
      * @param string $localeCode
      * @param string $channelCode
      *
-     * @return PageInterface|null
      * @throws NonUniqueResultException
+     *
+     * @return PageInterface|null
      */
     public function findOneEnabledBySlugAndChannelCode(string $slug, string $localeCode, string $channelCode): ?PageInterface
     {

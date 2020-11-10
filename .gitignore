@@ -1,9 +1,19 @@
 /vendor/
-/node_modules/
 /composer.lock
 
-/tests/Application/yarn.lock
+/etc/build/*
+!/etc/build/.gitignore
 
+/tests/Application/yarn.lock
+/tests/Application/package-lock.json
+/tests/Application/.php-version
+
+/behat.yml
 /phpspec.yml
 
+/package-lock.json
+
+/.php-version
 /.phpunit.result.cache
+/node_modules
+/yarn.lock

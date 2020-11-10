@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of Monsieur Biz' Cms Page plugin for Sylius.
+ *
+ * (c) Monsieur Biz <sylius@monsieurbiz.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusCmsPagePlugin\Entity;
@@ -8,7 +18,7 @@ use Sylius\Component\Resource\Model\AbstractTranslation;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="mbiz_cms_page_translation")
+ * @ORM\Table(name="monsieurbiz_cms_page_translation")
  */
 class PageTranslation extends AbstractTranslation implements PageTranslationInterface
 {
@@ -22,9 +32,9 @@ class PageTranslation extends AbstractTranslation implements PageTranslationInte
     protected $id;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $title;
 
@@ -36,9 +46,9 @@ class PageTranslation extends AbstractTranslation implements PageTranslationInte
     protected $content;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $slug;
 
@@ -90,6 +100,7 @@ class PageTranslation extends AbstractTranslation implements PageTranslationInte
 
     /**
      * @param string|null $title
+     *
      * @return void
      */
     public function setTitle(?string $title): void
@@ -107,6 +118,7 @@ class PageTranslation extends AbstractTranslation implements PageTranslationInte
 
     /**
      * @param string|null $content
+     *
      * @return void
      */
     public function setContent(?string $content): void
@@ -124,6 +136,7 @@ class PageTranslation extends AbstractTranslation implements PageTranslationInte
 
     /**
      * @param string|null $metaTitle
+     *
      * @return void
      */
     public function setMetaTitle(?string $metaTitle): void
@@ -141,6 +154,7 @@ class PageTranslation extends AbstractTranslation implements PageTranslationInte
 
     /**
      * @param string|null $metaDescription
+     *
      * @return void
      */
     public function setMetaDescription(?string $metaDescription): void
@@ -158,6 +172,7 @@ class PageTranslation extends AbstractTranslation implements PageTranslationInte
 
     /**
      * @param string|null $metaKeywords
+     *
      * @return void
      */
     public function setMetaKeywords(?string $metaKeywords): void

@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Monsieur Biz' Cms Page plugin for Sylius.
+ *
+ * (c) Monsieur Biz <sylius@monsieurbiz.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusCmsPagePlugin\Form\Type;
@@ -22,11 +31,11 @@ class PageType extends AbstractResourceType
         $builder
             ->addEventSubscriber(new AddCodeFormSubscriber(null, [
                 'constraints' => [
-                    new Assert\NotBlank([])
-                ]]))
+                    new Assert\NotBlank([]),
+                ], ]))
             ->add('enabled', CheckboxType::class, [
                 'required' => false,
-                'label' => 'monsieurbiz_cms_page.ui.form.enabled'
+                'label' => 'monsieurbiz_cms_page.ui.form.enabled',
             ])
             ->add('channels', ChannelChoiceType::class, [
                 'label' => 'monsieurbiz_cms_page.ui.form.channels',

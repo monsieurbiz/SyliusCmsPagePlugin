@@ -6,7 +6,6 @@ services:
 
     MonsieurBiz\SyliusCmsPagePlugin\:
         resource: '../../*'
-        exclude: '../../{DependencyInjection,Form/Type}'
 
     MonsieurBiz\SyliusCmsPagePlugin\Controller\:
         resource: '../../Controller'
@@ -18,19 +17,12 @@ services:
             - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addAdminMenuItem }
 
     # Page Forms
-    monsieurbiz_cms_page.form.type.page:
-        class: MonsieurBiz\SyliusCmsPagePlugin\Form\Type\PageType
-        tags:
-            - { name: form.type }
+    MonsieurBiz\SyliusCmsPagePlugin\Form\Type\PageType:
         arguments:
-            - '%monsieurbiz_cms_page.model.page.class%'
-
-    monsieurbiz_cms_page.form.type.page_translation:
-        class: MonsieurBiz\SyliusCmsPagePlugin\Form\Type\PageTranslationType
-        tags:
-            - { name: form.type }
+            $dataClass: '%monsieurbiz_cms_page.model.page.class%'
+    MonsieurBiz\SyliusCmsPagePlugin\Form\Type\PageTranslationType:
         arguments:
-            - '%monsieurbiz_cms_page.model.page_translation.class%'
+            $dataClass: '%monsieurbiz_cms_page.model.page_translation.class%'
 
     # Fixtures
     MonsieurBiz\SyliusCmsPagePlugin\Fixture\PageFixture:
