@@ -20,9 +20,11 @@ services:
     MonsieurBiz\SyliusCmsPagePlugin\Form\Type\PageType:
         arguments:
             $dataClass: '%monsieurbiz_cms_page.model.page.class%'
+            $validationGroups: ['monsieurbiz']
     MonsieurBiz\SyliusCmsPagePlugin\Form\Type\PageTranslationType:
         arguments:
             $dataClass: '%monsieurbiz_cms_page.model.page_translation.class%'
+            $validationGroups: ['monsieurbiz']
 
     # Fixtures
     MonsieurBiz\SyliusCmsPagePlugin\Fixture\PageFixture:

@@ -1,0 +1,15 @@
+MonsieurBiz\SyliusCmsPagePlugin\Entity\Page:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: [code]
+            groups: [monsieurbiz]
+    properties:
+        code:
+            - NotBlank:
+                groups: [monsieurbiz]
+            - Length:
+                min: 2
+                max: 255
+                groups: [monsieurbiz]
+        translations:
+            - Valid: ~

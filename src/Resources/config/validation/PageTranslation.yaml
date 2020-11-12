@@ -1,0 +1,24 @@
+MonsieurBiz\SyliusCmsPagePlugin\Entity\PageTranslation:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: [slug, locale]
+            errorPath: slug
+            groups: [monsieurbiz]
+    properties:
+        title:
+            - NotBlank:
+                groups: [monsieurbiz]
+            - Length:
+                min: 2
+                max: 255
+                groups: [monsieurbiz]
+        slug:
+            - NotBlank:
+                groups: [monsieurbiz]
+            -   Length:
+                    min: 2
+                    max: 255
+                    groups: [monsieurbiz]
+        content:
+            - NotBlank:
+                groups: [monsieurbiz]
