@@ -29,10 +29,7 @@ class PageType extends AbstractResourceType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->addEventSubscriber(new AddCodeFormSubscriber(null, [
-                'constraints' => [
-                    new Assert\NotBlank([]),
-                ], ]))
+            ->addEventSubscriber(new AddCodeFormSubscriber())
             ->add('enabled', CheckboxType::class, [
                 'required' => false,
                 'label' => 'monsieurbiz_cms_page.ui.form.enabled',

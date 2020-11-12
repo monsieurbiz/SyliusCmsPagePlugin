@@ -17,7 +17,6 @@ use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\RichEditorType;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 
 class PageTranslationType extends AbstractResourceType
 {
@@ -29,21 +28,12 @@ class PageTranslationType extends AbstractResourceType
         $builder
             ->add('title', TextType::class, [
                 'label' => 'monsieurbiz_cms_page.ui.form.title',
-                'constraints' => [
-                    new Assert\NotBlank([]),
-                ],
             ])
             ->add('slug', TextType::class, [
                 'label' => 'monsieurbiz_cms_page.ui.form.slug',
-                'constraints' => [
-                    new Assert\NotBlank([]),
-                ],
             ])
             ->add('content', RichEditorType::class, [
                 'label' => 'monsieurbiz_cms_page.ui.form.content',
-                'constraints' => [
-                    new Assert\NotBlank([]),
-                ],
             ])
             ->add('metaTitle', TextType::class, [
                 'required' => false,
