@@ -28,7 +28,7 @@ final class Configuration implements ConfigurationInterface
             $treeBuilder->getRootNode();
         } else {
             // BC layer for symfony/config 4.1 and older
-            /** @scrutinizer ignore-deprecated */ $treeBuilder->root('monsieurbiz_sylius_richeditor');
+            /** @scrutinizer ignore-deprecated */ $treeBuilder->root('monsieurbiz_sylius_cms_page');
         }
 
         return $treeBuilder;
