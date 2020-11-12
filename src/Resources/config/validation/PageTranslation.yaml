@@ -15,7 +15,7 @@ MonsieurBiz\SyliusCmsPagePlugin\Entity\PageTranslation:
         slug:
             - NotBlank:
                 groups: [monsieurbiz]
-            -   Length:
+            - Length:
                     min: 2
                     max: 255
                     groups: [monsieurbiz]
