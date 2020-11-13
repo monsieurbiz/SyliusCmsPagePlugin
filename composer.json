@@ -8,7 +8,7 @@
         "php": "~7.4",
         "sylius/sylius": "^1.8",
         "gedmo/doctrine-extensions": "^2.4.12",
-        "monsieurbiz/sylius-rich-editor-plugin": "v2.0.0-RC.1",
+        "monsieurbiz/sylius-rich-editor-plugin": "v2.0.0-RC.2",
         "phpstan/phpstan-webmozart-assert": "^0.12.7"
     },
     "require-dev": {

@@ -3,8 +3,10 @@ sylius_resource:
         monsieurbiz_cms_page.page:
             classes:
                 model: MonsieurBiz\SyliusCmsPagePlugin\Entity\Page
+                interface: MonsieurBiz\SyliusCmsPagePlugin\Entity\PageInterface
                 form: MonsieurBiz\SyliusCmsPagePlugin\Form\Type\PageType
                 repository: MonsieurBiz\SyliusCmsPagePlugin\Repository\PageRepository
             translation:
                 classes:
                     model: MonsieurBiz\SyliusCmsPagePlugin\Entity\PageTranslation
+                    interface: MonsieurBiz\SyliusCmsPagePlugin\Entity\PageTranslationInterface
