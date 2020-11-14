@@ -7,7 +7,6 @@ CONSOLE=${SYMFONY} console
 export COMPOSE_PROJECT_NAME=cms-page
 COMPOSE=docker-compose
 YARN=yarn
-PHPSTAN=symfony php vendor/bin/phpstan
 PHPUNIT=symfony php vendor/bin/phpunit
 PHPSPEC=symfony php vendor/bin/phpspec
 
@@ -69,7 +68,7 @@ test.composer: ## Validate composer.json
 #	${COMPOSER} validate --strict
 
 test.phpstan: ## Run PHPStan
-	${PHPSTAN} analyse -c phpstan.neon src/
+	${COMPOSER} phpstan
 
 test.phpmd: ## Run PHPMD
 	${COMPOSER} phpmd

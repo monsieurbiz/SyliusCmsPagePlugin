@@ -70,6 +70,7 @@
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "phpcs": "php-cs-fixer fix --using-cache=false",
+        "phpstan": "phpstan analyse -c phpstan.neon src/",
         "phpmd": "phpmd src/ ansi phpmd.xml"
     }
 }
