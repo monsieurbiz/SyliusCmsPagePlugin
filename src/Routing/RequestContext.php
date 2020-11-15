@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusCmsPagePlugin\Routing;
 
+use Exception;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
 use Symfony\Component\Routing\RequestContext as BaseRequestContext;
 
@@ -91,7 +92,7 @@ final class RequestContext extends BaseRequestContext
      * @param string $name
      * @param array $arguments
      *
-     * @throws \Exception
+     * @throws Exception
      *
      * @return mixed
      */
@@ -102,6 +103,6 @@ final class RequestContext extends BaseRequestContext
             return \call_user_func($callback, $arguments);
         }
 
-        throw new \Exception(sprintf('Method %s not found for class "%s"', $name, \get_class($this->decorated)));
+        throw new Exception(sprintf('Method %s not found for class "%s"', $name, \get_class($this->decorated)));
     }
 }

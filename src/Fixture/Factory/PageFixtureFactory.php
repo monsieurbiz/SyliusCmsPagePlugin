@@ -129,10 +129,10 @@ class PageFixtureFactory extends AbstractExampleFactory implements ExampleFactor
     protected function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
-            ->setDefault('enabled', function(/** @scrutinizer ignore-unused */Options $options): bool {
+            ->setDefault('enabled', function(Options $options): bool {
                 return $this->faker->boolean(80);
             })
-            ->setDefault('code', function(/** @scrutinizer ignore-unused */Options $options): string {
+            ->setDefault('code', function(Options $options): string {
                 return $this->slugGenerator->generate($this->faker->sentence(2, true));
             })
             ->setDefault('translations', function(OptionsResolver $translationResolver): void {

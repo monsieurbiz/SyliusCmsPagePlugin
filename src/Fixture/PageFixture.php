@@ -31,13 +31,16 @@ class PageFixture extends AbstractResourceFixture
      */
     protected function configureResourceNode(ArrayNodeDefinition $resourceNode): void
     {
+        /** @phpstan-ignore-next-line */
         $resourceNode
             ->children()
                 ->booleanNode('enabled')->end()
-                ->/** @scrutinizer ignore-call */scalarNode('code')->cannotBeEmpty()->end()
-                ->arrayNode('channels')->scalarPrototype()->end()->end()
+                ->scalarNode('code')->cannotBeEmpty()->end()
+                ->arrayNode('channels')
+                    ->scalarPrototype()->end()
+                ->end()
                 ->arrayNode('translations')
-                    ->prototype('array')
+                    ->arrayPrototype()
                         ->children()
                             ->scalarNode('title')->cannotBeEmpty()->end()
                             ->scalarNode('slug')->cannotBeEmpty()->end()

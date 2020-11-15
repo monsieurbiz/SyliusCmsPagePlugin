@@ -464,6 +464,9 @@
             "config/packages/payum.yaml"
         ]
     },
+    "pdepend/pdepend": {
+        "version": "2.8.0"
+    },
     "phar-io/manifest": {
         "version": "1.0.3"
     },
@@ -508,6 +511,9 @@
     },
     "phpdocumentor/type-resolver": {
         "version": "1.4.0"
+    },
+    "phpmd/phpmd": {
+        "version": "2.9.1"
     },
     "phpoption/phpoption": {
         "version": "1.7.5"
@@ -1007,6 +1013,9 @@
     },
     "symfony/templating": {
         "version": "v4.4.16"
+    },
+    "symfony/thanks": {
+        "version": "v1.2.10"
     },
     "symfony/translation": {
         "version": "3.3",
