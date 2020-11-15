@@ -11,7 +11,7 @@
     </testsuites>
 
     <php>
-        <server name="KERNEL_CLASS_PATH" value="/tests/Application/AppKernel.php" />
+        <server name="KERNEL_CLASS_PATH" value="/tests/Application/src/Kernel.php" />
         <server name="IS_DOCTRINE_ORM_SUPPORTED" value="true" />
 
         <env name="APP_ENV" value="test"/>
