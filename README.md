@@ -14,7 +14,6 @@
 
 [![CMS Page Plugin license](https://img.shields.io/github/license/monsieurbiz/SyliusCmsPagePlugin?public)](https://github.com/monsieurbiz/SyliusCmsPagePlugin/blob/master/LICENSE)
 [![Build Status](https://img.shields.io/github/workflow/status/monsieurbiz/SyliusCmsPagePlugin/PHP%20Composer)](https://github.com/monsieurbiz/SyliusCmsPagePlugin/actions?query=workflow%3A%22PHP+Composer%22)
-[![Scrutinizer code quality](https://img.shields.io/scrutinizer/quality/g/monsieurbiz/SyliusCmsPagePlugin/master)](https://scrutinizer-ci.com/g/monsieurbiz/SyliusCmsPagePlugin/?branch=master)
 
 This plugins allows you to add manage CMS pages using the Rich Editor.
 
