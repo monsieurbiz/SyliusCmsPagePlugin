@@ -13,7 +13,8 @@
 <h1 align="center">CMS Pages</h1>
 
 [![CMS Page Plugin license](https://img.shields.io/github/license/monsieurbiz/SyliusCmsPagePlugin?public)](https://github.com/monsieurbiz/SyliusCmsPagePlugin/blob/master/LICENSE.txt)
-[![Build Status](https://img.shields.io/github/workflow/status/monsieurbiz/SyliusCmsPagePlugin/Tests)](https://github.com/monsieurbiz/SyliusCmsPagePlugin/actions?query=workflow%3ATests)
+[![Tests Status](https://img.shields.io/github/workflow/status/monsieurbiz/SyliusCmsPagePlugin/Tests?logo=github)](https://github.com/monsieurbiz/SyliusCmsPagePlugin/actions?query=workflow%3ATests)
+[![Security Status](https://img.shields.io/github/workflow/status/monsieurbiz/SyliusCmsPagePlugin/Security?label=security&logo=github)](https://github.com/monsieurbiz/SyliusCmsPagePlugin/actions?query=workflow%3ASecurity)
 
 This plugins allows you to add manage CMS pages using the Rich Editor.
 
