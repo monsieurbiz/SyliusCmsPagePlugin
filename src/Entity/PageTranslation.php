@@ -13,63 +13,42 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusCmsPagePlugin\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Resource\Model\AbstractTranslation;
 
-/**
- * @ORM\Entity
- * @ORM\Table(name="monsieurbiz_cms_page_translation")
- */
 class PageTranslation extends AbstractTranslation implements PageTranslationInterface
 {
     /**
      * @var int
-     *
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
      */
     protected $id;
 
     /**
      * @var string|null
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $title;
 
     /**
      * @var string|null
-     *
-     * @ORM\Column(type="text", nullable=true)
      */
     protected $content;
 
     /**
      * @var string|null
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $slug;
 
     /**
      * @var string|null
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $metaTitle;
 
     /**
      * @var string|null
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $metaKeywords;
 
     /**
      * @var string|null
-     *
-     * @ORM\Column(type="text", nullable=true)
      */
     protected $metaDescription;
 
@@ -77,8 +56,6 @@ class PageTranslation extends AbstractTranslation implements PageTranslationInte
      * Redeclared for annotations.
      *
      * @var string|null
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $locale;
 

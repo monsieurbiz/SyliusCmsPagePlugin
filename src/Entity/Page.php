@@ -16,8 +16,6 @@ namespace MonsieurBiz\SyliusCmsPagePlugin\Entity;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Sylius\Component\Channel\Model\ChannelInterface;
 use Sylius\Component\Resource\Model\TimestampableTrait;
 use Sylius\Component\Resource\Model\ToggleableTrait;
@@ -25,10 +23,6 @@ use Sylius\Component\Resource\Model\TranslatableTrait;
 use Sylius\Component\Resource\Model\TranslationInterface;
 use Webmozart\Assert\Assert;
 
-/**
- * @ORM\Entity
- * @ORM\Table(name="monsieurbiz_cms_page")
- */
 class Page implements PageInterface
 {
     use TimestampableTrait;
@@ -40,47 +34,31 @@ class Page implements PageInterface
 
     /**
      * @var int|null
-     *
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var bool
-     * @ORM\Column(type="boolean", options={"default"=true})
      */
     protected $enabled = true;
 
     /**
      * @var string|null
-     * @ORM\Column(type="string", length=255, nullable=false)
      */
     protected $code;
 
     /**
      * @var Collection<int, ChannelInterface>
-     * @ORM\ManyToMany(targetEntity="\Sylius\Component\Channel\Model\Channel")
-     * @ORM\JoinTable(
-     *     name="monsieurbiz_cms_page_channels",
-     *     joinColumns={@ORM\JoinColumn(name="page_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="channel_id", referencedColumnName="id")}
-     * )
      */
-    private $channels;
+    protected $channels;
 
     /**
      * @var DateTimeInterface|null
-     * @ORM\Column(name="created_at", type="datetime_immutable")
-     * @Gedmo\Timestampable(on="create")
      */
     protected $createdAt;
 
     /**
      * @var DateTimeInterface|null
-     * @ORM\Column(name="updated_at", type="datetime")
-     * @Gedmo\Timestampable(on="update")
      */
     protected $updatedAt;
 
