@@ -13,9 +13,10 @@ HEADER;
 
 $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__)
-    ->exclude('tests/Application/var')
-    ->append([
-        'tests/Application/bin/console',
+    ->exclude([
+        'tests/Application/var',
+        'tests/Application/bin',
+        'tests/Application/config',
     ]);
 
 return PhpCsFixer\Config::create()
