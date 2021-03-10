@@ -6,7 +6,6 @@
 
 /tests/Application/yarn.lock
 /tests/Application/package-lock.json
-/tests/Application/.php-version
 
 /behat.yml
 /phpspec.yml
