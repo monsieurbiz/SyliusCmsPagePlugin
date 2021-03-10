@@ -41,7 +41,7 @@ class PageSlugController
      */
     public function generateAction(Request $request): JsonResponse
     {
-        $name = $request->query->get('title');
+        $name = (string) $request->query->get('title');
 
         return new JsonResponse([
             'slug' => $this->slugGenerator->generate($name),
