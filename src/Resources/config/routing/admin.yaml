@@ -3,7 +3,7 @@ monsieurbiz_sylius_cms_page_admin:
     resource: |
         alias: monsieurbiz_cms_page.page
         section: admin
-        templates: SyliusAdminBundle:Crud
+        templates: "@SyliusAdmin\\Crud"
         except: ['show']
         redirect: update
         grid: monsieurbiz_cms_page

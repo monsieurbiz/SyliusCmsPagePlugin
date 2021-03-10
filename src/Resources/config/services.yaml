@@ -29,6 +29,7 @@ services:
     # Fixtures
     MonsieurBiz\SyliusCmsPagePlugin\Fixture\PageFixture:
         arguments:
+            $objectManager: '@doctrine.orm.default_entity_manager'
             $exampleFactory: '@MonsieurBiz\SyliusCmsPagePlugin\Fixture\Factory\PageFixtureFactory'
 
     # Routing Context
