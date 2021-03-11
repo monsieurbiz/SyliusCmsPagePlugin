@@ -69,6 +69,7 @@ jobs:
 
       - run: make test.twig
 
-      - run: make test.schema
+      # See https://github.com/Sylius/Sylius/pull/12413
+      # - run: make test.schema
 
       #- run: make test.container
