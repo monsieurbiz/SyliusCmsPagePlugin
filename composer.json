@@ -73,6 +73,6 @@
         },
         "phpcs": "php-cs-fixer fix --using-cache=false",
         "phpstan": "phpstan analyse -c phpstan.neon src/",
-        "phpmd": "phpmd src/ ansi phpmd.xml"
+        "phpmd": "phpmd --exclude Migrations/* src/ ansi phpmd.xml"
     }
 }
