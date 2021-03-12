@@ -26,12 +26,6 @@ services:
             $dataClass: '%monsieurbiz_cms_page.model.page_translation.class%'
             $validationGroups: ['monsieurbiz']
 
-    # Fixtures
-    MonsieurBiz\SyliusCmsPagePlugin\Fixture\PageFixture:
-        arguments:
-            $objectManager: '@doctrine.orm.default_entity_manager'
-            $exampleFactory: '@MonsieurBiz\SyliusCmsPagePlugin\Fixture\Factory\PageFixtureFactory'
-
     # Routing Context
     MonsieurBiz\SyliusCmsPagePlugin\Routing\RequestContext:
         decorates: router.request_context
