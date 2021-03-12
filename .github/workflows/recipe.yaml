@@ -45,8 +45,8 @@ jobs:
         id: cache-composer
         with:
           path: /home/runner/.composer/cache
-          key: composer2-php:${{ matrix.php }}-${{ matrix.sylius }}-${{ github.sha }}
-          restore-keys: composer2-php:${{ matrix.php }}-${{ matrix.sylius }}-
+          key: composer2-php:${{ matrix.php }}-sylius:${{ matrix.sylius }}-${{ github.sha }}
+          restore-keys: composer2-php:${{ matrix.php }}-sylius:${{ matrix.sylius }}-
 
       - run: mkdir -p /home/runner/.composer/cache
         if: steps.cache-composer.outputs.cache-hit != 'true'

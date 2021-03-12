@@ -71,4 +71,5 @@ jobs:
 
       - run: make test.schema
         continue-on-error: true # See https://github.com/Sylius/Sylius/pull/12413
+
       #- run: make test.container
