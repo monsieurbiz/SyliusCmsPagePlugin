@@ -121,9 +121,6 @@ sylius.assets: ## Install all assets with symlinks
 doctrine.diff: ## Make doctrine diff
 	${CONSOLE} doctrine:migration:diff --namespace="${DOCTRINE_NAMESPACE}"
 
-doctrine.migrate: ## Make doctrine migrate
-	${CONSOLE} doctrine:migration:migrate
-
 ###
 ### PLATFORM
 ### ¯¯¯¯¯¯¯¯
