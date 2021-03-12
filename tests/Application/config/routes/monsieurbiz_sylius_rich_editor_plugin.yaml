@@ -1,3 +1,1 @@
-monsieurbiz_richeditor_admin:
-    resource: "@MonsieurBizSyliusRichEditorPlugin/Resources/config/routing/admin.yaml"
-    prefix: /%sylius_admin.path_name%
+../../../../vendor/monsieurbiz/sylius-rich-editor-plugin/recipes/2.0-dev/config/routes/monsieurbiz_sylius_rich_editor_plugin.yaml

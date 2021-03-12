@@ -16,7 +16,6 @@ namespace MonsieurBiz\SyliusCmsPagePlugin\Fixture\Factory;
 use MonsieurBiz\SyliusCmsPagePlugin\Entity\PageInterface;
 use MonsieurBiz\SyliusCmsPagePlugin\Entity\PageTranslationInterface;
 use Sylius\Bundle\CoreBundle\Fixture\Factory\AbstractExampleFactory;
-use Sylius\Bundle\CoreBundle\Fixture\Factory\ExampleFactoryInterface;
 use Sylius\Bundle\CoreBundle\Fixture\OptionsResolver\LazyOption;
 use Sylius\Component\Channel\Repository\ChannelRepositoryInterface;
 use Sylius\Component\Locale\Model\LocaleInterface;
@@ -26,7 +25,7 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PageFixtureFactory extends AbstractExampleFactory implements ExampleFactoryInterface
+class PageFixtureFactory extends AbstractExampleFactory implements PageFixtureFactoryInterface
 {
     /**
      * @var FactoryInterface

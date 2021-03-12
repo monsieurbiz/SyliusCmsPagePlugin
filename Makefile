@@ -5,6 +5,7 @@ SYMFONY=cd ${APP_DIR} && symfony
 COMPOSER=symfony composer
 CONSOLE=${SYMFONY} console
 export COMPOSE_PROJECT_NAME=cms-page
+DOCTRINE_NAMESPACE=MonsieurBiz\SyliusCmsPagePlugin\Migrations
 COMPOSE=docker-compose
 YARN=yarn
 PHPUNIT=symfony php vendor/bin/phpunit
@@ -95,7 +96,7 @@ test.schema: ## Validate MySQL Schema
 	${CONSOLE} doctrine:schema:validate
 
 test.twig: ## Validate Twig templates
-	${CONSOLE} lint:twig -e prod --no-debug ../../src/Resources/views/
+	${CONSOLE} lint:twig --no-debug ../../src/Resources/views/
 
 ###
 ### SYLIUS
@@ -107,7 +108,7 @@ sylius: dependencies sylius.database sylius.fixtures sylius.assets ## Install Sy
 sylius.database: ## Setup the database
 	${CONSOLE} doctrine:database:drop --if-exists --force
 	${CONSOLE} doctrine:database:create --if-not-exists
-	${CONSOLE} doctrine:schema:update --force
+	${CONSOLE} doctrine:migration:migrate -n
 
 sylius.fixtures: ## Run the fixtures
 	${CONSOLE} sylius:fixtures:load -n default
@@ -116,6 +117,9 @@ sylius.assets: ## Install all assets with symlinks
 	${CONSOLE} assets:install --symlink
 	${CONSOLE} sylius:install:assets
 	${CONSOLE} sylius:theme:assets:install --symlink
+
+doctrine.diff: ## Make doctrine diff
+	${CONSOLE} doctrine:migration:diff --namespace="${DOCTRINE_NAMESPACE}"
 
 ###
 ### PLATFORM

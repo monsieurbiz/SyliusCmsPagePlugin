@@ -1,2 +1,1 @@
-imports:
-  - { resource: "@MonsieurBizSyliusRichEditorPlugin/Resources/config/config.yaml" }
+../../../../vendor/monsieurbiz/sylius-rich-editor-plugin/recipes/2.0-dev/config/packages/monsieurbiz_sylius_rich_editor_plugin.yaml

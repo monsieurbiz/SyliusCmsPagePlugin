@@ -20,7 +20,7 @@ sylius_grid:
                     label: monsieurbiz_cms_page.ui.form.enabled
                     sortable: ~
                     options:
-                        template: SyliusUiBundle:Grid/Field:enabled.html.twig
+                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
             actions:
                 main:
                     create:

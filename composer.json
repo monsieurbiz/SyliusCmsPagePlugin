@@ -7,9 +7,8 @@
     "require": {
         "php": "~7.4",
         "sylius/sylius": "^1.8",
-        "gedmo/doctrine-extensions": "^2.4.12",
-        "monsieurbiz/sylius-rich-editor-plugin": "^2.0@RC",
-        "phpstan/phpstan-webmozart-assert": "^0.12.7"
+        "gedmo/doctrine-extensions": "^2.4.12 || ^3.0",
+        "monsieurbiz/sylius-rich-editor-plugin": "^2.0@RC"
     },
     "require-dev": {
         "behat/behat": "^3.6.1",
@@ -41,10 +40,12 @@
         "sylius-labs/coding-standard": "^3.1",
         "symfony/browser-kit": "^4.4",
         "symfony/debug-bundle": "^4.4",
-        "symfony/dotenv": "^4.4",
+        "symfony/dotenv": "^4.4 || ^5.2",
         "symfony/flex": "^1.7",
-        "symfony/web-profiler-bundle": "^4.4",
-        "phpmd/phpmd": "@stable"
+        "symfony/web-profiler-bundle": "^4.4 || ^5.2",
+        "phpmd/phpmd": "@stable",
+        "phpstan/phpstan-webmozart-assert": "^0.12.7",
+        "friendsofsymfony/oauth-server-bundle": "^1.6 || >2.0.0-alpha.0 ^2.0@dev"
     },
     "prefer-stable": true,
     "autoload": {
@@ -62,7 +63,8 @@
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
-        }
+        },
+        "config-dir": "./tests/Application/config/"
     },
     "scripts": {
         "auto-scripts": {
@@ -71,6 +73,6 @@
         },
         "phpcs": "php-cs-fixer fix --using-cache=false",
         "phpstan": "phpstan analyse -c phpstan.neon src/",
-        "phpmd": "phpmd src/ ansi phpmd.xml"
+        "phpmd": "phpmd --exclude Migrations/* src/ ansi phpmd.xml"
     }
 }
