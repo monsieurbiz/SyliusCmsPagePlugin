@@ -717,9 +717,6 @@
     "symfony/css-selector": {
         "version": "v5.2.4"
     },
-    "symfony/debug": {
-        "version": "v4.4.20"
-    },
     "symfony/debug-bundle": {
         "version": "4.1",
         "recipe": {
