@@ -48,7 +48,7 @@ jobs:
           key: composer2-php:${{ matrix.php }}-sylius:${{ matrix.sylius }}-${{ github.sha }}
           restore-keys: composer2-php:${{ matrix.php }}-sylius:${{ matrix.sylius }}-
 
-      - run: mkdir -p /home/runner/.composer/cache
+      - run: mkdir -p /home/runner/{.composer/cache,.config/composer}
         if: steps.cache-composer.outputs.cache-hit != 'true'
 
       - name: Composer v2
@@ -68,7 +68,7 @@ jobs:
             composer config extra.symfony.allow-contrib true
             composer config secure-http false
             composer config --unset platform.php
-            
+
       - name: Install monsieurbiz/sylius-rich-editor-plugin
         working-directory: ./sylius
         run: |
