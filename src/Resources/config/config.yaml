@@ -1,5 +1,4 @@
 imports:
-    - { resource: 'app/doctrine_migrations.yaml' }
     - { resource: "sylius/resources.yaml" }
     - { resource: "sylius/grid.yaml" }
     - { resource: "sylius/fixtures.yaml" }
