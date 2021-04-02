@@ -128,13 +128,13 @@ class PageFixtureFactory extends AbstractExampleFactory implements PageFixtureFa
     protected function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
-            ->setDefault('enabled', function(Options $options): bool {
+            ->setDefault('enabled', function (Options $options): bool {
                 return $this->faker->boolean(80);
             })
-            ->setDefault('code', function(Options $options): string {
+            ->setDefault('code', function (Options $options): string {
                 return $this->slugGenerator->generate($this->faker->sentence(2, true));
             })
-            ->setDefault('translations', function(OptionsResolver $translationResolver): void {
+            ->setDefault('translations', function (OptionsResolver $translationResolver): void {
                 $translationResolver->setDefaults($this->configureDefaultTranslations());
             })
             ->setDefault('channels', LazyOption::all($this->channelRepository))
