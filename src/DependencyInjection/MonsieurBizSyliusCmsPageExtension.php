@@ -16,9 +16,10 @@ namespace MonsieurBiz\SyliusCmsPagePlugin\DependencyInjection;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-final class MonsieurBizSyliusCmsPageExtension extends Extension
+final class MonsieurBizSyliusCmsPageExtension extends Extension implements PrependExtensionInterface
 {
     /**
      * {@inheritdoc}
@@ -36,5 +37,18 @@ final class MonsieurBizSyliusCmsPageExtension extends Extension
     public function getAlias()
     {
         return str_replace('monsieur_biz', 'monsieurbiz', parent::getAlias());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function prepend(ContainerBuilder $container): void
+    {
+        $doctrineConfig = $container->getExtensionConfig('doctrine_migrations');
+        $container->prependExtensionConfig('doctrine_migrations', [
+            'migrations_paths' => array_merge(array_pop($doctrineConfig)['migrations_paths'] ?? [], [
+                'MonsieurBiz\SyliusCmsPagePlugin\Migrations' => '@MonsieurBizSyliusCmsPagePlugin/Migrations',
+            ]),
+        ]);
     }
 }
