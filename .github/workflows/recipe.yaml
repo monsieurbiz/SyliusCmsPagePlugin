@@ -19,8 +19,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: [7.4]
-        sylius: [1.8, 1.9]
+        php: ['7.4' ,'8.0']
+        sylius: ["~1.8.0", "~1.9.0", "~1.10.0"]
+        exclude:
+          - php: 8.0
+            sylius: "~1.8.0"
+          - php: 8.0
+            sylius: "~1.9.0"
 
     steps:
       - name: Setup PHP
@@ -52,14 +57,14 @@ jobs:
         if: steps.cache-composer.outputs.cache-hit != 'true'
 
       - name: Composer v2
-        run: sudo composer self-update --2 
+        run: sudo composer self-update --2
 
       - name: Composer Github Auth
         run: composer config -g github-oauth.github.com ${{ github.token }}
 
       - name: Install Sylius-Standard
         run: |
-          composer create-project --prefer-dist --no-scripts --no-progress sylius/sylius-standard sylius "~${{ matrix.sylius }}.0"
+          composer create-project --prefer-dist --no-scripts --no-progress sylius/sylius-standard sylius "${{ matrix.sylius }}"
 
       - name: Setup some requirements
         working-directory: ./sylius
