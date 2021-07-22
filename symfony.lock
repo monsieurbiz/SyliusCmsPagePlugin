@@ -296,6 +296,9 @@
     "laminas/laminas-eventmanager": {
         "version": "3.3.1"
     },
+    "laminas/laminas-stdlib": {
+        "version": "3.4.0"
+    },
     "laminas/laminas-zendframework-bridge": {
         "version": "1.2.0"
     },
@@ -855,6 +858,9 @@
     "symfony/options-resolver": {
         "version": "v5.2.4"
     },
+    "symfony/password-hasher": {
+        "version": "v5.3.3"
+    },
     "symfony/polyfill-ctype": {
         "version": "v1.22.1"
     },
@@ -890,6 +896,9 @@
     },
     "symfony/polyfill-php80": {
         "version": "v1.22.1"
+    },
+    "symfony/polyfill-php81": {
+        "version": "v1.23.0"
     },
     "symfony/process": {
         "version": "v5.2.4"
