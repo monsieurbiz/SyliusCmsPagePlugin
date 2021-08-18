@@ -79,7 +79,7 @@ final class RequestContext extends BaseRequestContext
     private function prepareSlug(string $slug): string
     {
         $slug = ltrim($slug, '/');
-        $localeCode = $this->localeContext->getLocaleCode();
+        $localeCode = explode('/', $this->getPathInfo())[1];
 
         if (false === strpos($slug, $localeCode)) {
             return $slug;
