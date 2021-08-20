@@ -15,6 +15,7 @@ namespace MonsieurBiz\SyliusCmsPagePlugin\Routing;
 
 use Exception;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
+use Sylius\Component\Locale\Provider\LocaleProviderInterface;
 use Symfony\Component\Routing\RequestContext as BaseRequestContext;
 
 final class RequestContext extends BaseRequestContext
@@ -35,16 +36,23 @@ final class RequestContext extends BaseRequestContext
     private $localeContext;
 
     /**
+     * @var LocaleProviderInterface
+     */
+    private $localeProvider;
+
+    /**
      * RequestContext constructor.
      *
      * @param BaseRequestContext $decorated
      * @param PageSlugConditionChecker $pageSlugConditionChecker
      * @param LocaleContextInterface $localeContext
+     * @param LocaleProviderInterface $localeProvider
      */
     public function __construct(
         BaseRequestContext $decorated,
         PageSlugConditionChecker $pageSlugConditionChecker,
-        LocaleContextInterface $localeContext
+        LocaleContextInterface $localeContext,
+        LocaleProviderInterface $localeProvider
     ) {
         parent::__construct(
             $decorated->getBaseUrl(),
@@ -59,6 +67,7 @@ final class RequestContext extends BaseRequestContext
         $this->decorated = $decorated;
         $this->pageSlugConditionChecker = $pageSlugConditionChecker;
         $this->localeContext = $localeContext;
+        $this->localeProvider = $localeProvider;
     }
 
     /**
@@ -79,7 +88,9 @@ final class RequestContext extends BaseRequestContext
     private function prepareSlug(string $slug): string
     {
         $slug = ltrim($slug, '/');
-        $localeCode = explode('/', $this->getPathInfo())[1];
+        $localeCode = $this->localeProvider->getAvailableLocalesCodes() > 1
+            ? explode('/', $this->getPathInfo())[1]
+            : $this->localeContext->getLocale();
 
         if (false === strpos($slug, $localeCode)) {
             return $slug;
