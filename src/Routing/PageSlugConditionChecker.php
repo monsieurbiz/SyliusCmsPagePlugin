@@ -15,6 +15,7 @@ namespace MonsieurBiz\SyliusCmsPagePlugin\Routing;
 
 use MonsieurBiz\SyliusCmsPagePlugin\Repository\PageRepositoryInterface;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
+use Sylius\Component\Channel\Context\ChannelNotFoundException;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
 
 final class PageSlugConditionChecker
@@ -58,10 +59,14 @@ final class PageSlugConditionChecker
      */
     public function isPageSlug(string $slug): bool
     {
-        return $this->pageRepository->existsOneByChannelAndSlug(
-            $this->channelContext->getChannel(),
-            $this->localeContext->getLocaleCode(),
-            $slug
-        );
+        try {
+            return $this->pageRepository->existsOneByChannelAndSlug(
+                $this->channelContext->getChannel(),
+                $this->localeContext->getLocaleCode(),
+                $slug
+            );
+        } catch (ChannelNotFoundException $channelNotFoundException) {
+            return false;
+        }
     }
 }
