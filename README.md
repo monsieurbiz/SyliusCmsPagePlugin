@@ -92,6 +92,15 @@ In order to do that, you can check the [Rich Editor custom element creation](htt
 You can define for every page the meta title, meta description and meta 
 keywords.
 
+## Troubleshooting
+
+### Locale not found
+
+We've added a new LocaleContext (`LastChanceLocaleContext`) because the locale isn't set in the request when the
+condition on the route is applied.  
+Therefore, if you still have an issue with multiple locales in your project, you may need to add another LocaleContext
+in order to find out your locale. The system will take care of the rest.
+
 ## Contributing
 
 You can open an issue or a Pull Request if you want! 😘  
