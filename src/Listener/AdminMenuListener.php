@@ -32,5 +32,10 @@ final class AdminMenuListener
             ->setLabel('monsieurbiz_cms_page.ui.pages')
             ->setLabelAttribute('icon', 'file alternate')
         ;
+
+        $content->addChild('monsieurbiz-cms-bloc', ['route' => 'monsieurbiz_cms_page_admin_page_index'])
+            ->setLabel('monsieurbiz_cms_page.ui.blocs')
+            ->setLabelAttribute('icon', 'expand arrows alternate')
+        ;
     }
 }
