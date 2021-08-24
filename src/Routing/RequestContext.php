@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace MonsieurBiz\SyliusCmsPagePlugin\Routing;
 
 use Exception;
-use Sylius\Component\Locale\Provider\LocaleProviderInterface;
+use Sylius\Component\Locale\Context\LocaleContextInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\RequestContext as BaseRequestContext;
@@ -32,25 +32,27 @@ final class RequestContext extends BaseRequestContext
     private $pageSlugConditionChecker;
 
     /**
-     * @var LocaleProviderInterface
+     * @var LocaleContextInterface
      */
-    private $localeProvider;
+    private $localeContext;
 
-    /** @var RequestStack */
-    private $requestStack;
+    /**
+     * @var RequestStack
+     */
+    private RequestStack $requestStack;
 
     /**
      * RequestContext constructor.
      *
      * @param BaseRequestContext $decorated
      * @param PageSlugConditionChecker $pageSlugConditionChecker
-     * @param LocaleProviderInterface $localeProvider
+     * @param LocaleContextInterface $localeContext
      * @param RequestStack $requestStack
      */
     public function __construct(
         BaseRequestContext $decorated,
         PageSlugConditionChecker $pageSlugConditionChecker,
-        LocaleProviderInterface $localeProvider,
+        LocaleContextInterface $localeContext,
         RequestStack $requestStack
     ) {
         parent::__construct(
@@ -65,7 +67,7 @@ final class RequestContext extends BaseRequestContext
         );
         $this->decorated = $decorated;
         $this->pageSlugConditionChecker = $pageSlugConditionChecker;
-        $this->localeProvider = $localeProvider;
+        $this->localeContext = $localeContext;
         $this->requestStack = $requestStack;
     }
 
@@ -76,51 +78,28 @@ final class RequestContext extends BaseRequestContext
      */
     public function checkPageSlug(Request $request): bool
     {
-        $mainRequest = $this->requestStack->getMainRequest();
-        if ($mainRequest !== $request) {
+        if ($request !== $this->requestStack->getMainRequest()) {
             return false;
         }
-        $locale = $this->getLocale($request->getPathInfo());
-        $slug = $this->getSlug($request->getPathInfo(), $locale);
 
-        return $this->pageSlugConditionChecker->isPageSlug($locale, $slug);
+        return $this->pageSlugConditionChecker->isPageSlug($this->prepareSlug($request->getPathInfo()));
     }
 
     /**
-     * Retrieve locale from URL because is not set yet on the request.
-     *
-     * @param string $pathInfo
+     * @param string $slug
      *
      * @return string
      */
-    private function getLocale(string $pathInfo): string
+    private function prepareSlug(string $slug): string
     {
-        $availableLocaleCodes = $this->localeProvider->getAvailableLocalesCodes();
-        $parts = explode('/', trim($pathInfo, '/'));
-        foreach ($parts as $part) {
-            if (\in_array($part, $availableLocaleCodes, true)) {
-                return $part;
-            }
+        $slug = ltrim($slug, '/');
+        $localeCode = $this->localeContext->getLocaleCode();
+
+        if (false === strpos($slug, $localeCode)) {
+            return $slug;
         }
 
-        return $this->localeProvider->getDefaultLocaleCode();
-    }
-
-    /**
-     * @param string $pathInfo
-     * @param string $locale
-     *
-     * @return string
-     */
-    private function getSlug(string $pathInfo, string $locale): string
-    {
-        $pathInfo = ltrim($pathInfo, '/');
-
-        if (false === strpos($pathInfo, $locale)) {
-            return $pathInfo;
-        }
-
-        return str_replace(sprintf('%s/', $locale), '', $pathInfo);
+        return str_replace(sprintf('%s/', $localeCode), '', $slug);
     }
 
     /**
