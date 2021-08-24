@@ -17,7 +17,7 @@ use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\RichEditorType;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class BlocTranslationType extends AbstractResourceType
+class BlockTranslationType extends AbstractResourceType
 {
     /**
      * {@inheritdoc}
@@ -35,6 +35,6 @@ class BlocTranslationType extends AbstractResourceType
      */
     public function getBlockPrefix(): string
     {
-        return 'monsieurbiz_cms_bloc_translation';
+        return 'monsieurbiz_cms_block_translation';
     }
 }

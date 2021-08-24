@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace MonsieurBiz\SyliusCmsPagePlugin\Twig\Extension;
 
 use Doctrine\ORM\EntityManagerInterface;
-use MonsieurBiz\SyliusCmsPagePlugin\Entity\Bloc;
+use MonsieurBiz\SyliusCmsPagePlugin\Entity\Block;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
 use Twig\Extension\AbstractExtension;
@@ -34,7 +34,7 @@ final class BlockExtension extends AbstractExtension
         $localeCode = $this->localeContext->getLocaleCode();
         $channelCode = $this->channelContext->getChannel()->getCode();
 
-        $block = $this->entityManager->getRepository(Bloc::class)
+        $block = $this->entityManager->getRepository(Block::class)
             ->findOneEnabledByBlockCodeAndChannelCode($blockCode, $localeCode, $channelCode);
 
         return $block?->getContent();

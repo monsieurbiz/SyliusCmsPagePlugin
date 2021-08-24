@@ -17,9 +17,9 @@ use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TranslationInterface;
 
 /**
- * Interface BlocTranslationInterface.
+ * Interface BlockTranslationInterface.
  */
-interface BlocTranslationInterface extends ResourceInterface, TranslationInterface
+interface BlockTranslationInterface extends ResourceInterface, TranslationInterface
 {
     /**
      * @return int|null

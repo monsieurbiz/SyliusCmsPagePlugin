@@ -23,7 +23,7 @@ use Sylius\Component\Resource\Model\TranslatableTrait;
 use Sylius\Component\Resource\Model\TranslationInterface;
 use Webmozart\Assert\Assert;
 
-class Bloc implements BlocInterface
+class Block implements BlockInterface
 {
     use TimestampableTrait;
     use ToggleableTrait;
@@ -68,7 +68,7 @@ class Bloc implements BlocInterface
     protected $title;
 
     /**
-     * Bloc constructor.
+     * Block constructor.
      */
     public function __construct()
     {
@@ -139,20 +139,20 @@ class Bloc implements BlocInterface
     /**
      * {@inheritdoc}
      */
-    protected function createTranslation(): BlocTranslation
+    protected function createTranslation(): BlockTranslation
     {
-        return new BlocTranslation();
+        return new BlockTranslation();
     }
 
     /**
      * @param string|null $locale
      *
-     * @return BlocTranslationInterface
+     * @return BlockTranslationInterface
      */
     public function getTranslation(?string $locale = null): TranslationInterface
     {
         $translation = $this->doGetTranslation($locale);
-        Assert::isInstanceOf($translation, BlocTranslationInterface::class);
+        Assert::isInstanceOf($translation, BlockTranslationInterface::class);
 
         return $translation;
     }

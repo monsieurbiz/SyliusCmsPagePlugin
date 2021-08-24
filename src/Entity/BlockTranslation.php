@@ -15,7 +15,7 @@ namespace MonsieurBiz\SyliusCmsPagePlugin\Entity;
 
 use Sylius\Component\Resource\Model\AbstractTranslation;
 
-class BlocTranslation extends AbstractTranslation implements BlocTranslationInterface
+class BlockTranslation extends AbstractTranslation implements BlockTranslationInterface
 {
     /**
      * @var int

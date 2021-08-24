@@ -23,9 +23,9 @@ use Sylius\Component\Resource\Model\ToggleableInterface;
 use Sylius\Component\Resource\Model\TranslatableInterface;
 
 /**
- * Interface BlocInterface.
+ * Interface BlockInterface.
  */
-interface BlocInterface extends ResourceInterface, TranslatableInterface, ToggleableInterface, CodeAwareInterface, TimestampableInterface, Timestampable
+interface BlockInterface extends ResourceInterface, TranslatableInterface, ToggleableInterface, CodeAwareInterface, TimestampableInterface, Timestampable
 {
     /**
      * @return int|null

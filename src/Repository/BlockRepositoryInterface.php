@@ -2,7 +2,7 @@
 
 namespace MonsieurBiz\SyliusCmsPagePlugin\Repository;
 
-interface BlocRepositoryInterface
+interface BlockRepositoryInterface
 {
     public function findOneEnabledByBlockCodeAndChannelCode(string $blockCode, string $localeCode, string $channelCode);
 }

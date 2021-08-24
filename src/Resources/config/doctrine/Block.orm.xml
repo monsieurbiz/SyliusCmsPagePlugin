@@ -5,7 +5,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                                       http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <mapped-superclass name="MonsieurBiz\SyliusCmsPagePlugin\Entity\Bloc" table="monsieurbiz_cms_bloc">
+    <mapped-superclass name="MonsieurBiz\SyliusCmsPagePlugin\Entity\Block" table="monsieurbiz_cms_block">
         <id name="id" type="integer">
             <generator strategy="AUTO"/>
         </id>
@@ -25,9 +25,9 @@
         </field>
 
         <many-to-many field="channels" target-entity="Sylius\Component\Channel\Model\ChannelInterface">
-            <join-table name="monsieurbiz_cms_bloc_channels">
+            <join-table name="monsieurbiz_cms_block_channels">
                 <join-columns>
-                    <join-column name="bloc_id" referenced-column-name="id" />
+                    <join-column name="block_id" referenced-column-name="id" />
                 </join-columns>
                 <inverse-join-columns>
                     <join-column name="channel_id" referenced-column-name="id" />

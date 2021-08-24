@@ -23,20 +23,20 @@ monsieurbiz_sylius_cms_page_ajax_generate_page_slug:
     defaults:
         _controller: MonsieurBiz\SyliusCmsPagePlugin\Controller\Admin\Page\PageSlugController::generateAction
         
-# Page admin BLOC routing
-monsieurbiz_sylius_cms_bloc_admin:
+# Page admin BLOCK routing
+monsieurbiz_sylius_cms_block_admin:
     resource: |
-        alias: monsieurbiz_cms_bloc.bloc
+        alias: monsieurbiz_cms_block.block
         section: admin
         templates: "@SyliusAdmin\\Crud"
         except: ['show']
         redirect: update
-        grid: monsieurbiz_cms_bloc
+        grid: monsieurbiz_cms_block
         vars:
             all:
                 subheader: monsieurbiz_cms_page.ui.pages_subheader
                 templates:
-                    form: "@MonsieurBizSyliusCmsPagePlugin/Admin/Bloc/_form.html.twig"
+                    form: "@MonsieurBizSyliusCmsPagePlugin/Admin/Block/_form.html.twig"
             index:
                 icon: 'file alternate'
     type: sylius.resource

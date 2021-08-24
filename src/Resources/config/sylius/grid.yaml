@@ -45,11 +45,11 @@ sylius_grid:
                     type: boolean
                     label: monsieurbiz_cms_page.ui.form.content
 
-        monsieurbiz_cms_bloc:
+        monsieurbiz_cms_block:
             driver:
                 name: doctrine/orm
                 options:
-                    class: '%monsieurbiz_cms_bloc.model.bloc.class%'
+                    class: '%monsieurbiz_cms_block.model.block.class%'
             limits: [25, 50, 100, 200]
             fields:
                 title:

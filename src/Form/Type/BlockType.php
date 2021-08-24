@@ -21,7 +21,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class BlocType extends AbstractResourceType
+class BlockType extends AbstractResourceType
 {
     /**
      * {@inheritdoc}
@@ -44,7 +44,7 @@ class BlocType extends AbstractResourceType
                 'expanded' => true,
             ])
             ->add('translations', ResourceTranslationsType::class, [
-                'entry_type' => BlocTranslationType::class,
+                'entry_type' => BlockTranslationType::class,
             ]);
     }
 
@@ -53,6 +53,6 @@ class BlocType extends AbstractResourceType
      */
     public function getBlockPrefix(): string
     {
-        return 'monsieurbiz_cms_bloc';
+        return 'monsieurbiz_cms_block';
     }
 }

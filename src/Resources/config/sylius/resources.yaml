@@ -11,13 +11,13 @@ sylius_resource:
                     model: MonsieurBiz\SyliusCmsPagePlugin\Entity\PageTranslation
                     interface: MonsieurBiz\SyliusCmsPagePlugin\Entity\PageTranslationInterface
 
-        monsieurbiz_cms_bloc.bloc:
+        monsieurbiz_cms_block.block:
             classes:
-                model: MonsieurBiz\SyliusCmsPagePlugin\Entity\Bloc
-                interface: MonsieurBiz\SyliusCmsPagePlugin\Entity\BlocInterface
-                form: MonsieurBiz\SyliusCmsPagePlugin\Form\Type\BlocType
-                repository: MonsieurBiz\SyliusCmsPagePlugin\Repository\BlocRepository
+                model: MonsieurBiz\SyliusCmsPagePlugin\Entity\Block
+                interface: MonsieurBiz\SyliusCmsPagePlugin\Entity\BlockInterface
+                form: MonsieurBiz\SyliusCmsPagePlugin\Form\Type\BlockType
+                repository: MonsieurBiz\SyliusCmsPagePlugin\Repository\BlockRepository
             translation:
                 classes:
-                    model: MonsieurBiz\SyliusCmsPagePlugin\Entity\BlocTranslation
-                    interface: MonsieurBiz\SyliusCmsPagePlugin\Entity\BlocTranslationInterface
+                    model: MonsieurBiz\SyliusCmsPagePlugin\Entity\BlockTranslation
+                    interface: MonsieurBiz\SyliusCmsPagePlugin\Entity\BlockTranslationInterface

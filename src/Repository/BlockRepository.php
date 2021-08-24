@@ -14,15 +14,15 @@ declare(strict_types=1);
 namespace MonsieurBiz\SyliusCmsPagePlugin\Repository;
 
 use Doctrine\ORM\NonUniqueResultException;
-use MonsieurBiz\SyliusCmsPagePlugin\Entity\BlocInterface;
+use MonsieurBiz\SyliusCmsPagePlugin\Entity\BlockInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
-class BlocRepository extends EntityRepository implements BlocRepositoryInterface
+class BlockRepository extends EntityRepository implements BlockRepositoryInterface
 {
     /**
      * @throws NonUniqueResultException
      */
-    public function findOneEnabledByBlockCodeAndChannelCode(string $blockCode, string $localeCode, string $channelCode): ?BlocInterface
+    public function findOneEnabledByBlockCodeAndChannelCode(string $blockCode, string $localeCode, string $channelCode): ?BlockInterface
     {
         return $this->createQueryBuilder('b')
             ->leftJoin('b.translations', 'translation')
