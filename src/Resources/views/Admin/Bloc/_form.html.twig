@@ -1,0 +1,27 @@
+{% from '@SyliusAdmin/Macro/translationForm.html.twig' import translationForm %}
+
+{% set translationForm = form.translations %}
+{{ form.offsetUnset('translations') }}
+
+<h4 class="ui horizontal divider header">
+    <i class="info icon"></i>
+    {{ 'monsieurbiz_cms_page.ui.form.page_info' | trans }}
+</h4>
+<div class="ui segment">
+    {{ form_errors(form) }}
+    {# Issue with Symfony 5, Sylius 1.9 : https://github.com/Sylius/Sylius/pull/12439 #}
+    {# So we render the fields #}
+    {% for item in form.children %}
+        {% if item.vars.name != '_token' %}
+            {{ form_row(item) }}
+        {% endif %}
+    {% endfor %}
+    {# Instead of #}
+    {# {{ form_rest(form) }} #}
+</div>
+<h4 class="ui horizontal divider header">
+    <i class="flag icon"></i>
+    {{ 'monsieurbiz_cms_page.ui.form.page_content' | trans }}
+</h4>
+
+{{ translationForm(translationForm) }}

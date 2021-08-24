@@ -34,8 +34,8 @@ class BlocType extends AbstractResourceType
                 'required' => false,
                 'label' => 'monsieurbiz_cms_page.ui.form.enabled',
             ])
-            ->add('identifier', TextType::class, [
-                'label' => 'monsieurbiz_cms_page.ui.form.identifier',
+            ->add('title', TextType::class, [
+                'label' => 'monsieurbiz_cms_page.ui.form.title',
             ])
             ->add('channels', ChannelChoiceType::class, [
                 'label' => 'monsieurbiz_cms_page.ui.form.channels',

@@ -16,6 +16,7 @@ namespace MonsieurBiz\SyliusCmsPagePlugin\Entity;
 use Doctrine\Common\Collections\Collection;
 use Gedmo\Timestampable\Timestampable;
 use Sylius\Component\Channel\Model\ChannelInterface;
+use Sylius\Component\Resource\Model\CodeAwareInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TimestampableInterface;
 use Sylius\Component\Resource\Model\ToggleableInterface;
@@ -24,7 +25,7 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
 /**
  * Interface BlocInterface.
  */
-interface BlocInterface extends ResourceInterface, TranslatableInterface, ToggleableInterface, TimestampableInterface, Timestampable
+interface BlocInterface extends ResourceInterface, TranslatableInterface, ToggleableInterface, CodeAwareInterface, TimestampableInterface, Timestampable
 {
     /**
      * @return int|null
@@ -46,12 +47,12 @@ interface BlocInterface extends ResourceInterface, TranslatableInterface, Toggle
     /**
      * @return string|null
      */
-    public function getIdentifier(): ?string;
+    public function getTitle(): ?string;
 
     /**
-     * @param string|null $identifier
+     * @param string|null $title
      */
-    public function setIdentifier(?string $identifier): void;
+    public function setTitle(?string $title): void;
 
     /**
      * @return Collection<int, ChannelInterface>

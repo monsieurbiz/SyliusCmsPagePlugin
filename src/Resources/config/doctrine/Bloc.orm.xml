@@ -10,7 +10,8 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <field name="identifier" length="255"/>
+        <field name="code" length="255"/>
+        <field name="title" length="255"/>
         <field name="enabled" type="boolean">
             <options>
                 <option name="default">1</option>

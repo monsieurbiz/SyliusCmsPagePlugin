@@ -43,6 +43,11 @@ class Bloc implements BlocInterface
     protected $enabled = true;
 
     /**
+     * @var string|null
+     */
+    protected $code;
+
+    /**
      * @var Collection<int, ChannelInterface>
      */
     protected $channels;
@@ -60,7 +65,7 @@ class Bloc implements BlocInterface
     /**
      * @var string
      */
-    protected $identifier;
+    protected $title;
 
     /**
      * Bloc constructor.
@@ -155,16 +160,32 @@ class Bloc implements BlocInterface
     /**
      * @return string
      */
-    public function getIdentifier(): string
+    public function getTitle(): string
     {
-        return $this->identifier;
+        return $this->title;
     }
 
     /**
-     * @param string|null $identifier
+     * @param string|null $title
      */
-    public function setIdentifier(?string $identifier): void
+    public function setTitle(?string $title): void
     {
-        $this->identifier = $identifier;
+        $this->title = $title;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    /**
+     * @param string|null $code
+     */
+    public function setCode(?string $code): void
+    {
+        $this->code = $code;
     }
 }

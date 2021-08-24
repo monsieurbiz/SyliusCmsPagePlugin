@@ -1,4 +1,4 @@
-# Page admin routing
+# Page admin CMS routing
 monsieurbiz_sylius_cms_page_admin:
     resource: |
         alias: monsieurbiz_cms_page.page
@@ -22,4 +22,22 @@ monsieurbiz_sylius_cms_page_ajax_generate_page_slug:
     methods: [GET]
     defaults:
         _controller: MonsieurBiz\SyliusCmsPagePlugin\Controller\Admin\Page\PageSlugController::generateAction
+        
+# Page admin BLOC routing
+monsieurbiz_sylius_cms_bloc_admin:
+    resource: |
+        alias: monsieurbiz_cms_bloc.bloc
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        except: ['show']
+        redirect: update
+        grid: monsieurbiz_cms_bloc
+        vars:
+            all:
+                subheader: monsieurbiz_cms_page.ui.pages_subheader
+                templates:
+                    form: "@MonsieurBizSyliusCmsPagePlugin/Admin/Bloc/_form.html.twig"
+            index:
+                icon: 'file alternate'
+    type: sylius.resource
 

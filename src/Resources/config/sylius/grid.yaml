@@ -44,3 +44,48 @@ sylius_grid:
                 content:
                     type: boolean
                     label: monsieurbiz_cms_page.ui.form.content
+
+        monsieurbiz_cms_bloc:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: '%monsieurbiz_cms_bloc.model.bloc.class%'
+            limits: [25, 50, 100, 200]
+            fields:
+                title:
+                    type: string
+                    label: monsieurbiz_cms_page.ui.form.title
+                    sortable: ~
+                code:
+                    type: string
+                    label: monsieurbiz_cms_page.ui.form.code
+                    sortable: ~
+                enabled:
+                    type: twig
+                    label: monsieurbiz_cms_page.ui.form.enabled
+                    sortable: ~
+                    options:
+                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
+            actions:
+                main:
+                    create:
+                        type: create
+                        label: monsieurbiz_cms_page.ui.actions.create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+            filters:
+                title:
+                    type: string
+                    label: monsieurbiz_cms_page.ui.form.title
+                code:
+                    type: string
+                    label: monsieurbiz_cms_page.ui.form.code
+                enabled:
+                    type: boolean
+                    label: monsieurbiz_cms_page.ui.form.enabled
+                content:
+                    type: boolean
+                    label: monsieurbiz_cms_page.ui.form.content
