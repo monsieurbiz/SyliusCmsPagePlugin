@@ -10,3 +10,14 @@ sylius_resource:
                 classes:
                     model: MonsieurBiz\SyliusCmsPagePlugin\Entity\PageTranslation
                     interface: MonsieurBiz\SyliusCmsPagePlugin\Entity\PageTranslationInterface
+
+        monsieurbiz_cms_bloc.bloc:
+            classes:
+                model: MonsieurBiz\SyliusCmsPagePlugin\Entity\Bloc
+                interface: MonsieurBiz\SyliusCmsPagePlugin\Entity\BlocInterface
+                form: MonsieurBiz\SyliusCmsPagePlugin\Form\Type\BlocType
+                repository: MonsieurBiz\SyliusCmsPagePlugin\Repository\BlocRepository
+            translation:
+                classes:
+                    model: MonsieurBiz\SyliusCmsPagePlugin\Entity\BlocTranslation
+                    interface: MonsieurBiz\SyliusCmsPagePlugin\Entity\BlocTranslationInterface

@@ -30,6 +30,14 @@ services:
         arguments:
             $dataClass: '%monsieurbiz_cms_page.model.page_translation.class%'
             $validationGroups: ['monsieurbiz']
+    MonsieurBiz\SyliusCmsPagePlugin\Form\Type\BlocType:
+        arguments:
+            $dataClass: '%monsieurbiz_cms_bloc.model.bloc.class%'
+            $validationGroups: ['monsieurbiz']
+    MonsieurBiz\SyliusCmsPagePlugin\Form\Type\BlocTranslationType:
+        arguments:
+            $dataClass: '%monsieurbiz_cms_bloc.model.bloc_translation.class%'
+            $validationGroups: ['monsieurbiz']
 
     # Routing Context
     MonsieurBiz\SyliusCmsPagePlugin\Routing\RequestContext:
