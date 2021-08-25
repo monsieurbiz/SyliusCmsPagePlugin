@@ -15,6 +15,8 @@ namespace MonsieurBiz\SyliusCmsPagePlugin\Routing;
 
 use Exception;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\RequestContext as BaseRequestContext;
 
 final class RequestContext extends BaseRequestContext
@@ -35,16 +37,23 @@ final class RequestContext extends BaseRequestContext
     private $localeContext;
 
     /**
+     * @var RequestStack
+     */
+    private RequestStack $requestStack;
+
+    /**
      * RequestContext constructor.
      *
      * @param BaseRequestContext $decorated
      * @param PageSlugConditionChecker $pageSlugConditionChecker
      * @param LocaleContextInterface $localeContext
+     * @param RequestStack $requestStack
      */
     public function __construct(
         BaseRequestContext $decorated,
         PageSlugConditionChecker $pageSlugConditionChecker,
-        LocaleContextInterface $localeContext
+        LocaleContextInterface $localeContext,
+        RequestStack $requestStack
     ) {
         parent::__construct(
             $decorated->getBaseUrl(),
@@ -59,16 +68,21 @@ final class RequestContext extends BaseRequestContext
         $this->decorated = $decorated;
         $this->pageSlugConditionChecker = $pageSlugConditionChecker;
         $this->localeContext = $localeContext;
+        $this->requestStack = $requestStack;
     }
 
     /**
-     * @param string $slug
+     * @param Request $request
      *
      * @return bool
      */
-    public function checkPageSlug(string $slug): bool
+    public function checkPageSlug(Request $request): bool
     {
-        return $this->pageSlugConditionChecker->isPageSlug($this->prepareSlug($slug));
+        if ($request !== $this->requestStack->getMainRequest()) {
+            return false;
+        }
+
+        return $this->pageSlugConditionChecker->isPageSlug($this->prepareSlug($request->getPathInfo()));
     }
 
     /**

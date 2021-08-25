@@ -10,6 +10,11 @@ services:
     MonsieurBiz\SyliusCmsPagePlugin\Controller\:
         resource: '../../Controller'
         tags: ['controller.service_arguments']
+    
+    # Let's try to find the locale one more time!
+    MonsieurBiz\SyliusCmsPagePlugin\Context\LastChanceLocaleContext:
+        tags:
+            - { name: sylius.context.locale, priority: -127 }
 
     # Menu item in admin panel
     MonsieurBiz\SyliusCmsPagePlugin\Listener\AdminMenuListener:

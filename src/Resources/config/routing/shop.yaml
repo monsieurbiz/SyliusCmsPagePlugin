@@ -14,4 +14,4 @@ monsieurbiz_cms_page_show:
                     - "expr:service('sylius.context.channel').getChannel().getCode()"
     requirements:
         slug: .+
-    condition: "context.checkPageSlug(request.getPathInfo())"
+    condition: "context.checkPageSlug(request)"
