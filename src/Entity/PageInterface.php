@@ -26,8 +26,10 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
 /**
  * Interface PageInterface.
  */
-interface PageInterface extends ResourceInterface, TranslatableInterface, ToggleableInterface, SlugAwareInterface, CodeAwareInterface, TimestampableInterface, Timestampable
+interface PageInterface extends TranslatableInterface, SlugAwareInterface, ResourceInterface, ToggleableInterface, CodeAwareInterface, TimestampableInterface, Timestampable
 {
+    public function __construct();
+
     /**
      * @return int|null
      */

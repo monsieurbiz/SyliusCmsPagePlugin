@@ -20,17 +20,12 @@ use Sylius\Component\Resource\Model\CodeAwareInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TimestampableInterface;
 use Sylius\Component\Resource\Model\ToggleableInterface;
-use Sylius\Component\Resource\Model\TranslatableInterface;
-use Sylius\Component\Resource\Model\TranslationInterface;
-use Webmozart\Assert\Assert;
 
 /**
- * Interface BlockInterface.
+ * Interface ContentManagementInterface.
  */
-interface BlockInterface extends ResourceInterface, TranslatableInterface, ToggleableInterface, CodeAwareInterface, TimestampableInterface, Timestampable
+interface ContentManagementInterface extends ResourceInterface, ToggleableInterface, CodeAwareInterface, TimestampableInterface, Timestampable
 {
-    public function __construct();
-
     /**
      * @return int|null
      */
@@ -53,20 +48,8 @@ interface BlockInterface extends ResourceInterface, TranslatableInterface, Toggl
 
     /**
      * @param string|null $content
-     *
-     * @return void
      */
     public function setContent(?string $content): void;
-
-    /**
-     * @return string|null
-     */
-    public function getTitle(): ?string;
-
-    /**
-     * @param string|null $title
-     */
-    public function setTitle(?string $title): void;
 
     /**
      * @return Collection<int, ChannelInterface>
@@ -75,34 +58,18 @@ interface BlockInterface extends ResourceInterface, TranslatableInterface, Toggl
 
     /**
      * @param ChannelInterface $channel
-     *
-     * @return void
      */
     public function addChannel(ChannelInterface $channel): void;
 
     /**
      * @param ChannelInterface $channel
-     *
-     * @return void
      */
     public function removeChannel(ChannelInterface $channel): void;
 
     /**
      * @param ChannelInterface $channel
-     *
      * @return bool
      */
     public function hasChannel(ChannelInterface $channel): bool;
 
-    /**
-     * {}
-     */
-    public function createTranslation(): BlockTranslation;
-
-    /**
-     * @param string|null $locale
-     *
-     * @return BlockTranslationInterface
-     */
-    public function getTranslation(?string $locale = null): TranslationInterface;
 }
