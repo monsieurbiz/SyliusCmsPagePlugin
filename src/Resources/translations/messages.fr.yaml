@@ -6,8 +6,8 @@ monsieurbiz_cms_page:
     cms_content: "Contenus CMS"
     pages_subheader: "Gestion des contenus CMS"
     form:
-      page_info: 'Informations de la page'
-      page_content: 'Contenu de la page'
+      page_info: "Informations de la page"
+      page_content: "Contenu de la page"
       enabled: "Activée"
       channels: "Canaux"
       title: "Titre"
@@ -18,4 +18,16 @@ monsieurbiz_cms_page:
       meta_description: "Meta Description"
       meta_keywords: "Meta Keyword"
     actions:
-      create: 'Créer une nouvelle page'
+      create: "Créer une nouvelle page"
+      
+monsieurbiz_cms_block:
+  ui:
+    blocks: "Blocs"
+    new_block: "Nouveau bloc"
+    edit_block: "Éditer un block"
+    blocks_subheader: "Gestion des blocs CMS"
+    form:
+      block_info: "Informations du bloc"
+      block_content: "Contenu du bloc"
+    actions:
+      create: "Créer un nouveau bloc"

@@ -30,10 +30,6 @@ class BlockType extends AbstractResourceType
     {
         $builder
             ->addEventSubscriber(new AddCodeFormSubscriber())
-            ->add('enabled', CheckboxType::class, [
-                'required' => false,
-                'label' => 'monsieurbiz_cms_page.ui.form.enabled',
-            ])
             ->add('title', TextType::class, [
                 'label' => 'monsieurbiz_cms_page.ui.form.title',
             ])
@@ -45,6 +41,13 @@ class BlockType extends AbstractResourceType
             ])
             ->add('translations', ResourceTranslationsType::class, [
                 'entry_type' => BlockTranslationType::class,
+            ])
+            ->add('code', TextType::class, [
+                'label' => 'monsieurbiz_cms_page.ui.form.code',
+            ])
+            ->add('enabled', CheckboxType::class, [
+                'required' => false,
+                'label' => 'monsieurbiz_cms_page.ui.form.enabled',
             ]);
     }
 

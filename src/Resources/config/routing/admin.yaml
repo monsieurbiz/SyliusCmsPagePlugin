@@ -34,7 +34,7 @@ monsieurbiz_sylius_cms_block_admin:
         grid: monsieurbiz_cms_block
         vars:
             all:
-                subheader: monsieurbiz_cms_page.ui.pages_subheader
+                subheader: monsieurbiz_cms_block.ui.blocks_subheader
                 templates:
                     form: "@MonsieurBizSyliusCmsPagePlugin/Admin/Block/_form.html.twig"
             index:

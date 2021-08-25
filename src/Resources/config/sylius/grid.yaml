@@ -70,7 +70,7 @@ sylius_grid:
                 main:
                     create:
                         type: create
-                        label: monsieurbiz_cms_page.ui.actions.create
+                        label: monsieurbiz_cms_block.ui.actions.create
                 item:
                     update:
                         type: update

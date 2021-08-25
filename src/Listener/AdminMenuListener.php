@@ -34,7 +34,7 @@ final class AdminMenuListener
         ;
 
         $content->addChild('monsieurbiz-cms-block', ['route' => 'monsieurbiz_cms_block_admin_block_index'])
-            ->setLabel('monsieurbiz_cms_page.ui.blocks')
+            ->setLabel('monsieurbiz_cms_block.ui.blocks')
             ->setLabelAttribute('icon', 'expand arrows alternate')
         ;
     }

@@ -6,8 +6,8 @@ monsieurbiz_cms_page:
     cms_content: "CMS content"
     pages_subheader: "CMS Page management"
     form:
-      page_info: 'Page information'
-      page_content: 'Page content'
+      page_info: "Page information"
+      page_content: "Page content"
       enabled: "Enabled"
       channels: "Channels"
       title: "Title"
@@ -18,4 +18,16 @@ monsieurbiz_cms_page:
       meta_description: "Meta Description"
       meta_keywords: "Meta Keyword"
     actions:
-      create: 'Create a new page'
+      create: "Create a new page"
+
+monsieurbiz_cms_block:
+    ui:
+        blocks: "Blocks"
+        new_block: "New block"
+        edit_block: "Edit block"
+        blocks_subheader: "CMS Block management"
+        form:
+            block_info: "Block information"
+            block_content: "Block content"
+        actions:
+            create: "Create a new block"
