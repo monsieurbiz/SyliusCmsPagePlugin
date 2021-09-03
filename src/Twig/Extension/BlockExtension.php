@@ -37,7 +37,11 @@ final class BlockExtension extends AbstractExtension
         $block = $this->entityManager->getRepository(Block::class)
             ->findOneEnabledByBlockCodeAndChannelCode($blockCode, $localeCode, $channelCode);
 
-        return $block?->getContent();
+        if ($block !== null) {
+            return $block->getContent();
+        }
+
+        return null;
     }
 
     public function getFunctions(): array
