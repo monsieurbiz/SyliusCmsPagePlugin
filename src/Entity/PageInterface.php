@@ -13,39 +13,16 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusCmsPagePlugin\Entity;
 
-use Doctrine\Common\Collections\Collection;
-use Gedmo\Timestampable\Timestampable;
-use Sylius\Component\Channel\Model\ChannelInterface;
-use Sylius\Component\Resource\Model\CodeAwareInterface;
-use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\SlugAwareInterface;
-use Sylius\Component\Resource\Model\TimestampableInterface;
-use Sylius\Component\Resource\Model\ToggleableInterface;
 use Sylius\Component\Resource\Model\TranslatableInterface;
+use Sylius\Component\Resource\Model\TranslationInterface;
 
 /**
  * Interface PageInterface.
  */
-interface PageInterface extends TranslatableInterface, SlugAwareInterface, ResourceInterface, ToggleableInterface, CodeAwareInterface, TimestampableInterface, Timestampable
+interface PageInterface extends TranslatableInterface, SlugAwareInterface
 {
     public function __construct();
-
-    /**
-     * @return int|null
-     */
-    public function getId(): ?int;
-
-    /**
-     * @return string|null
-     */
-    public function getCode(): ?string;
-
-    /**
-     * @param string|null $title
-     *
-     * @return void
-     */
-    public function setCode(?string $title): void;
 
     /**
      * @return string|null
@@ -58,18 +35,6 @@ interface PageInterface extends TranslatableInterface, SlugAwareInterface, Resou
      * @return void
      */
     public function setTitle(?string $title): void;
-
-    /**
-     * @return string|null
-     */
-    public function getContent(): ?string;
-
-    /**
-     * @param string|null $content
-     *
-     * @return void
-     */
-    public function setContent(?string $content): void;
 
     /**
      * @return string|null
@@ -108,28 +73,25 @@ interface PageInterface extends TranslatableInterface, SlugAwareInterface, Resou
     public function setMetaKeywords(?string $metaKeywords): void;
 
     /**
-     * @return Collection<int, ChannelInterface>
+     * @return string|null
      */
-    public function getChannels(): Collection;
+    public function getSlug(): ?string;
 
     /**
-     * @param ChannelInterface $channel
-     *
-     * @return void
+     * @param string|null $slug
      */
-    public function addChannel(ChannelInterface $channel): void;
+    public function setSlug(?string $slug): void;
 
     /**
-     * @param ChannelInterface $channel
-     *
-     * @return void
+     * {}
      */
-    public function removeChannel(ChannelInterface $channel): void;
+    public function createTranslation(): PageTranslation;
 
     /**
-     * @param ChannelInterface $channel
+     * @param string|null $locale
      *
-     * @return bool
+     * @return PageTranslationInterface
      */
-    public function hasChannel(ChannelInterface $channel): bool;
+    public function getTranslation(?string $locale = null): TranslationInterface;
+
 }

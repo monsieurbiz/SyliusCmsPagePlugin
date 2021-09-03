@@ -13,22 +13,21 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusCmsPagePlugin\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Sylius\Component\Resource\Model\TranslatableTrait;
 use Sylius\Component\Resource\Model\TranslationInterface;
 use Webmozart\Assert\Assert;
 
-class Block extends ContentManagement implements BlockInterface
+class Block extends ContentManagementUnit implements BlockInterface
 {
     use TranslatableTrait {
-        __construct as private initializeTranslationsCollection;
-        getTranslation as private doGetTranslation;
+        __construct as protected initializeTranslationsCollection;
+        getTranslation as protected doGetTranslation;
     }
 
     public function __construct()
     {
+        parent::__construct();
         $this->initializeTranslationsCollection();
-        $this->initializeChannelsCollection();
     }
 
     /**
@@ -71,11 +70,6 @@ class Block extends ContentManagement implements BlockInterface
         Assert::isInstanceOf($translation, BlockTranslationInterface::class);
 
         return $translation;
-    }
-
-    public function initializeChannelsCollection(): void
-    {
-        $this->channels = new ArrayCollection();
     }
 
 }

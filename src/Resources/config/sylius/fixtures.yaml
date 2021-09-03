@@ -1,6 +1,6 @@
 sylius_fixtures:
     suites:
-        default_test_tuco:
+        default:
             fixtures:
                 monsieurbiz_cms_page:
                     options:

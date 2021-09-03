@@ -24,7 +24,7 @@ use Sylius\Component\Resource\Model\ToggleableInterface;
 /**
  * Interface ContentManagementInterface.
  */
-interface ContentManagementInterface extends ResourceInterface, ToggleableInterface, CodeAwareInterface, TimestampableInterface, Timestampable
+interface ContentManagementUnitInterface extends ResourceInterface, ToggleableInterface, CodeAwareInterface, TimestampableInterface, Timestampable
 {
     /**
      * @return int|null

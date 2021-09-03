@@ -13,12 +13,11 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusCmsPagePlugin\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Sylius\Component\Resource\Model\TranslatableTrait;
 use Sylius\Component\Resource\Model\TranslationInterface;
 use Webmozart\Assert\Assert;
 
-class Page extends ContentManagement implements PageInterface
+class Page extends ContentManagementUnit implements PageInterface
 {
     use TranslatableTrait {
         __construct as private initializeTranslationsCollection;
@@ -27,8 +26,8 @@ class Page extends ContentManagement implements PageInterface
 
     public function __construct()
     {
+        parent::__construct();
         $this->initializeTranslationsCollection();
-        $this->initializeChannelsCollection();
     }
 
     /**
@@ -122,7 +121,7 @@ class Page extends ContentManagement implements PageInterface
     /**
      * {@inheritdoc}
      */
-    protected function createTranslation(): PageTranslation
+    public function createTranslation(): PageTranslation
     {
         return new PageTranslation();
     }
@@ -138,11 +137,6 @@ class Page extends ContentManagement implements PageInterface
         Assert::isInstanceOf($translation, PageTranslationInterface::class);
 
         return $translation;
-    }
-
-    public function initializeChannelsCollection(): void
-    {
-        $this->channels = new ArrayCollection();
     }
 
 }

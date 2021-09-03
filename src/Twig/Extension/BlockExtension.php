@@ -22,15 +22,27 @@ use Twig\TwigFunction;
 
 final class BlockExtension extends AbstractExtension
 {
+    /** @var EntityManagerInterface */
+    private EntityManagerInterface $entityManager;
+
+    /** @var LocaleContextInterface */
+    private LocaleContextInterface $localeContext;
+
+    /** @var ChannelContextInterface */
+    private ChannelContextInterface $channelContext;
+
     public function __construct(
-        public EntityManagerInterface $entityManager,
-        public LocaleContextInterface $localeContext,
-        public ChannelContextInterface $channelContext
-    )
-    {
+        EntityManagerInterface $entityManager,
+        LocaleContextInterface $localeContext,
+        ChannelContextInterface $channelContext
+    ) {
+        $this->entityManager = $entityManager;
+        $this->localeContext = $localeContext;
+        $this->channelContext = $channelContext;
     }
 
-    public function getCmsBlockContent(string $blockCode) {
+    public function getCmsBlockContent(string $blockCode)
+    {
         $localeCode = $this->localeContext->getLocaleCode();
         $channelCode = $this->channelContext->getChannel()->getCode();
 

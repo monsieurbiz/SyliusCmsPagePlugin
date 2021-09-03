@@ -3,15 +3,21 @@
 namespace MonsieurBiz\SyliusCmsPagePlugin\Entity;
 
 use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Channel\Model\ChannelInterface;
 use Sylius\Component\Resource\Model\TimestampableTrait;
 use Sylius\Component\Resource\Model\ToggleableTrait;
 
-class ContentManagement implements ContentManagementInterface
+class ContentManagementUnit implements ContentManagementUnitInterface
 {
     use TimestampableTrait;
     use ToggleableTrait;
+
+    public function __construct()
+    {
+        $this->initializeChannelsCollection();
+    }
 
     /**
      * @var int|null
@@ -111,5 +117,10 @@ class ContentManagement implements ContentManagementInterface
     public function hasChannel(ChannelInterface $channel): bool
     {
         return $this->channels->contains($channel);
+    }
+
+    public function initializeChannelsCollection(): void
+    {
+        $this->channels = new ArrayCollection();
     }
 }
