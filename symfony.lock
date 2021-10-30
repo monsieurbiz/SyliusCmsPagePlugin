@@ -726,6 +726,9 @@
     "symfony/css-selector": {
         "version": "v5.2.4"
     },
+    "symfony/debug": {
+        "version": "v4.4.31"
+    },
     "symfony/debug-bundle": {
         "version": "4.1",
         "recipe": {
@@ -818,6 +821,9 @@
     },
     "symfony/http-kernel": {
         "version": "v4.4.20"
+    },
+    "symfony/inflector": {
+        "version": "v4.4.27"
     },
     "symfony/intl": {
         "version": "v5.2.4"
