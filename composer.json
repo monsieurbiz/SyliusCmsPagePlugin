@@ -46,6 +46,9 @@
         "phpstan/phpstan-webmozart-assert": "^0.12.7",
         "friendsofsymfony/oauth-server-bundle": "^1.6 || >2.0.0-alpha.0 ^2.0@dev"
     },
+    "conflict": {
+        "doctrine/dbal": "^3"
+    },
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
