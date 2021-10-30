@@ -71,6 +71,13 @@ jobs:
             composer config secure-http false
             composer config --unset platform.php
 
+      - name: Install monsieurbiz/sylius-rich-editor-plugin
+        working-directory: ./sylius
+        run: |
+          composer require monsieurbiz/sylius-rich-editor-plugin="^2.0@RC" --no-install --no-update
+          sed -i -e "s/];/MonsieurBiz\\\SyliusRichEditorPlugin\\\MonsieurBizSyliusRichEditorPlugin::class => ['all' => true], ];/g" config/bundles.php
+          cp -Rv $PWD/../plugin/dist/* ./
+
       - name: Require plugin without install
         working-directory: ./sylius
         run: |
