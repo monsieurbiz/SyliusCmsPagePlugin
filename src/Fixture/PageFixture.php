@@ -20,17 +20,13 @@ use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 
 class PageFixture extends AbstractResourceFixture
 {
-    /**
-     * @param EntityManagerInterface $pageManager
-     * @param PageFixtureFactoryInterface $exampleFactory
-     */
     public function __construct(EntityManagerInterface $pageManager, PageFixtureFactoryInterface $exampleFactory)
     {
         parent::__construct($pageManager, $exampleFactory);
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getName(): string
     {
@@ -38,7 +34,7 @@ class PageFixture extends AbstractResourceFixture
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected function configureResourceNode(ArrayNodeDefinition $resourceNode): void
     {

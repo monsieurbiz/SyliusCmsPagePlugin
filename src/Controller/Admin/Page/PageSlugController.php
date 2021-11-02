@@ -24,8 +24,6 @@ class PageSlugController
 
     /**
      * PageSlugController constructor.
-     *
-     * @param SlugGeneratorInterface $slugGenerator
      */
     public function __construct(SlugGeneratorInterface $slugGenerator)
     {
@@ -34,10 +32,6 @@ class PageSlugController
 
     /**
      * Generate slug and return JSON.
-     *
-     * @param Request $request
-     *
-     * @return JsonResponse
      */
     public function generateAction(Request $request): JsonResponse
     {

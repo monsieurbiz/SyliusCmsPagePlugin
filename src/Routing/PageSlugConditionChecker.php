@@ -37,10 +37,6 @@ final class PageSlugConditionChecker
 
     /**
      * PageSlugConditionChecker constructor.
-     *
-     * @param PageRepositoryInterface $pageRepository
-     * @param ChannelContextInterface $channelContext
-     * @param LocaleContextInterface $localeContext
      */
     public function __construct(
         PageRepositoryInterface $pageRepository,
@@ -52,11 +48,6 @@ final class PageSlugConditionChecker
         $this->localeContext = $localeContext;
     }
 
-    /**
-     * @param string $slug
-     *
-     * @return bool
-     */
     public function isPageSlug(string $slug): bool
     {
         try {

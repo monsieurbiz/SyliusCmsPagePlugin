@@ -21,6 +21,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 final class LastChanceLocaleContext implements LocaleContextInterface
 {
     private RequestStack $requestStack;
+
     private LocaleProviderInterface $localeProvider;
 
     public function __construct(

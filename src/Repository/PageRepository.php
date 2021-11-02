@@ -22,11 +22,6 @@ use Sylius\Component\Channel\Model\ChannelInterface;
 
 class PageRepository extends EntityRepository implements PageRepositoryInterface
 {
-    /**
-     * @param string $localeCode
-     *
-     * @return QueryBuilder
-     */
     public function createListQueryBuilder(string $localeCode): QueryBuilder
     {
         return $this->createQueryBuilder('o')
@@ -37,14 +32,8 @@ class PageRepository extends EntityRepository implements PageRepositoryInterface
     }
 
     /**
-     * @param ChannelInterface $channel
-     * @param string|null $locale
-     * @param string $slug
-     *
      * @throws NoResultException
      * @throws NonUniqueResultException
-     *
-     * @return bool
      */
     public function existsOneByChannelAndSlug(ChannelInterface $channel, ?string $locale, string $slug): bool
     {
@@ -66,13 +55,7 @@ class PageRepository extends EntityRepository implements PageRepositoryInterface
     }
 
     /**
-     * @param string $slug
-     * @param string $localeCode
-     * @param string $channelCode
-     *
      * @throws NonUniqueResultException
-     *
-     * @return PageInterface|null
      */
     public function findOneEnabledBySlugAndChannelCode(string $slug, string $localeCode, string $channelCode): ?PageInterface
     {
