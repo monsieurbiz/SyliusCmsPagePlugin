@@ -5,6 +5,7 @@ monsieurbiz_cms_page:
     edit_page: "Edit page"
     cms_content: "CMS content"
     pages_subheader: "CMS Page management"
+    back_to_admin: "Back to admin"
     form:
       page_info: 'Page information'
       page_content: 'Page content'
@@ -21,3 +22,4 @@ monsieurbiz_cms_page:
     show_page_in_shop_page: "Show page in shop page"
     actions:
       create: 'Create a new page'
+      preview: 'Preview'
