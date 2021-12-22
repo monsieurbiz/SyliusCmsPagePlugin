@@ -2,6 +2,7 @@ sylius_resource:
     resources:
         monsieurbiz_cms_page.page:
             classes:
+                controller: MonsieurBiz\SyliusCmsPagePlugin\Controller\PageController
                 model: MonsieurBiz\SyliusCmsPagePlugin\Entity\Page
                 interface: MonsieurBiz\SyliusCmsPagePlugin\Entity\PageInterface
                 form: MonsieurBiz\SyliusCmsPagePlugin\Form\Type\PageType
