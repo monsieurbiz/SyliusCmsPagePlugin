@@ -23,7 +23,6 @@ monsieurbiz_sylius_cms_page_ajax_generate_page_slug:
     defaults:
         _controller: MonsieurBiz\SyliusCmsPagePlugin\Controller\Admin\Page\PageSlugController::generateAction
 
-
 monsieurbiz_cms_page_admin_page_update:
     path: /pages/{id}/edit
     methods: [GET, PUT, PATCH]
@@ -40,3 +39,10 @@ monsieurbiz_cms_page_admin_page_update:
                 templates:
                     form: "@MonsieurBizSyliusCmsPagePlugin/Admin/Page/_form.html.twig"
                     toolbar: "@MonsieurBizSyliusCmsPagePlugin/Admin/Page/Update/_toolbar.html.twig"
+
+# Page preview
+monsieurbiz_cms_page_admin_page_preview:
+    path: /page/preview/{id}
+    defaults:
+        _controller: monsieurbiz_cms_page.controller.page::previewAction
+        template: '@MonsieurBizSyliusCmsPagePlugin\\Admin\\Page\\preview.html.twig'
