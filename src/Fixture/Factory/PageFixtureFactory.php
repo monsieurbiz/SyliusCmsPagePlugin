@@ -5,7 +5,7 @@
  *
  * (c) Monsieur Biz <sylius@monsieurbiz.com>
  *
- * For the full copyright and license information, please view the LICENSE
+ * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
 
@@ -54,13 +54,6 @@ class PageFixtureFactory extends AbstractExampleFactory implements PageFixtureFa
     /** @var ChannelRepositoryInterface */
     private $channelRepository;
 
-    /**
-     * @param FactoryInterface $pageFactory
-     * @param FactoryInterface $pageTranslationFactory
-     * @param SlugGeneratorInterface $slugGenerator
-     * @param ChannelRepositoryInterface $channelRepository
-     * @param RepositoryInterface $localeRepository
-     */
     public function __construct(
         FactoryInterface $pageFactory,
         FactoryInterface $pageTranslationFactory,
@@ -81,7 +74,7 @@ class PageFixtureFactory extends AbstractExampleFactory implements PageFixtureFa
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function create(array $options = []): PageInterface
     {
@@ -101,10 +94,6 @@ class PageFixtureFactory extends AbstractExampleFactory implements PageFixtureFa
         return $page;
     }
 
-    /**
-     * @param PageInterface $page
-     * @param array $options
-     */
     private function createTranslations(PageInterface $page, array $options): void
     {
         foreach ($options['translations'] as $localeCode => $translation) {
@@ -123,18 +112,18 @@ class PageFixtureFactory extends AbstractExampleFactory implements PageFixtureFa
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
-            ->setDefault('enabled', function(Options $options): bool {
+            ->setDefault('enabled', function (Options $options): bool {
                 return $this->faker->boolean(80);
             })
-            ->setDefault('code', function(Options $options): string {
+            ->setDefault('code', function (Options $options): string {
                 return $this->slugGenerator->generate($this->faker->sentence(2, true));
             })
-            ->setDefault('translations', function(OptionsResolver $translationResolver): void {
+            ->setDefault('translations', function (OptionsResolver $translationResolver): void {
                 $translationResolver->setDefaults($this->configureDefaultTranslations());
             })
             ->setDefault('channels', LazyOption::all($this->channelRepository))
@@ -143,9 +132,6 @@ class PageFixtureFactory extends AbstractExampleFactory implements PageFixtureFa
         ;
     }
 
-    /**
-     * @return array
-     */
     private function configureDefaultTranslations(): array
     {
         $translations = [];

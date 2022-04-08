@@ -6,7 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "~7.4|~8.0",
-        "sylius/sylius": "^1.8",
+        "sylius/sylius": ">=1.8 <1.11",
         "gedmo/doctrine-extensions": "^2.4.12 || ^3.0",
         "monsieurbiz/sylius-rich-editor-plugin": "^2.0"
     },
@@ -31,39 +31,25 @@
         "mockery/mockery": "^1.4",
         "pamil/prophecy-common": "^0.1",
         "phpspec/phpspec": "^6.1",
-        "phpstan/phpstan": "0.12.57",
-        "phpstan/phpstan-doctrine": "0.12.19",
+        "phpstan/phpstan": "^0.12.57",
+        "phpstan/phpstan-doctrine": "^0.12.19",
+        "phpstan/phpstan-webmozart-assert": "^0.12.7",
         "phpunit/phpunit": "^8.5",
         "psalm/plugin-mockery": "^0.3",
         "psr/event-dispatcher": "^1.0",
         "sylius-labs/coding-standard": "^3.1",
         "symfony/browser-kit": "^4.4",
         "symfony/debug-bundle": "^4.4",
-        "symfony/dotenv": "^4.4 || ^5.2",
+        "symfony/dotenv": "^4.4",
         "symfony/flex": "^1.7",
-        "symfony/web-profiler-bundle": "^4.4 || ^5.2",
-        "phpmd/phpmd": "@stable",
-        "phpstan/phpstan-webmozart-assert": "^0.12.7",
-        "friendsofsymfony/oauth-server-bundle": "^1.6 || >2.0.0-alpha.0 ^2.0@dev"
+        "symfony/web-profiler-bundle": "^4.4",
+        "phpmd/phpmd": "@stable"
     },
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "MonsieurBiz\\SyliusCmsPagePlugin\\": "src/"
         }
-    },
-    "autoload-dev": {
-        "classmap": ["tests/Application/src/Kernel.php"],
-        "psr-4": {
-            "App\\": "tests/Application/src/",
-            "Tests\\MonsieurBiz\\SyliusCmsPagePlugin\\": "tests/"
-        }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0-dev"
-        },
-        "config-dir": "./tests/Application/config/"
     },
     "scripts": {
         "auto-scripts": {
@@ -72,6 +58,16 @@
         },
         "phpcs": "php-cs-fixer fix --using-cache=false",
         "phpstan": "phpstan analyse -c phpstan.neon src/",
-        "phpmd": "phpmd --exclude Migrations/* src/ ansi phpmd.xml"
+        "phpmd": "phpmd --exclude Migrations/* src/ ansi phpmd.xml",
+        "phpunit": "phpunit",
+        "phpspec": "phpspec run"
+    },
+    "extra": {
+        "symfony": {
+            "require": "^4.4"
+        },
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
     }
 }

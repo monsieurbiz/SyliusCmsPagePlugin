@@ -4,8 +4,6 @@ on:
   push:
     branches: [ master ]
   pull_request:
-  schedule:
-    - cron:  '0 0 * * *'
 
 jobs:
 
@@ -46,6 +44,8 @@ jobs:
           docker run --rm --name flex -d -v $PWD/plugin/recipes:/var/www/flex/var/repo/private/monsieurbiz/sylius-cms-page-plugin -p 80:80 docker.pkg.github.com/monsieurbiz/docker/symfony-flex-server:latest contrib official
           docker ps
 
+      - run: mkdir -p /home/runner/{.composer/cache,.config/composer}
+
       - uses: actions/cache@v1
         id: cache-composer
         with:
@@ -53,18 +53,21 @@ jobs:
           key: composer2-php:${{ matrix.php }}-sylius:${{ matrix.sylius }}-${{ github.sha }}
           restore-keys: composer2-php:${{ matrix.php }}-sylius:${{ matrix.sylius }}-
 
-      - run: mkdir -p /home/runner/{.composer/cache,.config/composer}
-        if: steps.cache-composer.outputs.cache-hit != 'true'
-
       - name: Composer v2
         run: sudo composer self-update --2
 
       - name: Composer Github Auth
         run: composer config -g github-oauth.github.com ${{ github.token }}
 
-      - name: Install Sylius-Standard
+      - name: Create Sylius-Standard project without install
         run: |
-          composer create-project --prefer-dist --no-scripts --no-progress sylius/sylius-standard sylius "${{ matrix.sylius }}"
+          composer create-project --prefer-dist --no-scripts --no-progress --no-install sylius/sylius-standard sylius "${{ matrix.sylius }}"
+
+      # Because the sylius-standard has a soft constraint
+      - name: Make sure to install the required version of Sylius
+        working-directory: ./sylius
+        run: |
+            composer require --no-install --no-scripts --no-progress sylius/sylius="${{ matrix.sylius }}"
 
       - name: Setup some requirements
         working-directory: ./sylius
@@ -74,17 +77,15 @@ jobs:
             composer config secure-http false
             composer config --unset platform.php
 
-      - name: Install monsieurbiz/sylius-rich-editor-plugin
+      - name: Require plugin without install
         working-directory: ./sylius
         run: |
-          composer require monsieurbiz/sylius-rich-editor-plugin="^2.0@RC" --no-scripts
-          sed -i -e "s/];/MonsieurBiz\\\SyliusRichEditorPlugin\\\MonsieurBizSyliusRichEditorPlugin::class => ['all' => true], ];/g" config/bundles.php
-          cp -Rv vendor/monsieurbiz/sylius-rich-editor-plugin/recipes/2.0-dev/config/* config/
+          composer require --no-install --no-update monsieurbiz/sylius-cms-page-plugin="*@dev"
 
-      - name: Install plugin
+      - name: Composer install
         working-directory: ./sylius
         run: |
-          composer require monsieurbiz/sylius-cms-page-plugin="*@dev"
+          composer install
 
       - name: Show flex server logs
         run: docker logs --tail 100 flex

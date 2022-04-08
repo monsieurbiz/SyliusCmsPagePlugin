@@ -5,7 +5,7 @@
  *
  * (c) Monsieur Biz <sylius@monsieurbiz.com>
  *
- * For the full copyright and license information, please view the LICENSE
+ * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
 
@@ -24,8 +24,6 @@ class PageSlugController
 
     /**
      * PageSlugController constructor.
-     *
-     * @param SlugGeneratorInterface $slugGenerator
      */
     public function __construct(SlugGeneratorInterface $slugGenerator)
     {
@@ -34,10 +32,6 @@ class PageSlugController
 
     /**
      * Generate slug and return JSON.
-     *
-     * @param Request $request
-     *
-     * @return JsonResponse
      */
     public function generateAction(Request $request): JsonResponse
     {

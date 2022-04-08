@@ -5,7 +5,7 @@
  *
  * (c) Monsieur Biz <sylius@monsieurbiz.com>
  *
- * For the full copyright and license information, please view the LICENSE
+ * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
 
@@ -21,6 +21,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 final class LastChanceLocaleContext implements LocaleContextInterface
 {
     private RequestStack $requestStack;
+
     private LocaleProviderInterface $localeProvider;
 
     public function __construct(
@@ -33,7 +34,7 @@ final class LastChanceLocaleContext implements LocaleContextInterface
 
     public function getLocaleCode(): string
     {
-        $request = $this->requestStack->getMainRequest();
+        $request = $this->requestStack->getMasterRequest();
         if (null === $request) {
             throw new LocaleNotFoundException('Main request not found, therefore no locale found…');
         }

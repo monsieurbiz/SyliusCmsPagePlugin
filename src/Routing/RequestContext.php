@@ -5,7 +5,7 @@
  *
  * (c) Monsieur Biz <sylius@monsieurbiz.com>
  *
- * For the full copyright and license information, please view the LICENSE
+ * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
 
@@ -36,18 +36,10 @@ final class RequestContext extends BaseRequestContext
      */
     private $localeContext;
 
-    /**
-     * @var RequestStack
-     */
     private RequestStack $requestStack;
 
     /**
      * RequestContext constructor.
-     *
-     * @param BaseRequestContext $decorated
-     * @param PageSlugConditionChecker $pageSlugConditionChecker
-     * @param LocaleContextInterface $localeContext
-     * @param RequestStack $requestStack
      */
     public function __construct(
         BaseRequestContext $decorated,
@@ -71,25 +63,15 @@ final class RequestContext extends BaseRequestContext
         $this->requestStack = $requestStack;
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return bool
-     */
     public function checkPageSlug(Request $request): bool
     {
-        if ($request !== $this->requestStack->getMainRequest()) {
+        if ($request !== $this->requestStack->getMasterRequest()) {
             return false;
         }
 
         return $this->pageSlugConditionChecker->isPageSlug($this->prepareSlug($request->getPathInfo()));
     }
 
-    /**
-     * @param string $slug
-     *
-     * @return string
-     */
     private function prepareSlug(string $slug): string
     {
         $slug = ltrim($slug, '/');
@@ -103,9 +85,6 @@ final class RequestContext extends BaseRequestContext
     }
 
     /**
-     * @param string $name
-     * @param array $arguments
-     *
      * @throws Exception
      *
      * @return mixed

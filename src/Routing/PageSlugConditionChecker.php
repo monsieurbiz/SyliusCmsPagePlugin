@@ -5,7 +5,7 @@
  *
  * (c) Monsieur Biz <sylius@monsieurbiz.com>
  *
- * For the full copyright and license information, please view the LICENSE
+ * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
 
@@ -37,10 +37,6 @@ final class PageSlugConditionChecker
 
     /**
      * PageSlugConditionChecker constructor.
-     *
-     * @param PageRepositoryInterface $pageRepository
-     * @param ChannelContextInterface $channelContext
-     * @param LocaleContextInterface $localeContext
      */
     public function __construct(
         PageRepositoryInterface $pageRepository,
@@ -52,11 +48,6 @@ final class PageSlugConditionChecker
         $this->localeContext = $localeContext;
     }
 
-    /**
-     * @param string $slug
-     *
-     * @return bool
-     */
     public function isPageSlug(string $slug): bool
     {
         try {

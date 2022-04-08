@@ -3,8 +3,6 @@ name: Security
 on:
   push:
   pull_request:
-  schedule:
-    - cron:  '0 0 * * *'
 
 jobs:
 
@@ -48,4 +46,3 @@ jobs:
         run: composer update --prefer-dist
 
       - uses: symfonycorp/security-checker-action@v2
-
