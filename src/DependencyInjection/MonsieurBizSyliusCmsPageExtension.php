@@ -44,6 +44,13 @@ final class MonsieurBizSyliusCmsPageExtension extends Extension implements Prepe
      */
     public function prepend(ContainerBuilder $container): void
     {
+        if (
+            $container->hasParameter('sylius_core.prepend_doctrine_migrations') &&
+            !$container->getParameter('sylius_core.prepend_doctrine_migrations')
+        ) {
+            return;
+        }
+
         $doctrineConfig = $container->getExtensionConfig('doctrine_migrations');
         $container->prependExtensionConfig('doctrine_migrations', [
             'migrations_paths' => array_merge(array_pop($doctrineConfig)['migrations_paths'] ?? [], [
