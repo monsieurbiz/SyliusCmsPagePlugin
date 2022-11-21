@@ -53,8 +53,8 @@ jobs:
           key: composer2-php:${{ matrix.php }}-sylius:${{ matrix.sylius }}-${{ github.sha }}
           restore-keys: composer2-php:${{ matrix.php }}-sylius:${{ matrix.sylius }}-
 
-      - name: Composer v2
-        run: sudo composer self-update --2
+      - name: Update composer
+        run: sudo composer self-update
 
       - name: Composer Github Auth
         run: composer config -g github-oauth.github.com ${{ github.token }}

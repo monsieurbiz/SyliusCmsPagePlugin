@@ -23,7 +23,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
@@ -36,8 +35,8 @@ jobs:
 
       - name: Install symfony CLI
         run: |
-          curl https://get.symfony.com/cli/installer | bash
-          echo "${HOME}/.symfony/bin" >> $GITHUB_PATH
+          curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | sudo -E bash
+          sudo apt install symfony-cli
 
       - uses: actions/cache@v1
         id: cache-composer
@@ -47,10 +46,9 @@ jobs:
           restore-keys: composer2-php:${{ matrix.php }}-
 
       - run: mkdir -p /home/runner/{.composer/cache,.config/composer}
-        if: steps.cache-composer.outputs.cache-hit != 'true'
 
-      - name: Composer v2
-        run: sudo composer self-update --2
+      - name: Update composer
+        run: sudo composer self-update
 
       - name: Composer Github Auth
         run: composer config -g github-oauth.github.com ${{ github.token }}
