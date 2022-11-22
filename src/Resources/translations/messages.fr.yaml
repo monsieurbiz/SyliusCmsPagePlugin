@@ -17,5 +17,7 @@ monsieurbiz_cms_page:
       meta_title: "Meta Title"
       meta_description: "Meta Description"
       meta_keywords: "Meta Keyword"
+    show_in: "Afficher dans"
+    show_page_in_shop_page: "Afficher la page dans la boutique"
     actions:
       create: 'Créer une nouvelle page'
