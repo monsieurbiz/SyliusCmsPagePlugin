@@ -5,6 +5,9 @@ sylius_grid:
                 name: doctrine/orm
                 options:
                     class: '%monsieurbiz_cms_page.model.page.class%'
+                    repository:
+                        method: createListQueryBuilder
+                        arguments: ["%locale%"]
             limits: [25, 50, 100, 200]
             fields:
                 code:
@@ -38,9 +41,13 @@ sylius_grid:
                 title:
                     type: string
                     label: monsieurbiz_cms_page.ui.form.title
+                    options:
+                        fields: [translation.title]
                 enabled:
                     type: boolean
                     label: monsieurbiz_cms_page.ui.form.enabled
                 content:
-                    type: boolean
+                    type: string
                     label: monsieurbiz_cms_page.ui.form.content
+                    options:
+                        fields: [translation.content]

@@ -69,5 +69,13 @@
         "branch-alias": {
             "dev-master": "1.0-dev"
         }
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "symfony/thanks": true,
+            "ergebnis/composer-normalize": true,
+            "symfony/flex": true
+        }
     }
 }
