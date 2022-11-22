@@ -12,6 +12,7 @@ monsieurbiz_sylius_cms_page_admin:
                 subheader: monsieurbiz_cms_page.ui.pages_subheader
                 templates:
                     form: "@MonsieurBizSyliusCmsPagePlugin/Admin/Page/_form.html.twig"
+                    toolbar: "@MonsieurBizSyliusCmsPagePlugin/Admin/Page/Update/_toolbar.html.twig"
             index:
                 icon: 'file alternate'
     type: sylius.resource
