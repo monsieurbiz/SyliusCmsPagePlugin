@@ -34,8 +34,7 @@ final class LastChanceLocaleContext implements LocaleContextInterface
 
     public function getLocaleCode(): string
     {
-        $request = $this->requestStack->getMasterRequest();
-        if (null === $request) {
+        if (null === $request = $this->requestStack->getMainRequest()) {
             throw new LocaleNotFoundException('Main request not found, therefore no locale found…');
         }
         $pathInfo = $request->getPathInfo();

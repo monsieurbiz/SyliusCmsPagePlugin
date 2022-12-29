@@ -3,7 +3,7 @@ monsieurbiz_cms_page_show:
     path: /{slug}
     methods: [GET]
     defaults:
-        _controller: monsieurbiz_cms_page.controller.page:showAction
+        _controller: monsieurbiz_cms_page.controller.page::showAction
         _sylius:
             template: "@MonsieurBizSyliusCmsPagePlugin/Shop/Page/show.html.twig"
             repository:

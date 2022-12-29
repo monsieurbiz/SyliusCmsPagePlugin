@@ -6,7 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "~7.4|~8.0",
-        "sylius/sylius": ">=1.8 <1.12",
+        "sylius/sylius": "^1.12",
         "gedmo/doctrine-extensions": "^2.4.12 || ^3.0",
         "monsieurbiz/sylius-rich-editor-plugin": "^2.0"
     },

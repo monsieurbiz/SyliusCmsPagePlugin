@@ -65,7 +65,7 @@ final class RequestContext extends BaseRequestContext
 
     public function checkPageSlug(Request $request): bool
     {
-        if ($request !== $this->requestStack->getMasterRequest()) {
+        if ($request !== $this->requestStack->getMainRequest()) {
             return false;
         }
 
