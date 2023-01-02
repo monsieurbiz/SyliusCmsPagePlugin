@@ -52,13 +52,6 @@ class PageTranslation extends AbstractTranslation implements PageTranslationInte
      */
     protected $metaDescription;
 
-    /**
-     * Redeclared for annotations.
-     *
-     * @var string|null
-     */
-    protected ?string $locale;
-
     public function getId(): ?int
     {
         return $this->id;
