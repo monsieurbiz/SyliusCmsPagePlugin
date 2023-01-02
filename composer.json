@@ -6,7 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "~7.4|~8.0",
-        "sylius/sylius": ">=1.8 <1.12",
+        "sylius/sylius": ">=1.8 <1.13",
         "gedmo/doctrine-extensions": "^2.4.12 || ^3.0",
         "monsieurbiz/sylius-rich-editor-plugin": "^2.0"
     },
@@ -30,7 +30,7 @@
         "mikey179/vfsstream": "^1.6",
         "mockery/mockery": "^1.4",
         "pamil/prophecy-common": "^0.1",
-        "phpspec/phpspec": "^6.1",
+        "phpspec/phpspec": "^6.1|^7.2",
         "phpstan/phpstan": "^0.12.57",
         "phpstan/phpstan-doctrine": "^0.12.19",
         "phpstan/phpstan-webmozart-assert": "^0.12.7",
@@ -56,16 +56,13 @@
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
-        "phpcs": "php-cs-fixer fix --using-cache=false",
+        "phpcs": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix --using-cache=false",
         "phpstan": "phpstan analyse -c phpstan.neon src/",
         "phpmd": "phpmd --exclude Migrations/* src/ ansi phpmd.xml",
         "phpunit": "phpunit",
         "phpspec": "phpspec run"
     },
     "extra": {
-        "symfony": {
-            "require": "^4.4"
-        },
         "branch-alias": {
             "dev-master": "1.0-dev"
         }
