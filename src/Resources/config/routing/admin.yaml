@@ -27,7 +27,7 @@ monsieurbiz_cms_page_admin_page_update:
     path: /pages/{id}/edit
     methods: [GET, PUT, PATCH]
     defaults:
-        _controller: monsieurbiz_cms_page.controller.page:updateAction
+        _controller: monsieurbiz_cms_page.controller.page::updateAction
         _sylius:
             section: admin
             permission: true
