@@ -1,4 +1,7 @@
 sylius_grid:
+    templates:
+        action:
+            monsieurbiz_cms_page_preview: "@MonsieurBizSyliusCmsPagePlugin/Admin/Grid/Action/preview.html.twig"
     grids:
         monsieurbiz_cms_page:
             driver:
@@ -32,6 +35,8 @@ sylius_grid:
                 item:
                     update:
                         type: update
+                    preview:
+                        type: monsieurbiz_cms_page_preview
                     delete:
                         type: delete
             filters:
