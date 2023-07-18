@@ -34,6 +34,7 @@ class PageTranslationType extends AbstractResourceType
             ])
             ->add('content', RichEditorType::class, [
                 'label' => 'monsieurbiz_cms_page.ui.form.content',
+                'locale' => $builder->getName(),
             ])
             ->add('metaTitle', TextType::class, [
                 'required' => false,

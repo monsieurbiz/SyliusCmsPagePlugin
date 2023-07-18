@@ -8,7 +8,7 @@
         "php": "~7.4|~8.0",
         "sylius/sylius": ">=1.8 <1.13",
         "gedmo/doctrine-extensions": "^2.4.12 || ^3.0",
-        "monsieurbiz/sylius-rich-editor-plugin": "^2.0"
+        "monsieurbiz/sylius-rich-editor-plugin": "^2.2"
     },
     "require-dev": {
         "behat/behat": "^3.6.1",
