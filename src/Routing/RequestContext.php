@@ -93,7 +93,7 @@ final class RequestContext extends BaseRequestContext
     {
         $callback = [$this->decorated, $name];
         if (\is_callable($callback)) {
-            return \call_user_func($callback, $arguments);
+            return \call_user_func($callback, ...$arguments);
         }
 
         throw new Exception(sprintf('Method %s not found for class "%s"', $name, \get_class($this->decorated)));
