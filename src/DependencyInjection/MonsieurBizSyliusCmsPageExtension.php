@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusCmsPagePlugin\DependencyInjection;
 
+use Sylius\Bundle\CoreBundle\DependencyInjection\PrependDoctrineMigrationsTrait;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
@@ -21,6 +22,8 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 final class MonsieurBizSyliusCmsPageExtension extends Extension implements PrependExtensionInterface
 {
+    use PrependDoctrineMigrationsTrait;
+
     /**
      * @inheritdoc
      */
@@ -39,16 +42,25 @@ final class MonsieurBizSyliusCmsPageExtension extends Extension implements Prepe
         return str_replace('monsieur_biz', 'monsieurbiz', parent::getAlias());
     }
 
-    /**
-     * @inheritdoc
-     */
     public function prepend(ContainerBuilder $container): void
     {
-        $doctrineConfig = $container->getExtensionConfig('doctrine_migrations');
-        $container->prependExtensionConfig('doctrine_migrations', [
-            'migrations_paths' => array_merge(array_pop($doctrineConfig)['migrations_paths'] ?? [], [
-                'MonsieurBiz\SyliusCmsPagePlugin\Migrations' => '@MonsieurBizSyliusCmsPagePlugin/Migrations',
-            ]),
-        ]);
+        $this->prependDoctrineMigrations($container);
+    }
+
+    protected function getMigrationsNamespace(): string
+    {
+        return 'MonsieurBiz\SyliusCmsPagePlugin\Migrations';
+    }
+
+    protected function getMigrationsDirectory(): string
+    {
+        return '@MonsieurBizSyliusCmsPagePlugin/Migrations';
+    }
+
+    protected function getNamespacesOfMigrationsExecutedBefore(): array
+    {
+        return [
+            'Sylius\Bundle\CoreBundle\Migrations',
+        ];
     }
 }
