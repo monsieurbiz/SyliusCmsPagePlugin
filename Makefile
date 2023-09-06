@@ -145,7 +145,7 @@ test.twig: ## Validate Twig templates
 ### SYLIUS
 ### ¯¯¯¯¯¯
 
-sylius: dependencies sylius.database sylius.fixtures sylius.assets ## Install Sylius
+sylius: dependencies sylius.database sylius.fixtures sylius.assets messenger.setup ## Install Sylius
 .PHONY: sylius
 
 sylius.database: ## Setup the database
@@ -160,6 +160,9 @@ sylius.assets: ## Install all assets with symlinks
 	${CONSOLE} assets:install --symlink
 	${CONSOLE} sylius:install:assets
 	${CONSOLE} sylius:theme:assets:install --symlink
+
+messenger.setup: ## Setup Messenger transports
+	${CONSOLE} messenger:setup-transports
 
 ###
 ### PLATFORM
