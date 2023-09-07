@@ -21,6 +21,11 @@ sylius_grid:
                     type: string
                     label: monsieurbiz_cms_page.ui.form.title
                     sortable: translation.title
+                channels:
+                    type: twig
+                    label: sylius.ui.channels
+                    options:
+                        template: '@SyliusAdmin/Grid/Field/_channels.html.twig'
                 enabled:
                     type: twig
                     label: monsieurbiz_cms_page.ui.form.enabled
@@ -56,3 +61,10 @@ sylius_grid:
                     label: monsieurbiz_cms_page.ui.form.content
                     options:
                         fields: [translation.content]
+                channel:
+                    type: entity
+                    label: sylius.ui.channel
+                    options:
+                        fields: [channels.id]
+                    form_options:
+                        class: "%sylius.model.channel.class%"
