@@ -30,18 +30,32 @@ class PageRepository extends EntityRepository implements PageRepositoryInterface
         ;
     }
 
+    public function existsOneByChannelAndSlug(ChannelInterface $channel, ?string $locale, string $slug, array $excludedPages = []): bool
+    {
+        $queryBuilder = $this->createQueryBuilderExistOne($channel, $locale, $slug);
+        if (!empty($excludedPages)) {
+            $queryBuilder
+                ->andWhere('p.id NOT IN (:excludedPages)')
+                ->setParameter('excludedPages', $excludedPages)
+            ;
+        }
+
+        $count = (int) $queryBuilder
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+
+        return $count > 0;
+    }
+
     public function existsOneEnabledByChannelAndSlug(ChannelInterface $channel, ?string $locale, string $slug): bool
     {
-        $count = (int) $this
-            ->createQueryBuilder('p')
-            ->select('COUNT(p.id)')
-            ->innerJoin('p.translations', 'translation', 'WITH', 'translation.locale = :locale')
-            ->andWhere('translation.slug = :slug')
-            ->andWhere(':channel MEMBER OF p.channels')
+        $queryBuilder = $this->createQueryBuilderExistOne($channel, $locale, $slug);
+        $queryBuilder
             ->andWhere('p.enabled = true')
-            ->setParameter('channel', $channel)
-            ->setParameter('locale', $locale)
-            ->setParameter('slug', $slug)
+        ;
+
+        $count = (int) $queryBuilder
             ->getQuery()
             ->getSingleScalarResult()
         ;
@@ -66,6 +80,21 @@ class PageRepository extends EntityRepository implements PageRepositoryInterface
             ->setParameter('channelCode', $channelCode)
             ->getQuery()
             ->getOneOrNullResult()
+        ;
+    }
+
+    private function createQueryBuilderExistOne(ChannelInterface $channel, ?string $locale, string $slug): QueryBuilder
+    {
+        return $this
+            ->createQueryBuilder('p')
+            ->select('COUNT(p.id)')
+            ->innerJoin('p.translations', 'translation', 'WITH', 'translation.locale = :locale')
+            ->andWhere('translation.slug = :slug')
+            ->andWhere(':channel MEMBER OF p.channels')
+            ->andWhere('p.enabled = true')
+            ->setParameter('channel', $channel)
+            ->setParameter('locale', $locale)
+            ->setParameter('slug', $slug)
         ;
     }
 }
