@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace MonsieurBiz\SyliusCmsPagePlugin\Repository;
 
 use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
 use MonsieurBiz\SyliusCmsPagePlugin\Entity\PageInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
@@ -31,11 +30,7 @@ class PageRepository extends EntityRepository implements PageRepositoryInterface
         ;
     }
 
-    /**
-     * @throws NoResultException
-     * @throws NonUniqueResultException
-     */
-    public function existsOneByChannelAndSlug(ChannelInterface $channel, ?string $locale, string $slug): bool
+    public function existsOneEnabledByChannelAndSlug(ChannelInterface $channel, ?string $locale, string $slug): bool
     {
         $count = (int) $this
             ->createQueryBuilder('p')
