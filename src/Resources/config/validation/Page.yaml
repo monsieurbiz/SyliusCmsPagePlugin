@@ -3,6 +3,8 @@ MonsieurBiz\SyliusCmsPagePlugin\Entity\Page:
         -   Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
                 fields: [code]
                 groups: [monsieurbiz]
+        -   MonsieurBiz\SyliusCmsPagePlugin\Validator\Constraints\UniqueSlugByChannel:
+                groups: [monsieurbiz]
     properties:
         code:
             -   NotBlank:
