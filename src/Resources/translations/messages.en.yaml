@@ -23,3 +23,8 @@ monsieurbiz_cms_page:
     actions:
       create: 'Create a new page'
       preview: 'Preview'
+sylius_plus:
+  rbac:
+    parent:
+      page: 'Page'
+      pages: 'Pages'
