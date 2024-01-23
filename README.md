@@ -50,13 +50,19 @@ monsieurbiz_cms_page_shop:
 
 ### Migrations
 
-Make a doctrine migration diff : 
+First, please run legacy-versioned migrations by using command :
+
+```bash
+bin/console doctrine:migrations:migrate
+```
+
+After migration, please create a new diff migration :
 
 ```php
 bin/console doctrine:migrations:diff
 ```
 
-Then run it : 
+Then run it (if any) : 
 
 ```php
 bin/console doctrine:migrations:migrate
