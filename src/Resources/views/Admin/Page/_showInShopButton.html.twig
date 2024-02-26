@@ -26,12 +26,27 @@
             </div>
         </div>
     {% else %}
-        {% for channel in enabledChannels %}
-            {% set url = channel.hostname is not null ? 'http://' ~ channel.hostname ~ path('monsieurbiz_cms_page_show', {'slug': resource.slug, '_locale': channel.defaultLocale.code}) : url('monsieurbiz_cms_page_show', {'slug': resource.slug, '_locale': channel.defaultLocale.code}) %}
-            <a class="ui labeled icon button" href="{{ url|raw }}" target="_blank">
-                <i class="angle right icon"></i>
+        <div class="ui floating dropdown labeled icon button">
+            <i class="share alternate icon"></i>
+            <span class="text">
                 {{ 'monsieurbiz_cms_page.ui.show_page_in_shop_page'|trans }}
-            </a>
-        {% endfor %}
+            </span>
+            <div class="menu">
+                <div class="scrolling menu">
+                    {% for channel in enabledChannels %}
+                        {% for locale in channel.locales %}
+                            {% set localeCode = locale.code %}
+                            {% set translationResource = resource.getTranslation(localeCode)|default(resource) %}
+                            {% set url = channel.hostname is not null ? 'http://' ~ channel.hostname ~ path('monsieurbiz_cms_page_show', {'slug': translationResource.slug, '_locale': localeCode}) : url('monsieurbiz_cms_page_show', {'slug': translationResource.slug, '_locale': localeCode}) %}
+                            <a href="{{ url|raw }}" class="item" target="_blank">
+                                <i class="angle right icon"></i>
+                                {{ 'monsieurbiz_cms_page.ui.show_in'|trans }}
+                                {{ channel.name }} ({{ channel.code }}) ({{ localeCode }})
+                            </a>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
     {% endif %}
 {% endif %}
