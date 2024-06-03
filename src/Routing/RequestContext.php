@@ -81,7 +81,7 @@ final class RequestContext extends BaseRequestContext
             return $slug;
         }
 
-        return str_replace(sprintf('%s/', $localeCode), '', $slug);
+        return ltrim($slug, sprintf('%s/', $localeCode));
     }
 
     /**
