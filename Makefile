@@ -78,7 +78,7 @@ setup_application:
 	$(MAKE) ${APP_DIR}/php.ini
 	(cd ${APP_DIR} && ${COMPOSER} install --no-interaction)
 	$(MAKE) apply_dist
-	(cd ${APP_DIR} && ${COMPOSER} require --no-progress monsieurbiz/${PLUGIN_NAME}="*@dev")
+	(cd ${APP_DIR} && ${COMPOSER} require --no-progress --no-interaction monsieurbiz/${PLUGIN_NAME}="*@dev")
 	rm -rf ${APP_DIR}/var/cache
 
 

@@ -1,12 +1,14 @@
 {% extends '@SyliusShop/layout.html.twig' %}
 
-{% block title %}{{ page.metaTitle|page.title }}{% endblock %}
+{% set metaTitle = page.metaTitle ? page.metaTitle : page.title %}
+
+{% block title %}{{ metaTitle }}{% endblock %}
 
 {% block metatags %}
     {{ parent() }}
     <meta property="og:type" content="page" />
-    {% if page.metaTitle is not empty %}
-        <meta property="og:title" content="{{ page.metaTitle }}"/>
+    {% if metaTitle is not empty %}
+        <meta property="og:title" content="{{ metaTitle }}"/>
     {% endif %}
     {% if page.metaDescription is not empty %}
         <meta name="description" property="og:description" content="{{ page.metaDescription }}"/>
