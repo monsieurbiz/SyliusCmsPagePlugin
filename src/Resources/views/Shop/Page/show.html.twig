@@ -1,6 +1,6 @@
 {% extends '@SyliusShop/layout.html.twig' %}
 
-{% block title %}{{ page.metaTitle }}{% endblock %}
+{% block title %}{{ page.metaTitle|page.title }}{% endblock %}
 
 {% block metatags %}
     {{ parent() }}
