@@ -7,6 +7,7 @@ SYMFONY=cd ${APP_DIR} && symfony
 COMPOSER=symfony composer
 CONSOLE=${SYMFONY} console
 export COMPOSE_PROJECT_NAME=cms-page
+export MIGRATIONS_NAMESPACE=MonsieurBiz\\SyliusCmsPagePlugin\\Migrations
 export USER_UID=$(shell id -u)
 PLUGIN_NAME=sylius-${COMPOSE_PROJECT_NAME}-plugin
 COMPOSE=docker-compose
@@ -168,6 +169,9 @@ sylius.assets: ## Install all assets with symlinks
 
 messenger.setup: ## Setup Messenger transports
 	${CONSOLE} messenger:setup-transports
+
+doctrine.diff: ## Doctrine diff
+	${CONSOLE} doctrine:migration:diff --namespace="${MIGRATIONS_NAMESPACE}"
 
 ###
 ### PLATFORM
