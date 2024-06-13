@@ -139,7 +139,7 @@ test.container: ## Lint the symfony container
 	${CONSOLE} lint:container
 
 test.yaml: ## Lint the symfony Yaml files
-	${CONSOLE} lint:yaml ../../recipes ../../src/Resources/config
+	${CONSOLE} lint:yaml ../../src/Resources/config
 
 test.schema: ## Validate MySQL Schema
 	${CONSOLE} doctrine:schema:validate
