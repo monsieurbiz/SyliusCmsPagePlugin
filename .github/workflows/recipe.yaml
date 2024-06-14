@@ -9,33 +9,22 @@ jobs:
 
   recipe:
 
-    runs-on: ubuntu-latest
+    name: Flex recipe (PHP ${{ matrix.php }}, Sylius ${{ matrix.sylius }})
 
-    env:
-      SYMFONY_ENDPOINT: http://127.0.0.1/
+    runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
       matrix:
-        php: ['7.4', '8.0', '8.1']
-        sylius: ['~1.8.0', '~1.9.0', '~1.10.0', '~1.11.0', '~1.12.0']
+        php: ['8.0', '8.1', '8.2']
+        sylius: ['~1.11.0', '~1.12.0']
         include:
           - php: '8.1'
             sylius: '~1.12.0'
             sylius_paypal: '~1.5.0'
-        exclude:
-          - php: '8.0'
-            sylius: '~1.8.0'
-          - php: '8.0'
-            sylius: '~1.9.0'
-          - php: '8.1'
-            sylius: '~1.8.0'
-          - php: '8.1'
-            sylius: '~1.9.0'
-          - php: '7.4'
-            sylius: '~1.11.0'
-          - php: '7.4'
+          - php: '8.2'
             sylius: '~1.12.0'
+            sylius_paypal: '~1.5.0'
 
     steps:
       - name: Setup PHP
@@ -43,22 +32,14 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: gd, intl, json
-          ini-values: date.timezone=UTC
 
       - name: Set project php-version
         run: |
-          echo ${{ matrix.php }} > .php-version
+          echo "${{ matrix.php }}" > .php-version
 
       - uses: actions/checkout@v3
         with:
           path: plugin
-
-      # Run the server at the start so it can download the recipes!
-      - name: Run standalone symfony flex server
-        run: |
-          echo ${{ github.token }} | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
-          docker run --rm --name flex -d -v $PWD/plugin/recipes:/var/www/flex/var/repo/private/monsieurbiz/sylius-cms-page-plugin -p 80:80 docker.pkg.github.com/monsieurbiz/docker/symfony-flex-server:latest contrib official
-          docker ps
 
       - run: mkdir -p /home/runner/{.composer/cache,.config/composer}
 
@@ -68,9 +49,6 @@ jobs:
           path: /home/runner/.composer/cache
           key: composer2-php:${{ matrix.php }}-sylius:${{ matrix.sylius }}-${{ github.sha }}
           restore-keys: composer2-php:${{ matrix.php }}-sylius:${{ matrix.sylius }}-
-
-      - name: Update composer
-        run: sudo composer self-update
 
       - name: Composer Github Auth
         run: composer config -g github-oauth.github.com ${{ github.token }}
@@ -84,7 +62,7 @@ jobs:
         working-directory: ./sylius
         run: |
             composer require --no-install --no-scripts --no-progress sylius/sylius="${{ matrix.sylius }}"
-    
+
       # Fix Paypal 1.5 on Sylius 1.12 and PHP 8.1
       - name: Make sure to install the required version of Sylius Paypal Plugin
         if: ${{ matrix.sylius_paypal }}
@@ -96,20 +74,13 @@ jobs:
         working-directory: ./sylius
         run: |
             composer config --no-plugins allow-plugins true
-            composer config repositories.plugin '{"type": "path", "url": "../plugin/"}'
-            composer config extra.symfony.allow-contrib true
-            composer config secure-http false
-            composer config --unset platform.php
+            composer config --no-plugins extra.symfony.allow-contrib true
+            composer config --no-plugins secure-http false
+            composer config --no-plugins --unset platform.php
+            composer config --no-plugins extra.symfony.docker false
+            composer config --no-plugins --json extra.symfony.endpoint '["https://api.github.com/repos/monsieurbiz/symfony-recipes/contents/index.json?ref=flex/master","flex://defaults"]'
 
-      - name: Require plugin without install
+      - name: Require plugin & install all dependencies
         working-directory: ./sylius
         run: |
-          composer require --no-install --no-scripts monsieurbiz/sylius-cms-page-plugin="*@dev"
-
-      - name: Composer install
-        working-directory: ./sylius
-        run: |
-          composer install
-
-      - name: Show flex server logs
-        run: docker logs --tail 100 flex
+            composer require monsieurbiz/sylius-cms-page-plugin="*@dev"
