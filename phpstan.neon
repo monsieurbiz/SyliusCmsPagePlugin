@@ -16,3 +16,6 @@ parameters:
 
         # Test dependencies
         - 'tests/Application/**/*'
+
+        # Menu Provider
+        - 'src/Menu/PageUrlProvider.php'
