@@ -44,11 +44,11 @@ final class UniqueSlugByChannelValidator extends ConstraintValidator
         foreach ($value->getTranslations() as $translation) {
             foreach ($value->getChannels() as $channel) {
                 if ($this->pageRepository->existsOneByChannelAndSlug(
-                        $channel,
-                        $translation->getLocale(),
-                        $translation->getSlug(),
-                        $value->getId() ? [$value] : []
-                    )) {
+                    $channel,
+                    $translation->getLocale(),
+                    $translation->getSlug(),
+                    $value->getId() ? [$value] : []
+                )) {
                     $this->context->buildViolation($constraint->message, [
                         '%channel%' => $channel->getCode(),
                         '%locale%' => $translation->getLocale(),

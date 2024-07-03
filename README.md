@@ -1,10 +1,11 @@
 [![Banner of Sylius CMS Pages plugin](docs/images/banner.jpg)](https://monsieurbiz.com/agence-web-experte-sylius)
 
-<h1 align="center">CMS Pages</h1>
+<h1 align="center">Sylius CMS Pages</h1>
 
 [![CMS Page Plugin license](https://img.shields.io/github/license/monsieurbiz/SyliusCmsPagePlugin?public)](https://github.com/monsieurbiz/SyliusCmsPagePlugin/blob/master/LICENSE.txt)
-[![Tests Status](https://img.shields.io/github/workflow/status/monsieurbiz/SyliusCmsPagePlugin/Tests?logo=github)](https://github.com/monsieurbiz/SyliusCmsPagePlugin/actions?query=workflow%3ATests)
-[![Security Status](https://img.shields.io/github/workflow/status/monsieurbiz/SyliusCmsPagePlugin/Security?label=security&logo=github)](https://github.com/monsieurbiz/SyliusCmsPagePlugin/actions?query=workflow%3ASecurity)
+[![Tests Status](https://img.shields.io/github/actions/workflow/status/monsieurbiz/SyliusCmsPagePlugin/tests.yaml?branch=master&logo=github)](https://github.com/monsieurbiz/SyliusCmsPagePlugin/actions?query=workflow%3ATests)
+[![Recipe Status](https://img.shields.io/github/actions/workflow/status/monsieurbiz/SyliusCmsPagePlugin/recipe.yaml?branch=master&label=recipes&logo=github)](https://github.com/monsieurbiz/SyliusCmsPagePlugin/actions?query=workflow%3ASecurity)
+[![Security Status](https://img.shields.io/github/actions/workflow/status/monsieurbiz/SyliusCmsPagePlugin/security.yaml?branch=master&label=security&logo=github)](https://github.com/monsieurbiz/SyliusCmsPagePlugin/actions?query=workflow%3ASecurity)
 
 This plugins allows you to add manage CMS pages using the Rich Editor.
 
@@ -12,7 +13,21 @@ If you want to know more about our editor, see the [Rich Editor Repository](http
 
 ![Example of CMS page creation](screenshots/demo.gif)
 
+## Compatibility
+
+| Sylius Version | PHP Version |
+|---|---|
+| 1.11 | 8.0 - 8.1 |
+| 1.12 | 8.1 - 8.2 |
+| 1.13 | 8.1 - 8.2 |
+
 ## Installation
+
+If you want to use our recipes, you can configure your composer.json by running:
+
+```bash
+composer config --no-plugins --json extra.symfony.endpoint '["https://api.github.com/repos/monsieurbiz/symfony-recipes/contents/index.json?ref=flex/master","flex://defaults"]'
+```
 
 ```bash
 composer require monsieurbiz/sylius-cms-page-plugin
