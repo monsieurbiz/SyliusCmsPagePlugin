@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace MonsieurBiz\SyliusCmsPagePlugin\Validator\Constraints;
 
 use MonsieurBiz\SyliusCmsPagePlugin\Entity\PageInterface;
+use MonsieurBiz\SyliusCmsPagePlugin\Entity\PageTranslationInterface;
 use MonsieurBiz\SyliusCmsPagePlugin\Repository\PageRepositoryInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
@@ -41,12 +42,13 @@ final class UniqueSlugByChannelValidator extends ConstraintValidator
         Assert::isInstanceOf($constraint, UniqueSlugByChannel::class);
 
         // Check if the slug is unique for each channel and locale
+        /** @var PageTranslationInterface $translation */
         foreach ($value->getTranslations() as $translation) {
             foreach ($value->getChannels() as $channel) {
                 if ($this->pageRepository->existsOneByChannelAndSlug(
                     $channel,
                     $translation->getLocale(),
-                    $translation->getSlug(),
+                    (string) $translation->getSlug(),
                     $value->getId() ? [$value] : []
                 )) {
                     $this->context->buildViolation($constraint->message, [
