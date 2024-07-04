@@ -32,7 +32,10 @@ class PageController extends ResourceController
         $this->isGrantedOr403($configuration, ResourceActions::SHOW);
         $resource = $this->findOr404($configuration);
 
-        return $this->render($configuration->getRequest()->get('template'), [
+        /** @var string $template */
+        $template = $configuration->getRequest()->get('template');
+
+        return $this->render($template, [
             'configuration' => $configuration,
             'metadata' => $this->metadata,
             'resource' => $resource,

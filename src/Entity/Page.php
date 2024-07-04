@@ -26,9 +26,7 @@ use Webmozart\Assert\Assert;
 class Page implements PageInterface
 {
     use TimestampableTrait;
-
     use ToggleableTrait;
-
     use TranslatableTrait {
         __construct as private initializeTranslationsCollection;
 

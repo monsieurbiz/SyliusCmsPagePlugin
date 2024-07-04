@@ -25,7 +25,6 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 final class MonsieurBizSyliusCmsPageExtension extends Extension implements PrependExtensionInterface
 {
     use PrependDoctrineMigrationsTrait;
-
     use SyliusPlusCompatibilityTrait;
 
     /**
