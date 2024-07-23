@@ -1,0 +1,33 @@
+monsieurbiz_cms_page:
+    ui:
+        pages: "Strony"
+        new_page: "Nowa strona"
+        edit_page: "Edytuj stronę"
+        cms_content: "Treść CMS"
+        pages_subheader: "Zarządzanie stronami CMS"
+        back_to_admin: "Powrót do administracji"
+        form:
+            page_info: 'Informacje o stronie'
+            page_content: 'Treść strony'
+            enabled: "Włączone"
+            channels: "Kanały"
+            title: "Tytuł"
+            slug: "Slug"
+            code: "Kod"
+            content: "Treść"
+            meta_title: "Tytuł meta"
+            meta_description: "Opis meta"
+            meta_keywords: "Słowa kluczowe meta"
+        show_in: "Pokaż w"
+        show_page_in_shop_page: "Pokaż stronę na stronie sklepu"
+        actions:
+            create: 'Utwórz nową stronę'
+            preview: 'Podgląd'
+monsieurbiz_menu:
+    provider:
+        page: 'Strona'
+sylius_plus:
+    rbac:
+        parent:
+            page: 'Strona'
+            pages: 'Strony'
