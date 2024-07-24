@@ -1,0 +1,4 @@
+monsieurbiz_cms_page:
+    ui:
+        slug:
+            unique: 'Ten slug jest już używany dla innej strony z kanałem %channel% i lokalizacją %locale%.'
