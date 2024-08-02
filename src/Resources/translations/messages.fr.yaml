@@ -7,6 +7,7 @@ monsieurbiz_cms_page:
     pages_subheader: "Gestion des contenus CMS"
     back_to_admin: "Retour à l'admin"
     form:
+      id: 'ID'
       page_info: 'Informations de la page'
       page_content: 'Contenu de la page'
       enabled: "Activée"
