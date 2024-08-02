@@ -82,7 +82,7 @@ final class RequestContext extends BaseRequestContext
         }
 
         // Remove the locale code which is at the beginning of the slug
-        return (string) preg_replace(sprintf('/^%s\//', $localeCode), '', $slug);
+        return (string) preg_replace(\sprintf('/^%s\//', $localeCode), '', $slug);
     }
 
     /**
@@ -97,6 +97,6 @@ final class RequestContext extends BaseRequestContext
             return \call_user_func($callback, ...$arguments);
         }
 
-        throw new Exception(sprintf('Method %s not found for class "%s"', $name, \get_class($this->decorated)));
+        throw new Exception(\sprintf('Method %s not found for class "%s"', $name, \get_class($this->decorated)));
     }
 }
