@@ -55,7 +55,7 @@ final class UniqueSlugByChannelValidator extends ConstraintValidator
                         '%channel%' => $channel->getCode(),
                         '%locale%' => $translation->getLocale(),
                     ])
-                        ->atPath(sprintf('translations[%s].slug', $translation->getLocale()))
+                        ->atPath(\sprintf('translations[%s].slug', $translation->getLocale()))
                         ->addViolation()
                     ;
                 }
