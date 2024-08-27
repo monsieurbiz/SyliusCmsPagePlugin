@@ -40,7 +40,6 @@ class PageRepository extends EntityRepository implements PageRepositoryInterface
             ;
         }
 
-        /** @phpstan-ignore-next-line */
         $count = (int) $queryBuilder
             ->getQuery()
             ->getSingleScalarResult()
@@ -56,7 +55,6 @@ class PageRepository extends EntityRepository implements PageRepositoryInterface
             ->andWhere('p.enabled = true')
         ;
 
-        /** @phpstan-ignore-next-line */
         $count = (int) $queryBuilder
             ->getQuery()
             ->getSingleScalarResult()
@@ -70,7 +68,6 @@ class PageRepository extends EntityRepository implements PageRepositoryInterface
      */
     public function findOneEnabledBySlugAndChannelCode(string $slug, string $localeCode, string $channelCode): ?PageInterface
     {
-        /** @phpstan-ignore-next-line */
         return $this->createQueryBuilder('p')
             ->leftJoin('p.translations', 'translation')
             ->innerJoin('p.channels', 'channels')
