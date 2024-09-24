@@ -1,7 +1,7 @@
 {% set enabledChannels = resource.channels|filter(channel => channel.enabled == true) %}
 
 {% if sylius_bundle_loaded_checker('SyliusShopBundle') %}
-    {% if not resource.enabled or enabledChannels|length < 1 %}
+    {% if not resource.enabled or not resource.isPublished(date()) or enabledChannels|length < 1 %}
         <a class="ui labeled icon button disabled" href="#">
             <i class="angle right icon"></i>
             {{ 'monsieurbiz_cms_page.ui.show_page_in_shop_page'|trans }}
