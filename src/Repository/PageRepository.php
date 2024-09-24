@@ -13,28 +13,15 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusCmsPagePlugin\Repository;
 
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Mapping\ClassMetadata;
+use DateTimeInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\QueryBuilder;
 use MonsieurBiz\SyliusCmsPagePlugin\Entity\PageInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
-use Sylius\Calendar\Provider\DateTimeProviderInterface;
 use Sylius\Component\Channel\Model\ChannelInterface;
 
 class PageRepository extends EntityRepository implements PageRepositoryInterface
 {
-    private DateTimeProviderInterface $dateTimeProvider;
-
-    public function __construct(
-        EntityManagerInterface $em,
-        ClassMetadata $class,
-        DateTimeProviderInterface $dateTimeProvider
-    ) {
-        $this->dateTimeProvider = $dateTimeProvider;
-        parent::__construct($em, $class);
-    }
-
     public function createListQueryBuilder(string $localeCode): QueryBuilder
     {
         return $this->createQueryBuilder('o')
@@ -62,14 +49,14 @@ class PageRepository extends EntityRepository implements PageRepositoryInterface
         return $count > 0;
     }
 
-    public function existsOneEnabledByChannelAndSlug(ChannelInterface $channel, ?string $locale, string $slug): bool
+    public function existsOneEnabledByChannelAndSlug(ChannelInterface $channel, ?string $locale, string $slug, DateTimeInterface $dateTime): bool
     {
         $queryBuilder = $this->createQueryBuilderExistOne($channel, $locale, $slug);
         $queryBuilder
             ->andWhere('p.enabled = true')
             ->andWhere('p.publishAt IS NULL OR p.publishAt <= :now')
             ->andWhere('p.unpublishAt IS NULL OR p.unpublishAt >= :now')
-            ->setParameter('now', $this->dateTimeProvider->now())
+            ->setParameter('now', $dateTime)
         ;
 
         $count = (int) $queryBuilder
@@ -83,7 +70,7 @@ class PageRepository extends EntityRepository implements PageRepositoryInterface
     /**
      * @throws NonUniqueResultException
      */
-    public function findOneEnabledBySlugAndChannelCode(string $slug, string $localeCode, string $channelCode): ?PageInterface
+    public function findOneEnabledBySlugAndChannelCode(string $slug, string $localeCode, string $channelCode, DateTimeInterface $dateTime): ?PageInterface
     {
         return $this->createQueryBuilder('p')
             ->leftJoin('p.translations', 'translation')
@@ -94,7 +81,7 @@ class PageRepository extends EntityRepository implements PageRepositoryInterface
             ->andWhere('p.enabled = true')
             ->andWhere('p.publishAt IS NULL OR p.publishAt <= :now')
             ->andWhere('p.unpublishAt IS NULL OR p.unpublishAt >= :now')
-            ->setParameter('now', $this->dateTimeProvider->now())
+            ->setParameter('now', $dateTime)
             ->setParameter('localeCode', $localeCode)
             ->setParameter('slug', $slug)
             ->setParameter('channelCode', $channelCode)
