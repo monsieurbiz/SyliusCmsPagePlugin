@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusCmsPagePlugin\Entity;
 
+use DateTimeInterface;
 use Gedmo\Timestampable\Timestampable;
 use Sylius\Component\Channel\Model\ChannelsAwareInterface;
 use Sylius\Component\Resource\Model\CodeAwareInterface;
@@ -32,6 +33,16 @@ interface PageInterface extends ResourceInterface, TranslatableInterface, Toggle
     public function getCode(): ?string;
 
     public function setCode(?string $title): void;
+
+    public function getPublishAt(): ?DateTimeInterface;
+
+    public function setPublishAt(?DateTimeInterface $publishAt): void;
+
+    public function getUnpublishAt(): ?DateTimeInterface;
+
+    public function setUnpublishAt(?DateTimeInterface $unpublishAt): void;
+
+    public function isPublished(DateTimeInterface $dateTime): bool;
 
     public function getTitle(): ?string;
 
