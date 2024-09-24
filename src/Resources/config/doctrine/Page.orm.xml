@@ -16,6 +16,8 @@
                 <option name="default">1</option>
             </options>
         </field>
+        <field name="publishAt" column="publish_at" type="datetime" nullable="true"/>
+        <field name="unpublishAt" column="unpublish_at" type="datetime" nullable="true"/>
         <field name="createdAt" column="created_at" type="datetime_immutable">
             <gedmo:timestampable on="create"/>
         </field>

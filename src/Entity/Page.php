@@ -63,6 +63,10 @@ class Page implements PageInterface
      */
     protected $updatedAt;
 
+    protected ?DateTimeInterface $publishAt = null;
+
+    protected ?DateTimeInterface $unpublishAt = null;
+
     /**
      * Page constructor.
      */
@@ -113,6 +117,32 @@ class Page implements PageInterface
     public function hasChannel(ChannelInterface $channel): bool
     {
         return $this->channels->contains($channel);
+    }
+
+    public function getPublishAt(): ?DateTimeInterface
+    {
+        return $this->publishAt;
+    }
+
+    public function setPublishAt(?DateTimeInterface $publishAt): void
+    {
+        $this->publishAt = $publishAt;
+    }
+
+    public function getUnpublishAt(): ?DateTimeInterface
+    {
+        return $this->unpublishAt;
+    }
+
+    public function setUnpublishAt(?DateTimeInterface $unpublishAt): void
+    {
+        $this->unpublishAt = $unpublishAt;
+    }
+
+    public function isPublished(DateTimeInterface $dateTime): bool
+    {
+        return (null == $this->publishAt || $this->publishAt <= $dateTime)
+            && (null === $this->unpublishAt || $this->unpublishAt > $dateTime);
     }
 
     public function getTitle(): ?string
