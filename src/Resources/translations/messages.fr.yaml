@@ -6,6 +6,7 @@ monsieurbiz_cms_page:
     cms_content: "Contenus CMS"
     pages_subheader: "Gestion des contenus CMS"
     back_to_admin: "Retour à l'admin"
+    is_published: "Publiée"
     form:
       id: 'ID'
       page_info: 'Informations de la page'
@@ -19,6 +20,8 @@ monsieurbiz_cms_page:
       meta_title: "Meta Title"
       meta_description: "Meta Description"
       meta_keywords: "Meta Keyword"
+      publish_at: "Publier le"
+      unpublish_at: "Dépublier le"
     show_in: "Afficher dans"
     show_page_in_shop_page: "Afficher la page dans la boutique"
     actions:
