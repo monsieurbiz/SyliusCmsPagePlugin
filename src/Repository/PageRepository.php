@@ -13,14 +13,28 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusCmsPagePlugin\Repository;
 
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\QueryBuilder;
 use MonsieurBiz\SyliusCmsPagePlugin\Entity\PageInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
+use Sylius\Calendar\Provider\DateTimeProviderInterface;
 use Sylius\Component\Channel\Model\ChannelInterface;
 
 class PageRepository extends EntityRepository implements PageRepositoryInterface
 {
+    private DateTimeProviderInterface $dateTimeProvider;
+
+    public function __construct(
+        EntityManagerInterface $em,
+        ClassMetadata $class,
+        DateTimeProviderInterface $dateTimeProvider
+    ) {
+        $this->dateTimeProvider = $dateTimeProvider;
+        parent::__construct($em, $class);
+    }
+
     public function createListQueryBuilder(string $localeCode): QueryBuilder
     {
         return $this->createQueryBuilder('o')
@@ -53,6 +67,9 @@ class PageRepository extends EntityRepository implements PageRepositoryInterface
         $queryBuilder = $this->createQueryBuilderExistOne($channel, $locale, $slug);
         $queryBuilder
             ->andWhere('p.enabled = true')
+            ->andWhere('p.publishAt IS NULL OR p.publishAt <= :now')
+            ->andWhere('p.unpublishAt IS NULL OR p.unpublishAt >= :now')
+            ->setParameter('now', $this->dateTimeProvider->now())
         ;
 
         $count = (int) $queryBuilder
@@ -75,6 +92,9 @@ class PageRepository extends EntityRepository implements PageRepositoryInterface
             ->andWhere('translation.slug = :slug')
             ->andWhere('channels.code = :channelCode')
             ->andWhere('p.enabled = true')
+            ->andWhere('p.publishAt IS NULL OR p.publishAt <= :now')
+            ->andWhere('p.unpublishAt IS NULL OR p.unpublishAt >= :now')
+            ->setParameter('now', $this->dateTimeProvider->now())
             ->setParameter('localeCode', $localeCode)
             ->setParameter('slug', $slug)
             ->setParameter('channelCode', $channelCode)
