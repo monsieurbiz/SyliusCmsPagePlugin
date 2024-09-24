@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusCmsPagePlugin\Fixture\Factory;
 
+use DateTime;
 use MonsieurBiz\SyliusCmsPagePlugin\Entity\PageInterface;
 use MonsieurBiz\SyliusCmsPagePlugin\Entity\PageTranslationInterface;
 use Sylius\Bundle\CoreBundle\Fixture\Factory\AbstractExampleFactory;
@@ -85,6 +86,16 @@ class PageFixtureFactory extends AbstractExampleFactory implements PageFixtureFa
         $page->setEnabled($options['enabled']);
         $page->setCode($options['code']);
 
+        $publishAt = $options['publish_at'] ?? null;
+        if ($publishAt) {
+            $page->setPublishAt(new DateTime($publishAt));
+        }
+
+        $unpublishAt = $options['unpublish_at'] ?? null;
+        if ($unpublishAt) {
+            $page->setUnpublishAt(new DateTime($unpublishAt));
+        }
+
         foreach ($options['channels'] as $channel) {
             $page->addChannel($channel);
         }
@@ -116,6 +127,8 @@ class PageFixtureFactory extends AbstractExampleFactory implements PageFixtureFa
      */
     protected function configureOptions(OptionsResolver $resolver): void
     {
+        $publishAt = $this->faker->dateTimeBetween('-1 year', '+1 year');
+        $hasPublishAt = $this->faker->boolean(20);
         $resolver
             ->setDefault('enabled', function (Options $options): bool {
                 return $this->faker->boolean(80);
@@ -125,6 +138,12 @@ class PageFixtureFactory extends AbstractExampleFactory implements PageFixtureFa
             })
             ->setDefault('translations', function (OptionsResolver $translationResolver): void {
                 $translationResolver->setDefaults($this->configureDefaultTranslations());
+            })
+            ->setDefault('publish_at', function (Options $options) use ($publishAt, $hasPublishAt): ?string {
+                return $hasPublishAt ? $publishAt->format('Y-m-d H:i:s') : null;
+            })
+            ->setDefault('unpublish_at', function (Options $options) use ($publishAt): ?string {
+                return $this->faker->boolean(20) ? (clone $publishAt)->modify('+' . $this->faker->numberBetween(1, 20) . ' days')->format('Y-m-d H:i:s') : null;
             })
             ->setDefault('channels', LazyOption::all($this->channelRepository))
             ->setAllowedTypes('channels', 'array')
