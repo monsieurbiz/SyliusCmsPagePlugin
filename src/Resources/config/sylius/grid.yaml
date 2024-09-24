@@ -38,6 +38,12 @@ sylius_grid:
                     sortable: ~
                     options:
                         template: "@SyliusUi/Grid/Field/enabled.html.twig"
+                published:
+                    type: twig
+                    label: monsieurbiz_cms_page.ui.is_published
+                    path: .
+                    options:
+                        template: "@MonsieurBizSyliusCmsPagePlugin/Admin/Grid/Field/published.html.twig"
             actions:
                 main:
                     create:
