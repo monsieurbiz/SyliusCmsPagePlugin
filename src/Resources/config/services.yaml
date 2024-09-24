@@ -36,10 +36,6 @@ services:
         decorates: router.request_context
         arguments: ['@MonsieurBiz\SyliusCmsPagePlugin\Routing\RequestContext.inner']
 
-    # Page Repository
-    monsieurbiz_cms_page.repository.page:
-        class: MonsieurBiz\SyliusCmsPagePlugin\Repository\PageRepository
-        arguments:
-            $em: '@doctrine.orm.default_entity_manager'
-            $class: '@=service("doctrine.orm.default_entity_manager").getClassMetadata("MonsieurBiz\\SyliusCmsPagePlugin\\Entity\\PageInterface")'
-            $dateTimeProvider: '@Sylius\Calendar\Provider\DateTimeProviderInterface'
+    Sylius\Calendar\Provider\DateTimeProviderInterface:
+        class: Sylius\Calendar\Provider\Calendar
+        public: true
