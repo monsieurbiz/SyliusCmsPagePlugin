@@ -1,0 +1,22 @@
+{% set publishInformationText = '' %}
+{% if data.publishAt %}
+    {% set publishInformationText = publishInformationText ~ ('monsieurbiz_cms_page.ui.form.publish_at'|trans) ~ ' ' ~ data.publishAt|date('Y-m-d H:i:s') %}
+{% endif %}
+{% if data.unpublishAt %}
+    {% if publishInformationText is not empty %}
+        {% set publishInformationText = publishInformationText ~ ' - ' %}
+    {% endif %}
+    {% set publishInformationText = publishInformationText ~ ('monsieurbiz_cms_page.ui.form.unpublish_at'|trans) ~ ' ' ~ data.unpublishAt|date('Y-m-d H:i:s') %}
+{% endif %}
+
+{% if data.isPublished(date()) %}
+    <span class="ui teal label" {% if publishInformationText %}title="{{ publishInformationText | raw | escape('html_attr') }}"{% endif %}>
+        <i class="checkmark icon"></i>
+        {{ 'sylius.ui.yes_label'|trans }}
+    </span>
+{% else %}
+    <span class="ui red label" {% if publishInformationText %}title="{{ publishInformationText | raw | escape('html_attr') }}"{% endif %}>
+        <i class="remove icon"></i>
+        {{ 'sylius.ui.no_label'|trans }}
+    </span>
+{% endif %}
