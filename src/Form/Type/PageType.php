@@ -18,6 +18,7 @@ use Sylius\Bundle\ResourceBundle\Form\EventSubscriber\AddCodeFormSubscriber;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class PageType extends AbstractResourceType
@@ -32,6 +33,16 @@ class PageType extends AbstractResourceType
             ->add('enabled', CheckboxType::class, [
                 'required' => false,
                 'label' => 'monsieurbiz_cms_page.ui.form.enabled',
+            ])
+            ->add('publishAt', DateTimeType::class, [
+                'label' => 'monsieurbiz_cms_page.ui.form.publish_at',
+                'required' => false,
+                'widget' => 'single_text',
+            ])
+            ->add('unpublishAt', DateTimeType::class, [
+                'label' => 'monsieurbiz_cms_page.ui.form.unpublish_at',
+                'required' => false,
+                'widget' => 'single_text',
             ])
             ->add('channels', ChannelChoiceType::class, [
                 'label' => 'monsieurbiz_cms_page.ui.form.channels',
