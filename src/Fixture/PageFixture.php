@@ -43,6 +43,8 @@ class PageFixture extends AbstractResourceFixture
             ->children()
                 ->booleanNode('enabled')->end()
                 ->scalarNode('code')->cannotBeEmpty()->end()
+                ->scalarNode('publish_at')->end()
+                ->scalarNode('unpublish_at')->end()
                 ->arrayNode('channels')
                     ->scalarPrototype()->end()
                 ->end()

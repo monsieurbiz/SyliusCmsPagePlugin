@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusCmsPagePlugin\Repository;
 
+use DateTimeInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\QueryBuilder;
 use MonsieurBiz\SyliusCmsPagePlugin\Entity\PageInterface;
@@ -48,11 +49,14 @@ class PageRepository extends EntityRepository implements PageRepositoryInterface
         return $count > 0;
     }
 
-    public function existsOneEnabledByChannelAndSlug(ChannelInterface $channel, ?string $locale, string $slug): bool
+    public function existsOneEnabledByChannelAndSlug(ChannelInterface $channel, ?string $locale, string $slug, DateTimeInterface $dateTime): bool
     {
         $queryBuilder = $this->createQueryBuilderExistOne($channel, $locale, $slug);
         $queryBuilder
             ->andWhere('p.enabled = true')
+            ->andWhere('p.publishAt IS NULL OR p.publishAt <= :now')
+            ->andWhere('p.unpublishAt IS NULL OR p.unpublishAt >= :now')
+            ->setParameter('now', $dateTime)
         ;
 
         $count = (int) $queryBuilder
@@ -66,7 +70,7 @@ class PageRepository extends EntityRepository implements PageRepositoryInterface
     /**
      * @throws NonUniqueResultException
      */
-    public function findOneEnabledBySlugAndChannelCode(string $slug, string $localeCode, string $channelCode): ?PageInterface
+    public function findOneEnabledBySlugAndChannelCode(string $slug, string $localeCode, string $channelCode, DateTimeInterface $dateTime): ?PageInterface
     {
         return $this->createQueryBuilder('p')
             ->leftJoin('p.translations', 'translation')
@@ -75,6 +79,9 @@ class PageRepository extends EntityRepository implements PageRepositoryInterface
             ->andWhere('translation.slug = :slug')
             ->andWhere('channels.code = :channelCode')
             ->andWhere('p.enabled = true')
+            ->andWhere('p.publishAt IS NULL OR p.publishAt <= :now')
+            ->andWhere('p.unpublishAt IS NULL OR p.unpublishAt >= :now')
+            ->setParameter('now', $dateTime)
             ->setParameter('localeCode', $localeCode)
             ->setParameter('slug', $slug)
             ->setParameter('channelCode', $channelCode)
