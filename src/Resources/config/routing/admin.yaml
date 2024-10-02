@@ -47,3 +47,5 @@ monsieurbiz_cms_page_admin_page_preview:
     defaults:
         _controller: monsieurbiz_cms_page.controller.page::previewAction
         template: '@MonsieurBizSyliusCmsPagePlugin\\Admin\\Page\\preview.html.twig'
+        _sylius:
+            section: shop
