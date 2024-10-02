@@ -1,4 +1,31 @@
-{% extends '@MonsieurBizSyliusCmsPagePlugin/Shop/preview_layout.html.twig' %}
+{# This extends takes account of the potential theme template #}
+{% extends '@MonsieurBizSyliusCmsPagePlugin/Shop/Page/show.html.twig' %}
+
+{% block top %}
+    <div style="
+        text-transform: uppercase;
+        line-height: 30px;
+        z-index: 999;
+        position:fixed;
+        top:0;
+        left:0;
+        height: 30px;
+        background-color: red;
+        width: 100%;
+        color: white;
+        font-weight: bold;
+        padding: 0 30px;
+        display: flex;
+        justify-content: space-between;
+    ">
+        <div>
+            <a style="color: white;" href="{{ app.request.headers.get('referer') }}">&#x21A9; {{ 'monsieurbiz_cms_page.ui.back_to_admin' | trans }}</a>
+        </div>
+        <div>{{ 'monsieurbiz_cms_page.ui.banner.preview' | trans }}</div>
+    </div>
+
+    {{ parent() }}
+{% endblock %}
 
 {% block title %}{{ page.metaTitle }}{% endblock %}
 
@@ -15,11 +42,3 @@
         <meta name="keywords" content="{{ page.metaKeywords }}"/>
     {% endif %}
 {% endblock %}
-
-{% block content %}
-    <h1 class="ui monster dividing header">{{ page.title }}</h1>
-    <div>
-        {{ page.content|monsieurbiz_richeditor_render_field }}
-    </div>
-{% endblock %}
-

@@ -24,6 +24,8 @@ monsieurbiz_cms_page:
         actions:
             create: 'Utwórz nową stronę'
             preview: 'Podgląd'
+        banner:
+            preview: 'Podgląd'
 monsieurbiz_menu:
     provider:
         page: 'Strona'

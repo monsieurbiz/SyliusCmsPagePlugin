@@ -1,0 +1,9 @@
+{
+  "name": "monsieurbiz/cms-custom-theme",
+  "title": "CMS custom theme",
+  "extra": {
+    "sylius-theme": {
+      "title": "CMS custom theme"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% set metaTitle = page.metaTitle ? page.metaTitle : page.title %}
+
+{% block title %}{{ metaTitle }}{% endblock %}
+
+{% block metatags %}
+    {{ parent() }}
+    <meta property="og:type" content="page" />
+    {% if metaTitle is not empty %}
+        <meta property="og:title" content="{{ metaTitle }}"/>
+    {% endif %}
+    {% if page.metaDescription is not empty %}
+        <meta name="description" property="og:description" content="{{ page.metaDescription }}"/>
+    {% endif %}
+    {% if page.metaKeywords is not empty %}
+        <meta name="keywords" content="{{ page.metaKeywords }}"/>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div style="background-color: #f8f9fa; margin-top: 50px; padding: 50px; border-radius: 5px; margin-bottom: 20px;">
+        <h1 class="ui monster dividing header">{{ page.title }}</h1>
+        <div>
+            {{ page.content|monsieurbiz_richeditor_render_field }}
+        </div>
+    </div>
+{% endblock %}
