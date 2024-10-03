@@ -165,6 +165,16 @@ class Page implements PageInterface
         $this->getTranslation()->setMetaKeywords($metaKeywords);
     }
 
+    public function getMetaImage(): ?string
+    {
+        return $this->getTranslation()->getMetaImage();
+    }
+
+    public function setMetaImage(?string $metaImage): void
+    {
+        $this->getTranslation()->setMetaImage($metaImage);
+    }
+
     public function getSlug(): ?string
     {
         return $this->getTranslation()->getSlug();
