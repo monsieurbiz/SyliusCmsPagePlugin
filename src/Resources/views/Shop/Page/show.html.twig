@@ -16,6 +16,9 @@
     {% if page.metaKeywords is not empty %}
         <meta name="keywords" content="{{ page.metaKeywords }}"/>
     {% endif %}
+    {% if page is not empty and page.metaImage is not empty %}
+        <meta property="og:image" content="{{ page.metaImage|imagine_filter('monsieurbiz_cms_page_og_image') }}" />
+    {% endif %}
 {% endblock %}
 
 {% block content %}

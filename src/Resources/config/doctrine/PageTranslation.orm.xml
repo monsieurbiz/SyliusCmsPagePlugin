@@ -14,6 +14,7 @@
         <field name="slug" length="255" nullable="true" />
         <field name="metaTitle" column="meta_title" length="255" nullable="true" />
         <field name="metaKeywords" column="meta_keywords" length="255" nullable="true" />
+        <field name="metaImage" column="meta_image" nullable="true" />
         <field name="metaDescription" column="meta_description" type="text" nullable="true" />
     </mapped-superclass>
 

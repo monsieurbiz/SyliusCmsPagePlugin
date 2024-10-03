@@ -2,3 +2,4 @@ imports:
     - { resource: "sylius/resources.yaml" }
     - { resource: "sylius/grid.yaml" }
     - { resource: "sylius/fixtures.yaml" }
+    - { resource: "images.yaml" }
