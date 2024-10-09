@@ -64,6 +64,11 @@ class Page implements PageInterface
     protected $updatedAt;
 
     /**
+     * @var bool
+     */
+    protected $showInSitemap = true;
+
+    /**
      * Page constructor.
      */
     public function __construct()
@@ -183,6 +188,16 @@ class Page implements PageInterface
     public function setSlug(?string $slug): void
     {
         $this->getTranslation()->setSlug($slug);
+    }
+
+    public function isShowInSitemap(): bool
+    {
+        return $this->showInSitemap;
+    }
+
+    public function setShowInSitemap(bool $showInSitemap): void
+    {
+        $this->showInSitemap = $showInSitemap;
     }
 
     /**

@@ -83,6 +83,7 @@ class PageFixtureFactory extends AbstractExampleFactory implements PageFixtureFa
         /** @var PageInterface $page */
         $page = $this->pageFactory->createNew();
         $page->setEnabled($options['enabled']);
+        $page->setShowInSitemap($options['showInSitemap']);
         $page->setCode($options['code']);
 
         foreach ($options['channels'] as $channel) {
@@ -119,6 +120,9 @@ class PageFixtureFactory extends AbstractExampleFactory implements PageFixtureFa
         $resolver
             ->setDefault('enabled', function (Options $options): bool {
                 return $this->faker->boolean(80);
+            })
+            ->setDefault('showInSitemap', function (Options $options): bool {
+                return $this->faker->boolean(90);
             })
             ->setDefault('code', function (Options $options): string {
                 return $this->slugGenerator->generate($this->faker->sentence(2, true));

@@ -1,38 +1,39 @@
 monsieurbiz_cms_page:
-  ui:
-    pages: "Pages"
-    new_page: "Nouvelle page"
-    edit_page: "Éditer une page"
-    cms_content: "Contenus CMS"
-    pages_subheader: "Gestion des contenus CMS"
-    back_to_admin: "Retour à l'admin"
-    form:
-      id: 'ID'
-      page_info: 'Informations de la page'
-      page_content: 'Contenu de la page'
-      enabled: "Activée"
-      channels: "Canaux"
-      title: "Titre"
-      slug: "Slug"
-      code: "Code"
-      content: "Contenu"
-      meta_title: "Meta Title"
-      meta_description: "Meta Description"
-      meta_keywords: "Meta Keyword"
-      meta_image: "Meta Image"
-      meta_image_help: "Format idéal : 1200 x 630 px"
-    show_in: "Afficher dans"
-    show_page_in_shop_page: "Afficher la page dans la boutique"
-    actions:
-      create: 'Créer une nouvelle page'
-      preview: 'Prévisualiser'
-    banner:
-      preview: 'Prévisualisation'
+    ui:
+        pages: "Pages"
+        new_page: "Nouvelle page"
+        edit_page: "Éditer une page"
+        cms_content: "Contenus CMS"
+        pages_subheader: "Gestion des contenus CMS"
+        back_to_admin: "Retour à l'admin"
+        form:
+            id: 'ID'
+            page_info: 'Informations de la page'
+            page_content: 'Contenu de la page'
+            enabled: "Activée"
+            channels: "Canaux"
+            title: "Titre"
+            slug: "Slug"
+            code: "Code"
+            content: "Contenu"
+            meta_title: "Meta Title"
+            meta_description: "Meta Description"
+            meta_keywords: "Meta Keyword"
+            meta_image: "Meta Image"
+            meta_image_help: "Format idéal : 1200 x 630 px"
+            show_in_sitemap: "Afficher dans le sitemap"
+        show_in: "Afficher dans"
+        show_page_in_shop_page: "Afficher la page dans la boutique"
+        actions:
+            create: 'Créer une nouvelle page'
+            preview: 'Prévisualiser'
+        banner:
+            preview: 'Prévisualisation'
 monsieurbiz_menu:
     provider:
         page: 'Page'
 sylius_plus:
-  rbac:
-    parent:
-      page: 'Page'
-      pages: 'Pages'
+    rbac:
+        parent:
+            page: 'Page'
+            pages: 'Pages'

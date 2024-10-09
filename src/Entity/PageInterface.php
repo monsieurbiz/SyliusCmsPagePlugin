@@ -56,4 +56,8 @@ interface PageInterface extends ResourceInterface, TranslatableInterface, Toggle
     public function getMetaImage(): ?string;
 
     public function setMetaImage(?string $metaImage): void;
+
+    public function isShowInSitemap(): bool;
+
+    public function setShowInSitemap(bool $showInSitemap): void;
 }

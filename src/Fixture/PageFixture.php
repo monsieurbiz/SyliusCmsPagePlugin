@@ -42,6 +42,7 @@ class PageFixture extends AbstractResourceFixture
         $resourceNode
             ->children()
                 ->booleanNode('enabled')->end()
+                ->booleanNode('showInSitemap')->end()
                 ->scalarNode('code')->cannotBeEmpty()->end()
                 ->arrayNode('channels')
                     ->scalarPrototype()->end()

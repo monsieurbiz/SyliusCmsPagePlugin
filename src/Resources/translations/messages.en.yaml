@@ -1,38 +1,39 @@
 monsieurbiz_cms_page:
-  ui:
-    pages: "Pages"
-    new_page: "New page"
-    edit_page: "Edit page"
-    cms_content: "CMS content"
-    pages_subheader: "CMS Page management"
-    back_to_admin: "Back to admin"
-    form:
-      id: 'ID'
-      page_info: 'Page information'
-      page_content: 'Page content'
-      enabled: "Enabled"
-      channels: "Channels"
-      title: "Title"
-      slug: "Slug"
-      code: "Code"
-      content: "Content"
-      meta_title: "Meta Title"
-      meta_description: "Meta Description"
-      meta_keywords: "Meta Keyword"
-      meta_image: "Meta Image"
-      meta_image_help: "Ideal format: 1200 x 630 px"
-    show_in: "Show in"
-    show_page_in_shop_page: "Show page in shop page"
-    actions:
-      create: 'Create a new page'
-      preview: 'Preview'
-    banner:
-      preview: 'Preview'
+    ui:
+        pages: "Pages"
+        new_page: "New page"
+        edit_page: "Edit page"
+        cms_content: "CMS content"
+        pages_subheader: "CMS Page management"
+        back_to_admin: "Back to admin"
+        form:
+            id: 'ID'
+            page_info: 'Page information'
+            page_content: 'Page content'
+            enabled: "Enabled"
+            channels: "Channels"
+            title: "Title"
+            slug: "Slug"
+            code: "Code"
+            content: "Content"
+            meta_title: "Meta Title"
+            meta_description: "Meta Description"
+            meta_keywords: "Meta Keyword"
+            meta_image: "Meta Image"
+            meta_image_help: "Ideal format: 1200 x 630 px"
+            show_in_sitemap: "Show in sitemap"
+        show_in: "Show in"
+        show_page_in_shop_page: "Show page in shop page"
+        actions:
+            create: 'Create a new page'
+            preview: 'Preview'
+        banner:
+            preview: 'Preview'
 monsieurbiz_menu:
     provider:
         page: 'Page'
 sylius_plus:
-  rbac:
-    parent:
-      page: 'Page'
-      pages: 'Pages'
+    rbac:
+        parent:
+            page: 'Page'
+            pages: 'Pages'

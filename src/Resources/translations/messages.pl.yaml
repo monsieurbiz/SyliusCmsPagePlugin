@@ -21,6 +21,7 @@ monsieurbiz_cms_page:
             meta_keywords: "Słowa kluczowe meta"
             meta_image: "Obraz meta"
             meta_image_help: "Idealny format: 1200 x 630 px"
+            show_in_sitemap: "Włączenie do Sitemap"
         show_in: "Pokaż w"
         show_page_in_shop_page: "Pokaż stronę na stronie sklepu"
         actions:

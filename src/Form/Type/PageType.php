@@ -39,6 +39,10 @@ class PageType extends AbstractResourceType
                 'multiple' => true,
                 'expanded' => true,
             ])
+            ->add('showInSitemap', CheckboxType::class, [
+                'label' => 'monsieurbiz_cms_page.ui.form.show_in_sitemap',
+                'required' => false,
+            ])
             ->add('translations', ResourceTranslationsType::class, [
                 'entry_type' => PageTranslationType::class,
             ])
