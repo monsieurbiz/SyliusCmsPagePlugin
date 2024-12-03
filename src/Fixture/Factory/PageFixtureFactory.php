@@ -86,15 +86,8 @@ class PageFixtureFactory extends AbstractExampleFactory implements PageFixtureFa
         $page->setEnabled($options['enabled']);
         $page->setCode($options['code']);
 
-        $publishAt = $options['publish_at'] ?? null;
-        if ($publishAt) {
-            $page->setPublishAt(new DateTime($publishAt));
-        }
-
-        $unpublishAt = $options['unpublish_at'] ?? null;
-        if ($unpublishAt) {
-            $page->setUnpublishAt(new DateTime($unpublishAt));
-        }
+        $page->setPublishAt($options['publish_at']);
+        $page->setUnpublishAt($options['unpublish_at']);
 
         foreach ($options['channels'] as $channel) {
             $page->addChannel($channel);
@@ -124,6 +117,8 @@ class PageFixtureFactory extends AbstractExampleFactory implements PageFixtureFa
 
     /**
      * @inheritdoc
+     *
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     protected function configureOptions(OptionsResolver $resolver): void
     {
@@ -142,8 +137,14 @@ class PageFixtureFactory extends AbstractExampleFactory implements PageFixtureFa
             ->setDefault('publish_at', function (Options $options) use ($publishAt, $hasPublishAt): ?string {
                 return $hasPublishAt ? $publishAt->format('Y-m-d H:i:s') : null;
             })
+            ->setNormalizer('publish_at', function (Options $options, $value): ?DateTime {
+                return null === $value ? null : new DateTime($value);
+            })
             ->setDefault('unpublish_at', function (Options $options) use ($publishAt): ?string {
                 return $this->faker->boolean(20) ? (clone $publishAt)->modify('+' . $this->faker->numberBetween(1, 20) . ' days')->format('Y-m-d H:i:s') : null;
+            })
+            ->setNormalizer('unpublish_at', function (Options $options, $value): ?DateTime {
+                return null === $value ? null : new DateTime($value);
             })
             ->setDefault('channels', LazyOption::all($this->channelRepository))
             ->setAllowedTypes('channels', 'array')
