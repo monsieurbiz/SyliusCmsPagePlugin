@@ -36,6 +36,6 @@ services:
         decorates: router.request_context
         arguments: ['@MonsieurBiz\SyliusCmsPagePlugin\Routing\RequestContext.inner']
 
-    Sylius\Calendar\Provider\DateTimeProviderInterface:
+    monsieurbiz.cms_page.datetime_provider:
         class: Sylius\Calendar\Provider\Calendar
         public: true
