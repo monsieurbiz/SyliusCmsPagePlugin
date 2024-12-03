@@ -6,6 +6,7 @@ monsieurbiz_cms_page:
         cms_content: "Treść CMS"
         pages_subheader: "Zarządzanie stronami CMS"
         back_to_admin: "Powrót do administracji"
+        is_published: "Opublikowana"
         form:
             id: 'ID'
             page_info: 'Informacje o stronie'
@@ -21,6 +22,8 @@ monsieurbiz_cms_page:
             meta_keywords: "Słowa kluczowe meta"
             meta_image: "Obraz meta"
             meta_image_help: "Idealny format: 1200 x 630 px"
+            publish_at: "Opublikuj w"
+            unpublish_at: "Niepublikuj w"
         show_in: "Pokaż w"
         show_page_in_shop_page: "Pokaż stronę na stronie sklepu"
         actions:

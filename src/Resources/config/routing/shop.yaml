@@ -7,11 +7,12 @@ monsieurbiz_cms_page_show:
         _sylius:
             template: "@MonsieurBizSyliusCmsPagePlugin/Shop/Page/show.html.twig"
             repository:
-                method: findOneEnabledBySlugAndChannelCode
+                method: findOneEnabledAndPublishedBySlugAndChannelCode
                 arguments:
                     - $slug
                     - "expr:service('sylius.context.locale').getLocaleCode()"
                     - "expr:service('sylius.context.channel').getChannel().getCode()"
+                    - "expr:service('monsieurbiz.cms_page.datetime_provider').now()"
     requirements:
         slug: .+
     condition: "not(context.getPathInfo() matches '`^%sylius.security.new_api_route%`') and context.checkPageSlug(request)"

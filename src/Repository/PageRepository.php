@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusCmsPagePlugin\Repository;
 
+use DateTimeInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\QueryBuilder;
 use MonsieurBiz\SyliusCmsPagePlugin\Entity\PageInterface;
@@ -75,6 +76,47 @@ class PageRepository extends EntityRepository implements PageRepositoryInterface
             ->andWhere('translation.slug = :slug')
             ->andWhere('channels.code = :channelCode')
             ->andWhere('p.enabled = true')
+            ->setParameter('localeCode', $localeCode)
+            ->setParameter('slug', $slug)
+            ->setParameter('channelCode', $channelCode)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
+    public function existsOneEnabledAndPublishedByChannelAndSlug(ChannelInterface $channel, ?string $locale, string $slug, DateTimeInterface $dateTime): bool
+    {
+        $queryBuilder = $this->createQueryBuilderExistOne($channel, $locale, $slug);
+        $queryBuilder
+            ->andWhere('p.enabled = true')
+            ->andWhere('p.publishAt IS NULL OR p.publishAt <= :now')
+            ->andWhere('p.unpublishAt IS NULL OR p.unpublishAt >= :now')
+            ->setParameter('now', $dateTime)
+        ;
+
+        $count = (int) $queryBuilder
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+
+        return $count > 0;
+    }
+
+    /**
+     * @throws NonUniqueResultException
+     */
+    public function findOneEnabledAndPublishedBySlugAndChannelCode(string $slug, string $localeCode, string $channelCode, DateTimeInterface $dateTime): ?PageInterface
+    {
+        return $this->createQueryBuilder('p')
+            ->leftJoin('p.translations', 'translation')
+            ->innerJoin('p.channels', 'channels')
+            ->where('translation.locale = :localeCode')
+            ->andWhere('translation.slug = :slug')
+            ->andWhere('channels.code = :channelCode')
+            ->andWhere('p.enabled = true')
+            ->andWhere('p.publishAt IS NULL OR p.publishAt <= :now')
+            ->andWhere('p.unpublishAt IS NULL OR p.unpublishAt >= :now')
+            ->setParameter('now', $dateTime)
             ->setParameter('localeCode', $localeCode)
             ->setParameter('slug', $slug)
             ->setParameter('channelCode', $channelCode)
