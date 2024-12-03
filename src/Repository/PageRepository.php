@@ -49,7 +49,42 @@ class PageRepository extends EntityRepository implements PageRepositoryInterface
         return $count > 0;
     }
 
-    public function existsOneEnabledByChannelAndSlug(ChannelInterface $channel, ?string $locale, string $slug, DateTimeInterface $dateTime): bool
+    public function existsOneEnabledByChannelAndSlug(ChannelInterface $channel, ?string $locale, string $slug): bool
+    {
+        $queryBuilder = $this->createQueryBuilderExistOne($channel, $locale, $slug);
+        $queryBuilder
+            ->andWhere('p.enabled = true')
+        ;
+
+        $count = (int) $queryBuilder
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+
+        return $count > 0;
+    }
+
+    /**
+     * @throws NonUniqueResultException
+     */
+    public function findOneEnabledBySlugAndChannelCode(string $slug, string $localeCode, string $channelCode): ?PageInterface
+    {
+        return $this->createQueryBuilder('p')
+            ->leftJoin('p.translations', 'translation')
+            ->innerJoin('p.channels', 'channels')
+            ->where('translation.locale = :localeCode')
+            ->andWhere('translation.slug = :slug')
+            ->andWhere('channels.code = :channelCode')
+            ->andWhere('p.enabled = true')
+            ->setParameter('localeCode', $localeCode)
+            ->setParameter('slug', $slug)
+            ->setParameter('channelCode', $channelCode)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
+    public function existsOneEnabledAndPublishedByChannelAndSlug(ChannelInterface $channel, ?string $locale, string $slug, DateTimeInterface $dateTime): bool
     {
         $queryBuilder = $this->createQueryBuilderExistOne($channel, $locale, $slug);
         $queryBuilder
@@ -70,7 +105,7 @@ class PageRepository extends EntityRepository implements PageRepositoryInterface
     /**
      * @throws NonUniqueResultException
      */
-    public function findOneEnabledBySlugAndChannelCode(string $slug, string $localeCode, string $channelCode, DateTimeInterface $dateTime): ?PageInterface
+    public function findOneEnabledAndPublishedBySlugAndChannelCode(string $slug, string $localeCode, string $channelCode, DateTimeInterface $dateTime): ?PageInterface
     {
         return $this->createQueryBuilder('p')
             ->leftJoin('p.translations', 'translation')

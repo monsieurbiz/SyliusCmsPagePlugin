@@ -25,7 +25,13 @@ interface PageRepositoryInterface extends RepositoryInterface
 
     public function existsOneByChannelAndSlug(ChannelInterface $channel, ?string $locale, string $slug, array $excludedPages = []): bool;
 
-    public function existsOneEnabledByChannelAndSlug(ChannelInterface $channel, ?string $locale, string $slug, DateTimeInterface $dateTime): bool;
+    /** @deprecated Use existsOneEnabledAndPublishedByChannelAndSlug */
+    public function existsOneEnabledByChannelAndSlug(ChannelInterface $channel, ?string $locale, string $slug): bool;
 
-    public function findOneEnabledBySlugAndChannelCode(string $slug, string $localeCode, string $channelCode, DateTimeInterface $dateTime): ?PageInterface;
+    /** @deprecated Use findOneEnabledAndPublishedBySlugAndChannelCode */
+    public function findOneEnabledBySlugAndChannelCode(string $slug, string $localeCode, string $channelCode): ?PageInterface;
+
+    public function existsOneEnabledAndPublishedByChannelAndSlug(ChannelInterface $channel, ?string $locale, string $slug, DateTimeInterface $dateTime): bool;
+
+    public function findOneEnabledAndPublishedBySlugAndChannelCode(string $slug, string $localeCode, string $channelCode, DateTimeInterface $dateTime): ?PageInterface;
 }

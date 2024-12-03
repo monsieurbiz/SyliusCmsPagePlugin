@@ -59,7 +59,7 @@ final class PageSlugConditionChecker
     public function isPageSlug(string $slug): bool
     {
         try {
-            return $this->pageRepository->existsOneEnabledByChannelAndSlug(
+            return $this->pageRepository->existsOneEnabledAndPublishedByChannelAndSlug(
                 $this->channelContext->getChannel(),
                 $this->localeContext->getLocaleCode(),
                 $slug,

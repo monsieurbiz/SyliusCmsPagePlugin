@@ -7,7 +7,7 @@ monsieurbiz_cms_page_show:
         _sylius:
             template: "@MonsieurBizSyliusCmsPagePlugin/Shop/Page/show.html.twig"
             repository:
-                method: findOneEnabledBySlugAndChannelCode
+                method: findOneEnabledAndPublishedBySlugAndChannelCode
                 arguments:
                     - $slug
                     - "expr:service('sylius.context.locale').getLocaleCode()"
