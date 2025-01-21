@@ -15,11 +15,11 @@ If you want to know more about our editor, see the [Rich Editor Repository](http
 
 ## Compatibility
 
-| Sylius Version | PHP Version |
-|---|---|
-| 1.11 | 8.0 - 8.1 |
-| 1.12 | 8.1 - 8.2 |
-| 1.13 | 8.1 - 8.2 |
+| Sylius Version | PHP Version     |
+|----------------|-----------------|
+| 1.12           | 8.1 - 8.2 - 8.3 |
+| 1.13           | 8.1 - 8.2 - 8.3 |
+| 1.14           | 8.1 - 8.2 - 8.3 |
 
 ## Installation
 
