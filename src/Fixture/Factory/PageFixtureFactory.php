@@ -122,8 +122,6 @@ class PageFixtureFactory extends AbstractExampleFactory implements PageFixtureFa
      */
     protected function configureOptions(OptionsResolver $resolver): void
     {
-        $publishAt = $this->faker->dateTimeBetween('-1 year', '+1 year');
-        $hasPublishAt = $this->faker->boolean(20);
         $resolver
             ->setDefault('enabled', function (Options $options): bool {
                 return $this->faker->boolean(80);
@@ -134,15 +132,11 @@ class PageFixtureFactory extends AbstractExampleFactory implements PageFixtureFa
             ->setDefault('translations', function (OptionsResolver $translationResolver): void {
                 $translationResolver->setDefaults($this->configureDefaultTranslations());
             })
-            ->setDefault('publish_at', function (Options $options) use ($publishAt, $hasPublishAt): ?string {
-                return $hasPublishAt ? $publishAt->format('Y-m-d H:i:s') : null;
-            })
+            ->setDefault('publish_at', null)
             ->setNormalizer('publish_at', function (Options $options, $value): ?DateTime {
                 return null === $value ? null : new DateTime($value);
             })
-            ->setDefault('unpublish_at', function (Options $options) use ($publishAt): ?string {
-                return $this->faker->boolean(20) ? (clone $publishAt)->modify('+' . $this->faker->numberBetween(1, 20) . ' days')->format('Y-m-d H:i:s') : null;
-            })
+            ->setDefault('unpublish_at', null)
             ->setNormalizer('unpublish_at', function (Options $options, $value): ?DateTime {
                 return null === $value ? null : new DateTime($value);
             })
