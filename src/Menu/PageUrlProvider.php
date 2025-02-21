@@ -39,6 +39,7 @@ class PageUrlProvider extends AbstractUrlProvider
     protected function getResults(string $locale, string $search = ''): iterable
     {
         $queryBuilder = $this->pageRepository->createListQueryBuilder($locale)
+            ->andWhere('translation.locale = :localeCode') // Add condition to display only pages with the current locale
             ->andWhere('o.enabled = :enabled')
             ->setParameter('enabled', true)
         ;
