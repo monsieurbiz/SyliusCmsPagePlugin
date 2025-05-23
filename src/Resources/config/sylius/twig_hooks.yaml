@@ -1,0 +1,132 @@
+sylius_twig_hooks:
+    hooks:
+        'monsieurbiz.page.index#metatags':
+            page_metatags:
+                template: '@MonsieurBizSyliusCmsPagePlugin/shop/page/index/metatags.html.twig'
+                priority: 0
+        'monsieurbiz.page.index':
+            breadcumbs:
+                template: '@MonsieurBizSyliusCmsPagePlugin/shop/page/index/breadcumbs.html.twig'
+                priority: 200
+            title:
+                template: '@MonsieurBizSyliusCmsPagePlugin/shop/page/index/title.html.twig'
+                priority: 100
+            content:
+                template: '@MonsieurBizSyliusCmsPagePlugin/shop/page/index/content.html.twig'
+                priority: 0
+        
+        # Create page
+        'sylius_admin.page.create.content.header.title_block.actions':
+            preview:
+                template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/update/content/header/title_block/actions/preview.html.twig'
+                priority: -100
+                configuration: 
+                    tooltip: 'monsieurbiz_cms_page.ui.preview_create_action_tooltip'
+            show_in_shop:
+                template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/update/content/header/title_block/actions/show_in_shop.html.twig'
+                priority: -200
+
+        'sylius_admin.page.create.content':
+            form:
+                component: 'sylius_admin:monsieurbiz_cms_page:page:form'
+                props:
+                    resource: '@=_context.resource'
+                    form: '@=_context.form'
+                    template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/form.html.twig'
+                priority: 0
+
+        'sylius_admin.page.create.content.form.sections':
+            general:
+                template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/form/sections/general.html.twig'
+                priority: 200
+            translations:
+                template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/form/sections/translations.html.twig'
+                priority: 100
+
+        'sylius_admin.page.create.content.form.sections.general':
+            default:
+                enabled: false
+            enabled:
+                template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/form/sections/general/enabled.html.twig'
+                priority: 300
+            dates:
+                template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/form/sections/general/dates.html.twig'
+                priority: 200
+            channels:
+                template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/form/sections/general/channels.html.twig'
+                priority: 100
+            code:
+                template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/form/sections/general/code.html.twig'
+                priority: 0
+
+        'sylius_admin.page.create.content.form.sections.translations':
+            title:
+                template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/form/sections/translations/title.html.twig'
+                priority: 300
+            slug:
+                template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/form/sections/translations/slug.html.twig'
+                priority: 200
+            content:
+                template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/form/sections/translations/content.html.twig'
+                priority: 100
+            seo:
+                template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/form/sections/translations/seo.html.twig'
+                priority: 0
+
+        # Edit page
+        'sylius_admin.page.update.content.header.title_block.actions':
+            preview:
+                template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/update/content/header/title_block/actions/preview.html.twig'
+                priority: -100
+                configuration: 
+                    tooltip: 'monsieurbiz_cms_page.ui.preview_update_action_tooltip'
+            show_in_shop:
+                template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/update/content/header/title_block/actions/show_in_shop.html.twig'
+                priority: -200
+
+        'sylius_admin.page.update.content':
+            form:
+                component: 'sylius_admin:monsieurbiz_cms_page:page:form'
+                props:
+                    resource: '@=_context.resource'
+                    form: '@=_context.form'
+                    template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/form.html.twig'
+                priority: 0
+
+        'sylius_admin.page.update.content.form.sections':
+            general:
+                template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/form/sections/general.html.twig'
+                priority: 200
+            translations:
+                template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/form/sections/translations.html.twig'
+                priority: 100
+
+        'sylius_admin.page.update.content.form.sections.general':
+            default:
+                enabled: false
+            enabled:
+                template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/form/sections/general/enabled.html.twig'
+                priority: 300
+            dates:
+                template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/form/sections/general/dates.html.twig'
+                priority: 200
+            channels:
+                template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/form/sections/general/channels.html.twig'
+                priority: 100
+            code:
+                template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/form/sections/general/code.html.twig'
+                priority: 0
+
+        'sylius_admin.page.update.content.form.sections.translations':
+            title:
+                template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/form/sections/translations/title.html.twig'
+                priority: 300
+            slug:
+                template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/form/sections/translations/slug.html.twig'
+                priority: 200
+            content:
+                template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/form/sections/translations/content.html.twig'
+                priority: 100
+            seo:
+                template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/form/sections/translations/seo.html.twig'
+                priority: 0

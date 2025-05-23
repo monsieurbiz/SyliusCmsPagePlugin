@@ -1,0 +1,21 @@
+{% extends '@MonsieurBizSyliusCmsPagePlugin/shop/page/show.html.twig' %}
+
+{% block body %}
+    <div style="
+        text-transform: uppercase;
+        line-height: 30px;
+        z-index: 999;
+        height: 30px;
+        background-color: red;
+        width: 100%;
+        color: white;
+        font-weight: bold;
+        padding: 0 30px;
+        display: flex;
+        justify-content: space-between;
+    ">
+        <div>{{ 'monsieurbiz_cms_page.ui.banner.preview' | trans }}</div>
+    </div>
+
+    {{ parent() }}
+{% endblock %}

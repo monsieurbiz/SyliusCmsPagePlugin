@@ -25,12 +25,18 @@ final class AdminMenuListener
             $content = $menu
                 ->addChild('monsieurbiz-cms')
                 ->setLabel('monsieurbiz_cms_page.ui.cms_content')
+                ->setLabelAttribute('icon', 'tabler:file')
+                ->setExtra('always_open', true)
             ;
         }
 
-        $content->addChild('monsieurbiz-cms-page', ['route' => 'monsieurbiz_cms_page_admin_page_index'])
+        $content
+            ->addChild('monsieurbiz-cms-page', ['route' => 'monsieurbiz_cms_page_admin_page_index', 'extras' => ['routes' => [
+                'monsieurbiz_cms_page_admin_page_create',
+                'monsieurbiz_cms_page_admin_page_update',
+            ]]])
             ->setLabel('monsieurbiz_cms_page.ui.pages')
-            ->setLabelAttribute('icon', 'file alternate')
+            ->setLabelAttribute('icon', 'tabler:file')
         ;
     }
 }

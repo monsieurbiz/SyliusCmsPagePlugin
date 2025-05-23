@@ -1,0 +1,12 @@
+{% from '@SyliusShop/shared/breadcrumbs.html.twig' import breadcrumbs as breadcrumbs %}
+
+{% set page = hookable_metadata.context.page|default(null) %}
+
+{% if page is not empty and page.title is defined %}
+    <div class="col-12">
+        {{ breadcrumbs([
+            { label: 'sylius.ui.home'|trans, path: path('sylius_shop_homepage')},
+            { label: page.title, active: true}
+        ]) }}
+    </div>
+{% endif %}

@@ -2,4 +2,5 @@ imports:
     - { resource: "sylius/resources.yaml" }
     - { resource: "sylius/grid.yaml" }
     - { resource: "sylius/fixtures.yaml" }
+    - { resource: "sylius/twig_hooks.yaml" }
     - { resource: "images.yaml" }

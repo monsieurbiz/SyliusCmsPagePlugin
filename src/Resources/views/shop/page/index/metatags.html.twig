@@ -1,0 +1,16 @@
+{% set page = hookable_metadata.context.page|default(null) %}
+
+{% if page is not empty %}
+    {% set metaTitle = page.metaTitle ? page.metaTitle : page.title %}
+    <meta property="og:title" content="{{ metaTitle }}"/>
+{% endif %}
+{% if page is not empty and page.metaDescription is not empty %}
+    <meta name="og:description" property="og:description" content="{{ page.metaDescription }}"/>
+    <meta name="description" property="og:description" content="{{ page.metaDescription }}"/>
+{% endif %}
+{% if page is not empty and page.metaKeywords is not empty %}
+    <meta name="keywords" content="{{ page.metaKeywords }}"/>
+{% endif %}
+{% if page is not empty and page.metaImage is not empty %}
+    <meta property="og:image" content="{{ page.metaImage|imagine_filter('monsieurbiz_homepage_og_image') }}" />
+{% endif %}

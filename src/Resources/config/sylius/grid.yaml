@@ -1,7 +1,7 @@
 sylius_grid:
     templates:
         action:
-            monsieurbiz_cms_page_preview: "@MonsieurBizSyliusCmsPagePlugin/Admin/Grid/Action/preview.html.twig"
+            monsieurbiz_cms_page_preview: "@MonsieurBizSyliusCmsPagePlugin/admin/grid/action/preview.html.twig"
     grids:
         monsieurbiz_cms_page:
             driver:
@@ -31,19 +31,19 @@ sylius_grid:
                     type: twig
                     label: sylius.ui.channels
                     options:
-                        template: '@SyliusAdmin/Grid/Field/_channels.html.twig'
+                        template: '@SyliusAdmin/shared/grid/field/channels.html.twig'
                 enabled:
                     type: twig
                     label: monsieurbiz_cms_page.ui.form.enabled
                     sortable: ~
                     options:
-                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
+                        template: "@SyliusAdmin/shared/grid/field/boolean.html.twig"
                 published:
                     type: twig
                     label: monsieurbiz_cms_page.ui.is_published
                     path: .
                     options:
-                        template: "@MonsieurBizSyliusCmsPagePlugin/Admin/Grid/Field/published.html.twig"
+                        template: "@MonsieurBizSyliusCmsPagePlugin/admin/grid/field/published.html.twig"
             actions:
                 main:
                     create:

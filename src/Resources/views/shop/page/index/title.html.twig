@@ -1,0 +1,5 @@
+{% set page = hookable_metadata.context.page|default(null) %}
+
+{% if page is not empty and page.title is defined %}
+    <h1 class="header mt-5">{{ page.title }}</h1>
+{% endif %}

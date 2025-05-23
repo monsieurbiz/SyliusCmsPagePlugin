@@ -20,16 +20,10 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 final class LastChanceLocaleContext implements LocaleContextInterface
 {
-    private RequestStack $requestStack;
-
-    private LocaleProviderInterface $localeProvider;
-
     public function __construct(
-        RequestStack $requestStack,
-        LocaleProviderInterface $localeProvider
+        private RequestStack $requestStack,
+        private LocaleProviderInterface $localeProvider
     ) {
-        $this->requestStack = $requestStack;
-        $this->localeProvider = $localeProvider;
     }
 
     public function getLocaleCode(): string

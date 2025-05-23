@@ -25,17 +25,11 @@ class PageFixture extends AbstractResourceFixture
         parent::__construct($pageManager, $exampleFactory);
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getName(): string
     {
         return 'monsieurbiz_cms_page';
     }
 
-    /**
-     * @inheritdoc
-     */
     protected function configureResourceNode(ArrayNodeDefinition $resourceNode): void
     {
         /** @phpstan-ignore-next-line */

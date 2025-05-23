@@ -24,7 +24,7 @@ final class UniqueSlugByChannel extends Constraint
         return self::class . 'Validator';
     }
 
-    public function getTargets()
+    public function getTargets(): string|array
     {
         return self::CLASS_CONSTRAINT;
     }

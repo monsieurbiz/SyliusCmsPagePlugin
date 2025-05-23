@@ -14,46 +14,19 @@ declare(strict_types=1);
 namespace MonsieurBiz\SyliusCmsPagePlugin\Routing;
 
 use MonsieurBiz\SyliusCmsPagePlugin\Repository\PageRepositoryInterface;
-use Sylius\Calendar\Provider\DateTimeProviderInterface;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Sylius\Component\Channel\Context\ChannelNotFoundException;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
+use Symfony\Component\Clock\ClockInterface;
 
 final class PageSlugConditionChecker
 {
-    /**
-     * @var PageRepositoryInterface
-     */
-    private $pageRepository;
-
-    /**
-     * @var ChannelContextInterface
-     */
-    private $channelContext;
-
-    /**
-     * @var LocaleContextInterface
-     */
-    private $localeContext;
-
-    /**
-     * @var DateTimeProviderInterface
-     */
-    private $dateTimeProvider;
-
-    /**
-     * PageSlugConditionChecker constructor.
-     */
     public function __construct(
-        PageRepositoryInterface $pageRepository,
-        ChannelContextInterface $channelContext,
-        LocaleContextInterface $localeContext,
-        DateTimeProviderInterface $dateTimeProvider
+        private PageRepositoryInterface $pageRepository,
+        private ChannelContextInterface $channelContext,
+        private LocaleContextInterface $localeContext,
+        private ClockInterface $clock,
     ) {
-        $this->pageRepository = $pageRepository;
-        $this->channelContext = $channelContext;
-        $this->localeContext = $localeContext;
-        $this->dateTimeProvider = $dateTimeProvider;
     }
 
     public function isPageSlug(string $slug): bool
@@ -63,7 +36,7 @@ final class PageSlugConditionChecker
                 $this->channelContext->getChannel(),
                 $this->localeContext->getLocaleCode(),
                 $slug,
-                $this->dateTimeProvider->now()
+                $this->clock->now()
             );
         } catch (ChannelNotFoundException $channelNotFoundException) {
             return false;

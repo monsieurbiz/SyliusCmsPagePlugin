@@ -1,0 +1,23 @@
+{% set resource = hookable_metadata.context.resource %}
+{% set tooltip = hookable_metadata.configuration.tooltip %}
+
+{% if sylius_bundle_loaded_checker('SyliusShopBundle') %}
+    <a
+        {% if resource.id is defined and resource.id is not empty %}
+            class="btn btn-info"
+            href="{{path('monsieurbiz_cms_page_admin_page_preview', {'id': resource.id})}}"
+            target="_blank"
+            rel="noopener noreferrer"
+        {% else %}
+            class="btn btn-outline-info"
+            aria-disabled="true"
+            href="javascript:void(0);"
+        {% endif %}
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="{{ tooltip|trans|escape('html_attr') }}"
+    >
+        {{ ux_icon('tabler:eye') }}
+        {{ 'monsieurbiz_cms_page.ui.actions.preview'|trans }}
+    </a>
+{% endif %}

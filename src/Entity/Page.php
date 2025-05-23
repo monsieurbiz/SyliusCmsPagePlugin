@@ -33,35 +33,14 @@ class Page implements PageInterface
         getTranslation as private doGetTranslation;
     }
 
-    /**
-     * @var int|null
-     */
-    protected $id;
+    protected ?int $id = null;
 
-    /**
-     * @var bool
-     */
-    protected $enabled = true;
-
-    /**
-     * @var string|null
-     */
-    protected $code;
+    protected ?string $code = null;
 
     /**
      * @var Collection<int, ChannelInterface>
      */
-    protected $channels;
-
-    /**
-     * @var DateTimeInterface|null
-     */
-    protected $createdAt;
-
-    /**
-     * @var DateTimeInterface|null
-     */
-    protected $updatedAt;
+    protected Collection $channels;
 
     protected ?DateTimeInterface $publishAt = null;
 

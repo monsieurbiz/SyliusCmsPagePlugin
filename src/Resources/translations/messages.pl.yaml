@@ -1,6 +1,7 @@
 monsieurbiz_cms_page:
     ui:
         pages: "Strony"
+        page: "Strona"
         new_page: "Nowa strona"
         edit_page: "Edytuj stronę"
         cms_content: "Treść CMS"
@@ -26,6 +27,9 @@ monsieurbiz_cms_page:
             unpublish_at: "Niepublikuj w"
         show_in: "Pokaż w"
         show_page_in_shop_page: "Pokaż stronę na stronie sklepu"
+        cannot_show_page_in_shop_page: "Nie możesz pokazać tej strony na stronie sklepu, ponieważ nie jest ona włączona ani opublikowana na co najmniej jednym kanale."
+        preview_update_action_tooltip: "Kliknij `Aktualizuj`, aby zapisać zmiany przed podglądem strony."
+        preview_create_action_tooltip: "Kliknij `Utwórz`, aby zapisać zmiany przed podglądem strony."
         actions:
             create: 'Utwórz nową stronę'
             preview: 'Podgląd'

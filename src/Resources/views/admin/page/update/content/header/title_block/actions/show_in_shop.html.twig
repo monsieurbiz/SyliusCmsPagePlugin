@@ -1,0 +1,60 @@
+{% set resource = hookable_metadata.context.resource %}
+{% set enabledChannels = resource.channels|filter(channel => channel.enabled == true) %}
+
+{% if sylius_bundle_loaded_checker('SyliusShopBundle') %}
+    {% if not resource.enabled or not resource.isPublished(date()) or enabledChannels|length < 1 %}
+        <a class="btn btn-outline-info"
+            tabindex="-1"
+            aria-disabled="true"
+            href="javascript:void(0);"
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            title="{{ 'monsieurbiz_cms_page.ui.cannot_show_page_in_shop_page'|trans|escape('html_attr') }}"
+        >
+                {{ ux_icon('tabler:chevron-right') }}
+                {{ 'monsieurbiz_cms_page.ui.show_page_in_shop_page'|trans }}
+        </a>
+    {% elseif enabledChannels|length > 1 %}
+        <div class="dropdown">
+            <button class="btn btn-outline-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ ux_icon('tabler:share') }}
+                {{ 'monsieurbiz_cms_page.ui.show_page_in_shop_page'|trans }}
+            </button>
+            <ul class="dropdown-menu">
+                {% for channel in enabledChannels %}
+                    {% set url = channel.hostname is not null ? 'http://' ~ channel.hostname ~ path('monsieurbiz_cms_page_show', {'slug': resource.slug, '_locale': channel.defaultLocale.code}) : url('monsieurbiz_cms_page_show', {'slug': resource.slug, '_locale': channel.defaultLocale.code}) %}
+                    <li>
+                        <a class="dropdown-item" href="{{ url|raw }}"  target="_blank">
+                            {{ ux_icon('tabler:chevron-right') }}
+                            {{ 'monsieurbiz_cms_page.ui.show_in'|trans }}
+                            {{ channel.name }} ({{ channel.code }})
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <div class="dropdown">
+            <button class="btn btn-outline-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ ux_icon('tabler:share') }}
+                {{ 'monsieurbiz_cms_page.ui.show_page_in_shop_page'|trans }}
+            </button>
+            <ul class="dropdown-menu">
+                {% for channel in enabledChannels %}
+                    {% for locale in channel.locales %}
+                        {% set localeCode = locale.code %}
+                        {% set translationResource = resource.getTranslation(localeCode)|default(resource) %}
+                        {% set url = channel.hostname is not null ? 'http://' ~ channel.hostname ~ path('monsieurbiz_cms_page_show', {'slug': translationResource.slug, '_locale': localeCode}) : url('monsieurbiz_cms_page_show', {'slug': translationResource.slug, '_locale': localeCode}) %}
+                        <li>
+                            <a class="dropdown-item" href="{{ url|raw }}"  target="_blank">
+                                {{ ux_icon('tabler:chevron-right') }}
+                                {{ 'monsieurbiz_cms_page.ui.show_in'|trans }}
+                                {{ channel.name }} ({{ channel.code }}) ({{ localeCode }})
+                            </a>
+                        </li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{% endif %}

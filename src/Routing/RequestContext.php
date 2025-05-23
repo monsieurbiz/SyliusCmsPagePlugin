@@ -21,31 +21,11 @@ use Symfony\Component\Routing\RequestContext as BaseRequestContext;
 
 final class RequestContext extends BaseRequestContext
 {
-    /**
-     * @var BaseRequestContext
-     */
-    private $decorated;
-
-    /**
-     * @var PageSlugConditionChecker
-     */
-    private $pageSlugConditionChecker;
-
-    /**
-     * @var LocaleContextInterface
-     */
-    private $localeContext;
-
-    private RequestStack $requestStack;
-
-    /**
-     * RequestContext constructor.
-     */
     public function __construct(
-        BaseRequestContext $decorated,
-        PageSlugConditionChecker $pageSlugConditionChecker,
-        LocaleContextInterface $localeContext,
-        RequestStack $requestStack
+        private BaseRequestContext $decorated,
+        private PageSlugConditionChecker $pageSlugConditionChecker,
+        private LocaleContextInterface $localeContext,
+        private RequestStack $requestStack
     ) {
         parent::__construct(
             $decorated->getBaseUrl(),
@@ -57,10 +37,6 @@ final class RequestContext extends BaseRequestContext
             $decorated->getPathInfo(),
             $decorated->getQueryString()
         );
-        $this->decorated = $decorated;
-        $this->pageSlugConditionChecker = $pageSlugConditionChecker;
-        $this->localeContext = $localeContext;
-        $this->requestStack = $requestStack;
     }
 
     public function checkPageSlug(Request $request): bool

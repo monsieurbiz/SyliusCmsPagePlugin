@@ -1,0 +1,7 @@
+{% set page = hookable_metadata.context.page|default(null) %}
+
+{% if page is not empty and page.content is defined %}
+    <div class="mt-5">
+        {{ page.content|monsieurbiz_richeditor_render_field }}
+    </div>
+{% endif %}

@@ -17,45 +17,21 @@ use Sylius\Component\Resource\Model\AbstractTranslation;
 
 class PageTranslation extends AbstractTranslation implements PageTranslationInterface
 {
-    /**
-     * @var int
-     */
-    protected $id;
+    protected ?int $id = null;
 
-    /**
-     * @var string|null
-     */
-    protected $title;
+    protected ?string $title;
 
-    /**
-     * @var string|null
-     */
-    protected $content;
+    protected ?string $content;
 
-    /**
-     * @var string|null
-     */
-    protected $slug;
+    protected ?string $slug = null;
 
-    /**
-     * @var string|null
-     */
-    protected $metaTitle;
+    protected ?string $metaTitle;
 
-    /**
-     * @var string|null
-     */
-    protected $metaKeywords;
+    protected ?string $metaKeywords;
 
-    /**
-     * @var string|null
-     */
-    protected $metaDescription;
+    protected ?string $metaDescription;
 
-    /**
-     * @var string|null
-     */
-    protected $metaImage;
+    protected ?string $metaImage;
 
     public function getId(): ?int
     {

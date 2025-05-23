@@ -22,7 +22,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 class PageTranslationType extends AbstractResourceType
 {
     /**
-     * @inheritdoc
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -57,9 +57,6 @@ class PageTranslationType extends AbstractResourceType
         ;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getBlockPrefix(): string
     {
         return 'monsieurbiz_cms_page_translation';

@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace MonsieurBiz\SyliusCmsPagePlugin\Fixture\Factory;
 
 use DateTime;
+use Faker\Generator;
 use MonsieurBiz\SyliusCmsPagePlugin\Entity\PageInterface;
 use MonsieurBiz\SyliusCmsPagePlugin\Entity\PageTranslationInterface;
 use Sylius\Bundle\CoreBundle\Fixture\Factory\AbstractExampleFactory;
@@ -28,55 +29,23 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PageFixtureFactory extends AbstractExampleFactory implements PageFixtureFactoryInterface
 {
-    /**
-     * @var FactoryInterface
-     */
-    private $pageFactory;
+    private OptionsResolver $optionsResolver;
 
-    /**
-     * @var FactoryInterface
-     */
-    private $pageTranslationFactory;
-
-    /**
-     * @var OptionsResolver
-     */
-    private $optionsResolver;
-
-    /** @var SlugGeneratorInterface */
-    private $slugGenerator;
-
-    /** @var \Faker\Generator */
-    private $faker;
-
-    /** @var RepositoryInterface */
-    private $localeRepository;
-
-    /** @var ChannelRepositoryInterface */
-    private $channelRepository;
+    private Generator $faker;
 
     public function __construct(
-        FactoryInterface $pageFactory,
-        FactoryInterface $pageTranslationFactory,
-        SlugGeneratorInterface $slugGenerator,
-        ChannelRepositoryInterface $channelRepository,
-        RepositoryInterface $localeRepository
+        private FactoryInterface $pageFactory,
+        private FactoryInterface $pageTranslationFactory,
+        private SlugGeneratorInterface $slugGenerator,
+        private ChannelRepositoryInterface $channelRepository,
+        private RepositoryInterface $localeRepository
     ) {
-        $this->pageFactory = $pageFactory;
-        $this->pageTranslationFactory = $pageTranslationFactory;
-        $this->channelRepository = $channelRepository;
-        $this->localeRepository = $localeRepository;
-
-        $this->slugGenerator = $slugGenerator;
         $this->faker = \Faker\Factory::create();
 
         $this->optionsResolver = new OptionsResolver();
         $this->configureOptions($this->optionsResolver);
     }
 
-    /**
-     * @inheritdoc
-     */
     public function create(array $options = []): PageInterface
     {
         $options = $this->optionsResolver->resolve($options);
@@ -116,9 +85,8 @@ class PageFixtureFactory extends AbstractExampleFactory implements PageFixtureFa
     }
 
     /**
-     * @inheritdoc
-     *
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     protected function configureOptions(OptionsResolver $resolver): void
     {

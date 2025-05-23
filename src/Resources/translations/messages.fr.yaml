@@ -1,6 +1,7 @@
 monsieurbiz_cms_page:
   ui:
     pages: "Pages"
+    page: "Page"
     new_page: "Nouvelle page"
     edit_page: "Éditer une page"
     cms_content: "Contenus CMS"
@@ -26,6 +27,9 @@ monsieurbiz_cms_page:
       unpublish_at: "Dépublier le"
     show_in: "Afficher dans"
     show_page_in_shop_page: "Afficher la page dans la boutique"
+    cannot_show_page_in_shop_page: "Vous ne pouvez pas afficher cette page dans la boutique car elle n'est pas activée ou publiée sur au moins un canal."
+    preview_update_action_tooltip: "Cliquez sur `Mise à jour` pour enregistrer vos modifications avant de prévisualiser la page."
+    preview_create_action_tooltip: "Cliquez sur `Créer` pour enregistrer vos modifications avant de prévisualiser la page."
     actions:
       create: 'Créer une nouvelle page'
       preview: 'Prévisualiser'

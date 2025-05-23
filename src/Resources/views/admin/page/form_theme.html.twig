@@ -1,0 +1,20 @@
+{% extends '@SyliusAdmin/shared/form_theme.html.twig' %}
+
+{% block _monsieurbiz_cms_page_translations_entry_slug_row %}
+    {% set locale = form.parent.vars.name %}
+
+    {{ form_label(form) }}
+    <div class="input-group mb-3">
+        {{ form_widget(form) }}
+        <button
+            class="btn btn-outline-secondary"
+            type="button"
+            data-action="live#action"
+            data-live-action-param="debounce(300)|generatePageSlug"
+            data-live-locale-code-param="{{ locale }}"
+        >
+            {{ ux_icon('tabler:wand', {'class': 'icon mx-0'}) }}
+        </button>
+        {{ form_errors(form) }}
+    </div>
+{% endblock %}

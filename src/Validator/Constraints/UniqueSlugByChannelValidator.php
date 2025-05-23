@@ -22,17 +22,14 @@ use Webmozart\Assert\Assert;
 
 final class UniqueSlugByChannelValidator extends ConstraintValidator
 {
-    private PageRepositoryInterface $pageRepository;
-
-    public function __construct(PageRepositoryInterface $pageRepository)
+    public function __construct(private PageRepositoryInterface $pageRepository)
     {
-        $this->pageRepository = $pageRepository;
     }
 
     /**
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     *
      * @param mixed $value
+     *
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     public function validate($value, Constraint $constraint): void
     {

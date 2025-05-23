@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusCmsPagePlugin\DependencyInjection;
 
-use MonsieurBiz\SyliusCmsPagePlugin\Form\Type\PageType;
-use MonsieurBiz\SyliusPlusAdapterPlugin\DependencyInjection\SyliusPlusCompatibilityTrait;
 use Sylius\Bundle\CoreBundle\DependencyInjection\PrependDoctrineMigrationsTrait;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -25,17 +23,25 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 final class MonsieurBizSyliusCmsPageExtension extends Extension implements PrependExtensionInterface
 {
     use PrependDoctrineMigrationsTrait;
-    use SyliusPlusCompatibilityTrait;
 
-    /**
-     * @inheritdoc
-     */
     public function load(array $config, ContainerBuilder $container): void
     {
         $this->processConfiguration($this->getConfiguration([], $container), $config);
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yaml');
-        $this->enabledFilteredChannelChoiceType($container, ['page' => PageType::class]);
+    }
+
+    public function prepend(ContainerBuilder $container): void
+    {
+        $this->prependDoctrineMigrations($container);
+        $container->prependExtensionConfig('twig_component', [
+            'defaults' => [
+                'MonsieurBiz\SyliusCmsPagePlugin\Component\\' => [
+                    'template_directory' => '@MonsieurBizSyliusCmsPagePlugin/components/',
+                    'name_prefix' => 'CmsPage',
+                ],
+            ],
+        ]);
     }
 
     /**
@@ -44,18 +50,6 @@ final class MonsieurBizSyliusCmsPageExtension extends Extension implements Prepe
     public function getAlias(): string
     {
         return str_replace('monsieur_biz', 'monsieurbiz', parent::getAlias());
-    }
-
-    public function prepend(ContainerBuilder $container): void
-    {
-        $this->prependDoctrineMigrations($container);
-        $this->prependRestrictedResources($container, ['page']);
-        $this->replaceInGridOriginalQueryBuilderWithChannelRestrictedQueryBuilder(
-            $container,
-            'monsieurbiz_cms_page',
-            '%monsieurbiz_cms_page.model.page.class%',
-            "expr:service('monsieurbiz_cms_page.repository.page').createListQueryBuilder('%locale%')"
-        );
     }
 
     protected function getMigrationsNamespace(): string
