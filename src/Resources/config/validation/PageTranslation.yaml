@@ -17,3 +17,11 @@ MonsieurBiz\SyliusCmsPagePlugin\Entity\PageTranslation:
         content:
             -   NotBlank:
                     groups: [monsieurbiz]
+        metaTitle:
+            -   Length:
+                    max: 255
+                    groups: [monsieurbiz]
+        metaKeywords:
+            -   Length:
+                    max: 255
+                    groups: [monsieurbiz]
