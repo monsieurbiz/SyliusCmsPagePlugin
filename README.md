@@ -16,9 +16,9 @@ If you want to know more about our editor, see the [Media Manager Plugin](https:
 
 ## Compatibility
 
-| Sylius Version | PHP Version     |
-|----------------|-----------------|
-| 2.0            | 8.2 - 8.3       |
+| Sylius Version | PHP Version |
+|----------------|-------------|
+| 2.0, 2,1       | 8.2 - 8.3   |
 
 ℹ️ For Sylius 1.x, see our [1.x branch](https://github.com/monsieurbiz/SyliusCmsPagePlugin/tree/1.x) and all 1.x releases.
 
