@@ -1,4 +1,9 @@
-# Upgrade from 1.X to 2.X
+# Upgrade from 2.0.2 to 2.0.3
+
+The `MonsieurBiz\SyliusCmsPagePlugin\Context\LastChanceLocaleContext` is now deprecated and will be removed in 2.1, use the `MonsieurBiz\SyliusCmsPagePlugin\Context\FindInRequestPathLocaleContext` instead.
+And the priority of this service has changed from `-127` to `35` to be higher than the `sylius.context.locale.request_header_based` service.
+
+# Upgrade from 1.X to 2.0.X
 
 In the 2.x we changed the route definition for the shop route.
 
@@ -32,4 +37,4 @@ monsieurbiz_cms_page_show:
     condition: "not(context.getPathInfo() matches '`^%sylius.security.api_route%`') and context.checkPageSlug(request)"
 ```
 
-We upgraded also the [Rich Editor to the 3.0 version](https://github.com/monsieurbiz/SyliusRichEditorPlugin/blob/3.x/UPGRADE-3.0.md).  
+We upgraded also the [Rich Editor to the 3.0 version](https://github.com/monsieurbiz/SyliusRichEditorPlugin/blob/3.x/UPGRADE-3.0.md).
