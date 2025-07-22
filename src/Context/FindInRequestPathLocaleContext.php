@@ -18,19 +18,20 @@ use Sylius\Component\Locale\Context\LocaleNotFoundException;
 use Sylius\Component\Locale\Provider\LocaleProviderInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-final class LastChanceLocaleContext implements LocaleContextInterface
+final class FindInRequestPathLocaleContext implements LocaleContextInterface
 {
     public function __construct(
         private RequestStack $requestStack,
-        private LocaleProviderInterface $localeProvider
+        private LocaleProviderInterface $localeProvider,
     ) {
     }
 
     public function getLocaleCode(): string
     {
         if (null === $request = $this->requestStack->getMainRequest()) {
-            throw new LocaleNotFoundException('Main request not found, therefore no locale found…');
+            throw new LocaleNotFoundException('No main request available.');
         }
+
         $pathInfo = $request->getPathInfo();
         $availableLocaleCodes = $this->localeProvider->getAvailableLocalesCodes();
         $parts = explode('/', trim($pathInfo, '/'));
@@ -40,6 +41,6 @@ final class LastChanceLocaleContext implements LocaleContextInterface
             }
         }
 
-        return $this->localeProvider->getDefaultLocaleCode();
+        throw new LocaleNotFoundException('No locale found in the request path.');
     }
 }
