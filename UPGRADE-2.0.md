@@ -34,7 +34,7 @@ monsieurbiz_cms_page_show:
                     - "expr:service('sylius.context.locale').getLocaleCode()"
                     - "expr:service('sylius.context.channel').getChannel().getCode()"
                     - "expr:service('monsieurbiz.cms_page.datetime_provider').now()"
-    condition: "not(context.getPathInfo() matches '`^%sylius.security.api_route%`') and context.checkPageSlug(request)"
+    condition: "not(context.getPathInfo() matches '`^%sylius.security.api_route%`') and service('monsieurbiz.cms_page.route_checker').checkPageSlug(request)"
 ```
 
 We upgraded also the [Rich Editor to the 3.0 version](https://github.com/monsieurbiz/SyliusRichEditorPlugin/blob/3.x/UPGRADE-3.0.md).
