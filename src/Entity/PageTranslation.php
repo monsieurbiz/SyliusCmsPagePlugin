@@ -19,19 +19,19 @@ class PageTranslation extends AbstractTranslation implements PageTranslationInte
 {
     protected ?int $id = null;
 
-    protected ?string $title;
+    protected ?string $title = null;
 
-    protected ?string $content;
+    protected ?string $content = null;
 
     protected ?string $slug = null;
 
-    protected ?string $metaTitle;
+    protected ?string $metaTitle = null;
 
-    protected ?string $metaKeywords;
+    protected ?string $metaKeywords = null;
 
-    protected ?string $metaDescription;
+    protected ?string $metaDescription = null;
 
-    protected ?string $metaImage;
+    protected ?string $metaImage = null;
 
     public function getId(): ?int
     {
