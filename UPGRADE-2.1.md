@@ -1,15 +1,8 @@
-# Upgrade from 2.0.2 to 2.0.3
+# Upgrade from 2.0.X 2.1.X
 
-The `MonsieurBiz\SyliusCmsPagePlugin\Context\LastChanceLocaleContext` is now deprecated and will be removed in 2.1, use the `MonsieurBiz\SyliusCmsPagePlugin\Context\FindInRequestPathLocaleContext` instead.
-And the priority of this service has changed from `-127` to `35` to be higher than the `sylius.context.locale.request_header_based` service.
+In the 2.1 we changed the route definition for the route `monsieurbiz_cms_page_show`.
 
-# Upgrade from 1.X to 2.0.X
-
-In the 2.x we changed the route definition for the shop route.
-
-The file `@MonsieurBizSyliusCmsPagePlugin/Resources/config/routing/shop.yaml` does not exist anymore.
-
-Update the file `config/routes/monsieurbiz_sylius_cms_page_plugin.yaml` : 
+Update the file `config/routes/monsieurbiz_sylius_cms_page_plugin.yaml` with the new condition for `monsieurbiz_cms_page_show`:
 
 ```yaml
 monsieurbiz_cms_page_admin:
@@ -34,7 +27,8 @@ monsieurbiz_cms_page_show:
                     - "expr:service('sylius.context.locale').getLocaleCode()"
                     - "expr:service('sylius.context.channel').getChannel().getCode()"
                     - "expr:service('monsieurbiz.cms_page.datetime_provider').now()"
-    condition: "not(context.getPathInfo() matches '`^%sylius.security.api_route%`') and context.checkPageSlug(request)"
+    condition: "not(context.getPathInfo() matches '`^%sylius.security.api_route%`') and service('monsieurbiz.cms_page.route_checker').checkPageSlug(request)"
 ```
 
-We upgraded also the [Rich Editor to the 3.0 version](https://github.com/monsieurbiz/SyliusRichEditorPlugin/blob/3.x/UPGRADE-3.0.md).
+We now use the PageSlugConditionChecker directly as a #[AsRoutingConditionService()]
+Also, changing the condition allows using the Symfony PHP attribute #[AsRoutingConditionService()] for other classes.
