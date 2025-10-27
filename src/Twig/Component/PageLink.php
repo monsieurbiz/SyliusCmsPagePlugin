@@ -30,6 +30,9 @@ final class PageLink
     public function getHref(): string
     {
         $page = $this->getPage();
+        if (!($page instanceof PageInterface)) {
+            return '';
+        }
         $url = $this->urlGenerator->generate(
             'monsieurbiz_cms_page_show',
             [
@@ -43,10 +46,14 @@ final class PageLink
     #[ExposeInTemplate(name: 'page_title')]
     public function getPageTitle(): string
     {
-        return $this->getPage()->getTitle();
+        $page = $this->getPage();
+        if (!($page instanceof PageInterface)) {
+            return '';
+        }
+        return $page->getTitle();
     }
 
-    private function getPage(): PageInterface
+    private function getPage(): ?PageInterface
     {
         $currentLocaleCode = $this->localeContext->getLocaleCode();
         $channel = $this->channelContext->getChannel();
