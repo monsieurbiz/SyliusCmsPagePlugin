@@ -7,6 +7,7 @@ use MonsieurBiz\SyliusCmsPagePlugin\Repository\PageRepositoryInterface;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
 use Sylius\TwigHooks\Twig\Component\HookableComponentTrait;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 use Symfony\UX\TwigComponent\Attribute\ExposeInTemplate;
 
@@ -21,6 +22,7 @@ final class PageLink
         protected LocaleContextInterface $localeContext,
         protected ChannelContextInterface $channelContext,
         protected PageRepositoryInterface $pageRepository,
+        protected UrlGeneratorInterface $urlGenerator,
     ) {
     }
 
@@ -28,7 +30,14 @@ final class PageLink
     public function getHref(): string
     {
         $page = $this->getPage();
-        return $this->localeContext->getLocaleCode() . '/' . $page->getSlug();
+        $url = $this->urlGenerator->generate(
+            'monsieurbiz_cms_page_show',
+            [
+                '_locale' => $this->localeContext->getLocaleCode(),
+                'slug' => $page->getSlug()
+            ]
+        );
+        return $url;
     }
 
     #[ExposeInTemplate(name: 'page_title')]
