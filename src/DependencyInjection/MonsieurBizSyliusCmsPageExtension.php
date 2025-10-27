@@ -40,6 +40,10 @@ final class MonsieurBizSyliusCmsPageExtension extends Extension implements Prepe
                     'template_directory' => '@MonsieurBizSyliusCmsPagePlugin/components/',
                     'name_prefix' => 'CmsPage',
                 ],
+                'MonsieurBiz\SyliusCmsPagePlugin\Twig\Component\\' => [
+                    'template_directory' => '@MonsieurBizSyliusCmsPagePlugin/twig/components/',
+                    'name_prefix' => 'MonsieurBizSyliusCmsPagePlugin',
+                ],
             ],
         ]);
     }

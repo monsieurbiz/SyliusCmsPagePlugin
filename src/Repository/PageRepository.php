@@ -125,6 +125,27 @@ class PageRepository extends EntityRepository implements PageRepositoryInterface
         ;
     }
 
+    /**
+     * @throws NonUniqueResultException
+     */
+    public function findOneEnabledAndPublishedByPageCodeAndChannelCode(string $code, string $locale, ChannelInterface $channel, DateTimeInterface $dateTime): ?PageInterface
+    {
+        return $this->createQueryBuilder('p')
+            ->innerJoin('p.translations', 'translation', 'WITH', 'translation.locale = :locale')
+            ->andWhere(':channel MEMBER OF p.channels')
+            ->andWhere('p.enabled = true')
+            ->andWhere('p.code = :code')
+            ->andWhere('p.publishAt IS NULL OR p.publishAt <= :now')
+            ->andWhere('p.unpublishAt IS NULL OR p.unpublishAt >= :now')
+            ->setParameter('now', $dateTime)
+            ->setParameter('channel', $channel)
+            ->setParameter('locale', $locale)
+            ->setParameter('code', $code)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
     private function createQueryBuilderExistOne(ChannelInterface $channel, ?string $locale, string $slug): QueryBuilder
     {
         return $this
