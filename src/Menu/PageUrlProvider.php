@@ -19,52 +19,58 @@ use MonsieurBiz\SyliusMenuPlugin\Provider\AbstractUrlProvider;
 use Symfony\Component\Routing\RouterInterface;
 use Webmozart\Assert\Assert;
 
-class PageUrlProvider extends AbstractUrlProvider
-{
-    public const PROVIDER_CODE = 'page';
-
-    protected string $code = self::PROVIDER_CODE;
-
-    protected string $icon = 'tabler:file';
-
-    protected int $priority = 40;
-
-    public function __construct(
-        RouterInterface $router,
-        private PageRepositoryInterface $pageRepository,
-    ) {
-        parent::__construct($router);
-    }
-
-    protected function getResults(string $locale, string $search = ''): iterable
+if (class_exists(AbstractUrlProvider::class)) {
+    class PageUrlProvider extends AbstractUrlProvider
     {
-        $queryBuilder = $this->pageRepository->createListQueryBuilder($locale)
-            ->andWhere('translation.locale = :localeCode') // Add condition to display only pages with the current locale
-            ->andWhere('o.enabled = :enabled')
-            ->setParameter('enabled', true)
-        ;
+        public const PROVIDER_CODE = 'page';
 
-        if (!empty($search)) {
-            $queryBuilder
-                ->andWhere('translation.title LIKE :search OR translation.slug LIKE :search')
-                ->setParameter('search', '%' . $search . '%')
-            ;
+        protected string $code = self::PROVIDER_CODE;
+
+        protected string $icon = 'tabler:file';
+
+        protected int $priority = 40;
+
+        public function __construct(
+            RouterInterface $router,
+            private PageRepositoryInterface $pageRepository,
+        ) {
+            parent::__construct($router);
         }
 
-        $queryBuilder->setMaxResults($this->getMaxResults());
+        protected function getResults(string $locale, string $search = ''): iterable
+        {
+            $queryBuilder = $this->pageRepository->createListQueryBuilder($locale)
+                ->andWhere('translation.locale = :localeCode') // Add condition to display only pages with the current locale
+                ->andWhere('o.enabled = :enabled')
+                ->setParameter('enabled', true)
+            ;
 
-        /** @phpstan-ignore-next-line */
-        return $queryBuilder->getQuery()->getResult();
+            if (!empty($search)) {
+                $queryBuilder
+                    ->andWhere('translation.title LIKE :search OR translation.slug LIKE :search')
+                    ->setParameter('search', '%' . $search . '%')
+                ;
+            }
+
+            $queryBuilder->setMaxResults($this->getMaxResults());
+
+            /** @phpstan-ignore-next-line */
+            return $queryBuilder->getQuery()->getResult();
+        }
+
+        protected function addItemFromResult(object $result, string $locale): void
+        {
+            Assert::isInstanceOf($result, PageInterface::class);
+            /** @var PageInterface $result */
+            $result->setCurrentLocale($locale);
+            $this->addItem(
+                (string) $result->getTitle(),
+                $this->router->generate('monsieurbiz_cms_page_show', ['slug' => $result->getSlug(), '_locale' => $locale])
+            );
+        }
     }
-
-    protected function addItemFromResult(object $result, string $locale): void
+} else {
+    final class PageUrlProvider
     {
-        Assert::isInstanceOf($result, PageInterface::class);
-        /** @var PageInterface $result */
-        $result->setCurrentLocale($locale);
-        $this->addItem(
-            (string) $result->getTitle(),
-            $this->router->generate('monsieurbiz_cms_page_show', ['slug' => $result->getSlug(), '_locale' => $locale])
-        );
     }
 }
