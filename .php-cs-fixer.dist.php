@@ -34,9 +34,9 @@ $config
     ->setRiskyAllowed(true)
     ->setRules([
         '@DoctrineAnnotation' => true,
-        '@PHP71Migration' => true,
-        '@PHP71Migration:risky' => true,
-        '@PHPUnit60Migration:risky' => true,
+        '@PHP7x1Migration' => true,
+        '@PHP7x1Migration:risky' => true,
+        '@PHPUnit6x0Migration:risky' => true,
         '@Symfony' => true,
         '@Symfony:risky' => true,
         'align_multiline_comment' => [
@@ -254,7 +254,7 @@ $config
         'trim_array_spaces' => true,
         'type_declaration_spaces' => true,
         'unary_operator_spaces' => true,
-        'visibility_required' => [
+        'modifier_keywords' => [
             'elements' => [
                 'const',
                 'property',
