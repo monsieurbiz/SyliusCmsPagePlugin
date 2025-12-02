@@ -5,7 +5,7 @@
     "description": "This plugins allows you to add manage CMS pages using the Rich Editor",
     "license": "MIT",
     "require": {
-        "monsieurbiz/sylius-media-manager-plugin": "^2.0",
+        "monsieurbiz/sylius-media-manager-plugin": "^3.0",
         "monsieurbiz/sylius-rich-editor-plugin": "^3.0",
         "php": "^8.2",
         "sylius/sylius": "~2.0"
