@@ -67,4 +67,12 @@ interface PageInterface extends ResourceInterface, TranslatableInterface, Toggle
     public function getMetaImage(): ?string;
 
     public function setMetaImage(?string $metaImage): void;
+
+    public function getNoindex(): bool;
+
+    public function setNoindex(bool $noindex): void;
+
+    public function getNofollow(): bool;
+
+    public function setNofollow(bool $nofollow): void;
 }

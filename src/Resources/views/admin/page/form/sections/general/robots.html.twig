@@ -1,0 +1,10 @@
+{% set form = hookable_metadata.context.form %}
+<fieldset class="mb-3 field">
+    <legend class="col-form-label">{{ 'monsieurbiz_cms_page.ui.form.search_engine_directives'|trans }}</legend>
+    {% if form.noindex is defined %}
+        {{ form_row(form.noindex) }}
+    {% endif %}
+    {% if form.nofollow is defined %}
+        {{ form_row(form.nofollow) }}
+    {% endif %}
+</fieldset>

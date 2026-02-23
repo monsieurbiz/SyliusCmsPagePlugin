@@ -50,6 +50,14 @@ class PageType extends AbstractResourceType
                 'multiple' => true,
                 'expanded' => true,
             ])
+            ->add('noindex', CheckboxType::class, [
+                'required' => false,
+                'label' => 'monsieurbiz_cms_page.ui.form.noindex',
+            ])
+            ->add('nofollow', CheckboxType::class, [
+                'required' => false,
+                'label' => 'monsieurbiz_cms_page.ui.form.nofollow',
+            ])
             ->add('translations', ResourceTranslationsType::class, [
                 'entry_type' => PageTranslationType::class,
             ])
