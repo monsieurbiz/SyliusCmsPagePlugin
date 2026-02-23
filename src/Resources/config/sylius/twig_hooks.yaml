@@ -55,6 +55,9 @@ sylius_twig_hooks:
             channels:
                 template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/form/sections/general/channels.html.twig'
                 priority: 100
+            robots:
+                template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/form/sections/general/robots.html.twig'
+                priority: 50
             code:
                 template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/form/sections/general/code.html.twig'
                 priority: 0
@@ -113,6 +116,9 @@ sylius_twig_hooks:
             channels:
                 template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/form/sections/general/channels.html.twig'
                 priority: 100
+            robots:
+                template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/form/sections/general/robots.html.twig'
+                priority: 50
             code:
                 template: '@MonsieurBizSyliusCmsPagePlugin/admin/page/form/sections/general/code.html.twig'
                 priority: 0

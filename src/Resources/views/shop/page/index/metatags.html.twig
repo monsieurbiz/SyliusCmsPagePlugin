@@ -14,3 +14,10 @@
 {% if page is not empty and page.metaImage is not empty %}
     <meta property="og:image" content="{{ page.metaImage|imagine_filter('monsieurbiz_cms_page_og_image') }}" />
 {% endif %}
+{% if page is not empty %}
+    {% set noindex = page.noindex|default(false) %}
+    {% set nofollow = page.nofollow|default(false) %}
+    {% set robots_index = noindex ? 'noindex' : 'index' %}
+    {% set robots_follow = nofollow ? 'nofollow' : 'follow' %}
+    <meta name="robots" content="{{ robots_index }}, {{ robots_follow }}">
+{% endif %}

@@ -46,6 +46,10 @@ class Page implements PageInterface
 
     protected ?DateTimeInterface $unpublishAt = null;
 
+    protected bool $noindex = false;
+
+    protected bool $nofollow = false;
+
     /**
      * Page constructor.
      */
@@ -192,6 +196,26 @@ class Page implements PageInterface
     public function setSlug(?string $slug): void
     {
         $this->getTranslation()->setSlug($slug);
+    }
+
+    public function getNoindex(): bool
+    {
+        return $this->noindex;
+    }
+
+    public function setNoindex(bool $noindex): void
+    {
+        $this->noindex = $noindex;
+    }
+
+    public function getNofollow(): bool
+    {
+        return $this->nofollow;
+    }
+
+    public function setNofollow(bool $nofollow): void
+    {
+        $this->nofollow = $nofollow;
     }
 
     /**
