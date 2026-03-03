@@ -18,6 +18,8 @@ final class PageLink
 
     public string $pageCode;
 
+    public int $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH;
+
     public function __construct(
         protected LocaleContextInterface $localeContext,
         protected ChannelContextInterface $channelContext,
@@ -37,8 +39,9 @@ final class PageLink
             'monsieurbiz_cms_page_show',
             [
                 '_locale' => $this->localeContext->getLocaleCode(),
-                'slug' => $page->getSlug()
-            ]
+                'slug' => $page->getSlug(),
+            ],
+            $this->referenceType
         );
         return $url;
     }
