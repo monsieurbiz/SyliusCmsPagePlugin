@@ -3,6 +3,7 @@
 namespace MonsieurBiz\SyliusCmsPagePlugin\Twig\Component;
 
 use MonsieurBiz\SyliusCmsPagePlugin\Entity\PageInterface;
+use MonsieurBiz\SyliusCmsPagePlugin\Entity\PageTranslationInterface;
 use MonsieurBiz\SyliusCmsPagePlugin\Repository\PageRepositoryInterface;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
@@ -17,6 +18,8 @@ final class PageLink
     use HookableComponentTrait;
 
     public string $pageCode;
+
+    public ?string $locale = null;
 
     public int $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH;
 
@@ -35,11 +38,15 @@ final class PageLink
         if (!($page instanceof PageInterface)) {
             return '';
         }
+        $translation = $this->getPageTranslation($page);
+        if (null === $translation) {
+            return '';
+        }
         $url = $this->urlGenerator->generate(
             'monsieurbiz_cms_page_show',
             [
-                '_locale' => $this->localeContext->getLocaleCode(),
-                'slug' => $page->getSlug(),
+                '_locale' => $translation->getLocale() ?? $this->resolveLocaleCode(),
+                'slug' => $translation->getSlug(),
             ],
             $this->referenceType
         );
@@ -53,19 +60,50 @@ final class PageLink
         if (!($page instanceof PageInterface)) {
             return '';
         }
-        return $page->getTitle();
+        $translation = $this->getPageTranslation($page);
+
+        return $translation?->getTitle() ?? '';
     }
 
     private function getPage(): ?PageInterface
     {
-        $currentLocaleCode = $this->localeContext->getLocaleCode();
         $channel = $this->channelContext->getChannel();
         $now = new \DateTime();
+
+        $lookupLocaleCode = $channel->getDefaultLocale()?->getCode() ?? $this->resolveLocaleCode();
+
         return $this->pageRepository->findOneEnabledAndPublishedByPageCodeAndChannelCode(
             $this->pageCode,
-            $currentLocaleCode,
+            $lookupLocaleCode,
             $channel,
             $now
         );
+    }
+
+    private function getPageTranslation(PageInterface $page): ?PageTranslationInterface
+    {
+        $translations = $page->getTranslations();
+
+        $preferredTranslation = $translations->get($this->resolveLocaleCode());
+        if ($preferredTranslation instanceof PageTranslationInterface) {
+            return $preferredTranslation;
+        }
+
+        $channelDefaultLocaleCode = $this->channelContext->getChannel()->getDefaultLocale()?->getCode();
+        if (null !== $channelDefaultLocaleCode) {
+            $channelDefaultTranslation = $translations->get($channelDefaultLocaleCode);
+            if ($channelDefaultTranslation instanceof PageTranslationInterface) {
+                return $channelDefaultTranslation;
+            }
+        }
+
+        $fallbackTranslation = $page->getTranslation();
+
+        return $fallbackTranslation instanceof PageTranslationInterface ? $fallbackTranslation : null;
+    }
+
+    private function resolveLocaleCode(): string
+    {
+          return $this->locale ?? $this->localeContext->getLocaleCode();
     }
 }
