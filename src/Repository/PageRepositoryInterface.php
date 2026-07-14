@@ -34,4 +34,6 @@ interface PageRepositoryInterface extends RepositoryInterface
     public function existsOneEnabledAndPublishedByChannelAndSlug(ChannelInterface $channel, ?string $locale, string $slug, DateTimeInterface $dateTime): bool;
 
     public function findOneEnabledAndPublishedBySlugAndChannelCode(string $slug, string $localeCode, string $channelCode, DateTimeInterface $dateTime): ?PageInterface;
+
+    public function findOneEnabledAndPublishedByPageCodeAndChannelCode(string $code, string $localeCode, ChannelInterface $channel, DateTimeInterface $dateTime): ?PageInterface;
 }

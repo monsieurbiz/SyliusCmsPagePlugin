@@ -9,7 +9,7 @@
 
 This plugins allows you to add manage CMS pages using the Rich Editor and the Media Manager.
 
-If you want to know more about our editor, see the [Rich Editor Plugin](https://github.com/monsieurbiz/SyliusRichEditorPlugin)  
+If you want to know more about our editor, see the [Rich Editor Plugin](https://github.com/monsieurbiz/SyliusRichEditorPlugin)
 If you want to know more about our editor, see the [Media Manager Plugin](https://github.com/monsieurbiz/SyliusMediaManagerPlugin)
 
 ![Example of CMS Page display](screenshots/front-example.png)
@@ -34,9 +34,9 @@ composer config --no-plugins --json extra.symfony.endpoint '["https://api.github
 composer require monsieurbiz/sylius-cms-page-plugin
 ```
 
-If you do not use the recipes : 
+If you do not use the recipes :
 
-Change your `config/bundles.php` file to add the line for the plugin : 
+Change your `config/bundles.php` file to add the line for the plugin :
 
 ```php
 <?php
@@ -54,7 +54,7 @@ imports:
     - { resource: "@MonsieurBizSyliusCmsPagePlugin/Resources/config/config.yaml" }
 ```
 
-Finally import the routes in `config/routes/monsieurbiz_sylius_cms_page_plugin.yaml` : 
+Finally import the routes in `config/routes/monsieurbiz_sylius_cms_page_plugin.yaml` :
 
 ```yaml
 monsieurbiz_cms_page_admin:
@@ -96,7 +96,7 @@ After migration, please create a new diff migration :
 bin/console doctrine:migrations:diff
 ```
 
-Then run it (if any) : 
+Then run it (if any) :
 
 ```php
 bin/console doctrine:migrations:migrate
@@ -114,12 +114,20 @@ bin/console doctrine:migrations:migrate
 
 ## Create custom elements
 
-You can customize and create custom elements in your page.  
+You can customize and create custom elements in your page.
 In order to do that, you can check the [Rich Editor custom element creation](https://github.com/monsieurbiz/SyliusRichEditorPlugin#create-your-own-elements)
+
+## Render a link to a CMS Page
+
+You can use the `PageLink` Twig Component to render a link to any CMS Page in any of your templates.
+
+```html
+{{ component('MonsieurBizSyliusCmsPagePlugin:PageLink', {pageCode: '<code>'}) }}
+```
 
 ## SEO Friendly
 
-You can define for every page the meta title, meta description, meta 
+You can define for every page the meta title, meta description, meta
 keywords and meta image.
 
 ## Troubleshooting
@@ -127,11 +135,11 @@ keywords and meta image.
 ### Locale not found
 
 We've added a new LocaleContext (`LastChanceLocaleContext`) because the locale isn't set in the request when the
-condition on the route is applied.  
+condition on the route is applied.
 Therefore, if you still have an issue with multiple locales in your project, you may need to add another LocaleContext
 in order to find out your locale. The system will take care of the rest.
 
 ## Contributing
 
-You can open an issue or a Pull Request if you want! 😘  
+You can open an issue or a Pull Request if you want! 😘
 Thank you!
