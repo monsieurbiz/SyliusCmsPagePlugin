@@ -1,0 +1,45 @@
+monsieurbiz_cms_page:
+  ui:
+    pages: "Seiten"
+    page: "Seite"
+    new_page: "Neue Seite"
+    edit_page: "Seite bearbeiten"
+    cms_content: "CMS-Inhalt"
+    pages_subheader: "Verwaltung der CMS-Seiten"
+    back_to_admin: "Zurück zur Administration"
+    is_published: "Veröffentlicht"
+    form:
+      id: 'ID'
+      page_info: 'Seiteninformationen'
+      page_content: 'Seiteninhalt'
+      enabled: "Aktiviert"
+      channels: "Kanäle"
+      title: "Titel"
+      slug: "Slug"
+      code: "Code"
+      content: "Inhalt"
+      meta_title: "Meta-Titel"
+      meta_description: "Meta-Beschreibung"
+      meta_keywords: "Meta-Schlüsselwörter"
+      meta_image: "Meta-Bild"
+      meta_image_help: "Ideales Format: 1200 x 630 px"
+      publish_at: "Veröffentlichen am"
+      unpublish_at: "Veröffentlichung beenden am"
+    show_in: "Anzeigen in"
+    show_page_in_shop_page: "Seite in der Shop-Seite anzeigen"
+    cannot_show_page_in_shop_page: "Sie können diese Seite nicht in der Shop-Seite anzeigen, da sie nicht aktiviert oder auf mindestens einem Kanal veröffentlicht ist."
+    preview_update_action_tooltip: "Klicken Sie auf `Aktualisieren`, um Ihre Änderungen zu speichern, bevor Sie eine Vorschau der Seite anzeigen."
+    preview_create_action_tooltip: "Klicken Sie auf `Erstellen`, um Ihre Änderungen zu speichern, bevor Sie eine Vorschau der Seite anzeigen."
+    actions:
+      create: 'Neue Seite erstellen'
+      preview: 'Vorschau'
+    banner:
+      preview: 'Vorschau'
+monsieurbiz_menu:
+    provider:
+        page: 'Seite'
+sylius_plus:
+  rbac:
+    parent:
+      page: 'Seite'
+      pages: 'Seiten'
