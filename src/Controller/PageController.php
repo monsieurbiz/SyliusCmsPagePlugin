@@ -33,7 +33,7 @@ class PageController extends ResourceController
         $resource = $this->findOr404($configuration);
 
         /** @var string $template */
-        $template = $configuration->getRequest()->get('template');
+        $template = $configuration->getRequest()->attributes->get('template');
 
         return $this->render($template, [
             'configuration' => $configuration,
